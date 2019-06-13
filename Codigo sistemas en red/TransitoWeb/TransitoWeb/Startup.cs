@@ -44,7 +44,7 @@ namespace TransitoWeb
             }
             else
             {
-                app.UseExceptionHandler("/Administrador/Error");
+                app.UseExceptionHandler("/Perito/Error");
                 app.UseHsts();
             }
 
@@ -56,7 +56,7 @@ namespace TransitoWeb
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Administrador}/{action=Index}/{id?}");
+                    template: "{controller=Perito}/{action=Index}/{id?}");
             });
         }
     }
