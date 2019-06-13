@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+    <link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="/images/logo.jpg" width="500" height="500" alt="" />
+        </div>
+        <div class="col-lg-6">
+            <form name="forma" id="forma" action="/Perito/Validar" method="post">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="email" class="form-control" id="email" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div align="center">
+                    <input class="btn btn-primary" type="submit" id="enviar" name="enviar"
+                           value="Enviar" onclick="enviarForma(); return false;" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+            function enviarForma() {
+                if (forma_valida()) {
+                    $("#forma").submit();
+                } else
+                    alert("Debe llenar los datos de inicio de sesión");
+            }
+
+            function forma_valida() {
+                var txt_login = $("#email").val();
+                var txt_password = $("#password").val();
+                if (txt_login != "" && txt_password != "")
+                    return true;
+                else
+                    return false;
+            }
+    </script>
+</body>
+</html>
+
