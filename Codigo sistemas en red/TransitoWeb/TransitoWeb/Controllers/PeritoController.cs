@@ -39,8 +39,8 @@ namespace TransitoWeb.Controllers
                     dbSS.SaveChanges();
 
                     byte[] arr = BitConverter.GetBytes(registroAcceso.IdPerito);
-                    HttpContext.Session.Set("SesionUsuario", arr);
-                    HttpContext.Session.Set("Usuario",
+                    HttpContext.Session.Set("SesionPerito", arr);
+                    HttpContext.Session.Set("Perito",
                      Encoding.ASCII
                      .GetBytes($"{perito.Nombre}"));
                     return new RedirectResult("/Perito/Principal");
@@ -49,6 +49,14 @@ namespace TransitoWeb.Controllers
             else
                 return new RedirectResult("/");
         }
+
+        public IActionResult Principal()
+        {
+
+            return View("Principal");
+        }
+
+
 
         public Perito ValidarUsuario(String login, String password)
         {

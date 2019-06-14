@@ -31,6 +31,11 @@ namespace TransitoWeb
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(opciones => {
+                opciones.IdleTimeout = TimeSpan.FromMinutes(5);
+                opciones.Cookie.HttpOnly = true;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,7 +56,8 @@ namespace TransitoWeb
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

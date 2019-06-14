@@ -5,11 +5,6 @@ namespace TransitoWeb.Models
 {
     public partial class Vehiculo
     {
-        public Vehiculo()
-        {
-            Reporte = new HashSet<Reporte>();
-        }
-
         public string Placa { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
@@ -20,6 +15,5 @@ namespace TransitoWeb.Models
         public int IdConductor { get; set; }
 
         public Conductor IdConductorNavigation { get; set; }
-        public ICollection<Reporte> Reporte { get; set; }
     }
 }

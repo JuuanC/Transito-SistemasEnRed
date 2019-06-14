@@ -19,8 +19,7 @@ namespace TransitoWeb.Models
         public virtual DbSet<BitacoraPerito> BitacoraPerito { get; set; }
         public virtual DbSet<Conductor> Conductor { get; set; }
         public virtual DbSet<Dictamen> Dictamen { get; set; }
-        public virtual DbSet<EstadoReporte> EstadoReporte { get; set; }
-        public virtual DbSet<FotoSiniestro> FotoSiniestro { get; set; }
+        public virtual DbSet<FotoReporte> FotoReporte { get; set; }
         public virtual DbSet<Perito> Perito { get; set; }
         public virtual DbSet<Reporte> Reporte { get; set; }
         public virtual DbSet<Vehiculo> Vehiculo { get; set; }
@@ -147,8 +146,8 @@ namespace TransitoWeb.Models
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FechaDictamen)
-                    .HasColumnName("fechaDictamen")
+                entity.Property(e => e.Fecha)
+                    .HasColumnName("fecha")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.IdPerito).HasColumnName("idPerito");
@@ -168,54 +167,26 @@ namespace TransitoWeb.Models
                     .HasConstraintName("FK_Dictamen_Reporte");
             });
 
-            modelBuilder.Entity<EstadoReporte>(entity =>
+            modelBuilder.Entity<FotoReporte>(entity =>
             {
-                entity.HasKey(e => e.IdEstado);
+                entity.HasKey(e => e.Idfoto);
 
-                entity.ToTable("Estado_Reporte");
+                entity.ToTable("Foto_Reporte");
 
-                entity.Property(e => e.IdEstado).HasColumnName("idEstado");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnName("fecha")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.Idfoto).HasColumnName("idfoto");
 
                 entity.Property(e => e.IdReporte).HasColumnName("idReporte");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Imagen)
                     .IsRequired()
-                    .HasColumnName("nombre")
-                    .HasMaxLength(45)
-                    .IsUnicode(false);
+                    .HasColumnName("imagen")
+                    .HasColumnType("image");
 
                 entity.HasOne(d => d.IdReporteNavigation)
-                    .WithMany(p => p.EstadoReporte)
+                    .WithMany(p => p.FotoReporte)
                     .HasForeignKey(d => d.IdReporte)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Estado_Reporte_Reporte");
-            });
-
-            modelBuilder.Entity<FotoSiniestro>(entity =>
-            {
-                entity.HasKey(e => e.IdFoto);
-
-                entity.ToTable("Foto_Siniestro");
-
-                entity.Property(e => e.IdFoto).HasColumnName("idFoto");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnName("fecha")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.IdReporte).HasColumnName("idReporte");
-
-                entity.Property(e => e.NumFoto).HasColumnName("numFoto");
-
-                entity.HasOne(d => d.IdReporteNavigation)
-                    .WithMany(p => p.FotoSiniestro)
-                    .HasForeignKey(d => d.IdReporte)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Foto_Siniestro_Reporte");
+                    .HasConstraintName("FK_Foto_Reporte_Reporte");
             });
 
             modelBuilder.Entity<Perito>(entity =>
@@ -260,6 +231,12 @@ namespace TransitoWeb.Models
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Estatus)
+                    .IsRequired()
+                    .HasColumnName("estatus")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.FechaReporte)
                     .HasColumnName("fechaReporte")
                     .HasColumnType("datetime");
@@ -297,8 +274,8 @@ namespace TransitoWeb.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaclasImplicado)
-                    .HasColumnName("placlasImplicado")
+                entity.Property(e => e.PlacasImplicado)
+                    .HasColumnName("placasImplicado")
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
@@ -318,12 +295,6 @@ namespace TransitoWeb.Models
                     .HasForeignKey(d => d.IdConductor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reporte_Conductor");
-
-                entity.HasOne(d => d.PlacaNavigation)
-                    .WithMany(p => p.Reporte)
-                    .HasForeignKey(d => d.Placa)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reporte_Vehiculo");
             });
 
             modelBuilder.Entity<Vehiculo>(entity =>

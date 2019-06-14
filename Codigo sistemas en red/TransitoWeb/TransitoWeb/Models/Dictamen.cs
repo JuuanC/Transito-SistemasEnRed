@@ -7,7 +7,7 @@ namespace TransitoWeb.Models
     {
         public int IdFolio { get; set; }
         public string Descripcion { get; set; }
-        public DateTime FechaDictamen { get; set; }
+        public DateTime Fecha { get; set; }
         public int IdPerito { get; set; }
         public int IdReporte { get; set; }
 
