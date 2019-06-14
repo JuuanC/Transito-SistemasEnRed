@@ -72,11 +72,7 @@ namespace TransitoWeb.Models
 
                 entity.Property(e => e.IdBitacora).HasColumnName("idBitacora");
 
-                entity.Property(e => e.Activa)
-                    .IsRequired()
-                    .HasColumnName("activa")
-                    .HasMaxLength(45)
-                    .IsUnicode(false);
+                entity.Property(e => e.Activa).HasColumnName("activa");
 
                 entity.Property(e => e.Fecha)
                     .HasColumnName("fecha")
@@ -94,7 +90,7 @@ namespace TransitoWeb.Models
                     .WithMany(p => p.BitacoraPerito)
                     .HasForeignKey(d => d.IdPerito)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Bitacora_Perito_Perito");
+                    .HasConstraintName("FK_Bitacora_Perito_Perito1");
             });
 
             modelBuilder.Entity<Conductor>(entity =>

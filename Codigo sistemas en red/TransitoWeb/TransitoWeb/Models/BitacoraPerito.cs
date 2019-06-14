@@ -8,7 +8,7 @@ namespace TransitoWeb.Models
         public int IdBitacora { get; set; }
         public DateTime Fecha { get; set; }
         public string Token { get; set; }
-        public string Activa { get; set; }
+        public bool Activa { get; set; }
         public int IdPerito { get; set; }
 
         public Perito IdPeritoNavigation { get; set; }

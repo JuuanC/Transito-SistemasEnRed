@@ -14,7 +14,7 @@ namespace TransitoWeb.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult Validar(String email, String password)
         {
