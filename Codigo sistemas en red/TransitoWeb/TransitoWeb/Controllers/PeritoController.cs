@@ -16,9 +16,9 @@ namespace TransitoWeb.Controllers
         }
         
         [HttpPost]
-        public IActionResult Validar(String email, String password)
+        public IActionResult Validar(String usuario, String password)
         {
-            Perito perito = ValidarUsuario(email, password);
+            Perito perito = ValidarUsuario(usuario, password);
             bool valido = perito != null;
             if (valido)
             {
@@ -50,20 +50,107 @@ namespace TransitoWeb.Controllers
                 return new RedirectResult("/");
         }
 
+        [HttpPost]
+        public String Registro(String usuario,
+            String nombre, String contrasenia, String cargo)
+        {
+            if (ValidarExistencia(usuario) == 0)
+            {
+                using (TransitoContext dbSS =
+                    new TransitoContext())
+                {
+                    Perito perito = new Perito();
+                    perito.Usuario = usuario;
+                    perito.Nombre = nombre;
+                    perito.Contrasenia = contrasenia;
+                    perito.Cargo = cargo;
+                    dbSS.Perito.Add(perito);
+                    dbSS.SaveChanges();
+                    return "{\"correcto\": \"si\"}";
+                }
+            }
+            else
+                return "{\"correcto\": \"no\"}";
+        }
+
+        [HttpPut]
+        public String Actualizar(int idPerito, String usuario,
+            String nombre, String contrasenia, String cargo)
+        {
+            if (ValidarExistencia(usuario) == 1)
+            {
+                using (TransitoContext dbSS =
+                    new TransitoContext())
+                {
+                    Perito perito = new Perito();
+                    perito.IdPerito = idPerito;
+                    perito.Usuario = usuario;
+                    perito.Nombre = nombre;
+                    perito.Contrasenia = contrasenia;
+                    perito.Cargo = cargo;
+                    dbSS.Perito.Update(perito);
+                    dbSS.SaveChanges();
+                    return "{\"correcto\": \"si\"}";
+                }
+            }
+            else
+                return "{\"correcto\": \"no\"}";
+        }
+
+        [HttpDelete]
+        public String Eliminar(int idPerito)
+        {
+            using (TransitoContext dbSS =
+                    new TransitoContext())
+            {
+                Perito perito = new Perito();
+                perito.IdPerito = idPerito;
+                dbSS.Perito.Remove(perito);
+                if(dbSS.SaveChanges() == 1)
+                {
+                    return "{\"correcto\": \"si\"}";
+                }
+                else
+                    return "{\"correcto\": \"no\"}";
+
+            }
+        }
+
+        [HttpGet]
+        public List<Perito> ListaPeritos()
+        {
+            List<Perito> listaAlumnos = null;
+            using (TransitoContext dbSS = new TransitoContext())
+            {
+               listaAlumnos = dbSS.Perito
+                        .OrderBy(a => a.IdPerito)
+                        .ToList();
+            }
+            return listaAlumnos;
+        }
         public IActionResult Principal()
         {
 
             return View("Principal");
         }
 
+        public int ValidarExistencia(String usuario)
+        {
+            using (TransitoContext dbSS = new TransitoContext())
+            {
+                var existe = dbSS.Perito.Count(al =>
+                                al.Usuario.Equals(usuario) 
+                                 );
+                return existe;
+            }
+        }
 
-
-        public Perito ValidarUsuario(String login, String password)
+        public Perito ValidarUsuario(String usuario, String password)
         {
             using (TransitoContext dbSS = new TransitoContext())
             {
                 var perito = dbSS.Perito.FirstOrDefault(al =>
-                                al.Usuario.Equals(login) &&
+                                al.Usuario.Equals(usuario) &&
                                       al.Contrasenia.Equals(password)
                                  );
                 return perito;
