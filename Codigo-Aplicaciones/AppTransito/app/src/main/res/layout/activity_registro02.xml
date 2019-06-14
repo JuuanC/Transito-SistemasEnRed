@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/idPrimerMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/idRegistroNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/registro_nombre"
+        android:inputType="textPersonName"
+        android:maxLength="25"/>
+
+    <EditText
+        android:id="@+id/idRegistroApellidoPat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/registro_apellido_pat"
+        android:inputType="textPersonName"
+        android:maxLength="15"/>
+
+    <EditText
+        android:id="@+id/idRegistroApellidoMat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/registro_apellido_mat"
+        android:inputType="textPersonName"
+        android:maxLength="15"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="@string/registro_boton_fecha"
+            android:onClick="seleccionarFecha"/>
+
+        <TextView
+            android:id="@+id/idRegistroFechaNacimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:hint="@string/registro_fecha_nacimiento"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/idRegistroNumeroLicencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/registro_numero_licencia"
+        android:inputType="number"
+        android:maxLength="15"/>
+
+    <Button
+        android:id="@+id/idTerminarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/registro_boton_terminar"
+        android:onClick="intentarRegistrar"/>
+
+</LinearLayout>

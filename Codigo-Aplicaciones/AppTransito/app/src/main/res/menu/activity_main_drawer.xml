@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Tipo de accidente">
+        <menu>
+            <item
+                android:id="@+id/nav_accidente"
+                android:icon="@drawable/accidente"
+                android:title="Accidente de carro" />
+            <item
+                android:id="@+id/nav_baches"
+                android:icon="@drawable/bache"
+                android:title="Baches en carretera" />
+            <item
+                android:id="@+id/nav_semaforo"
+                android:icon="@drawable/semaforo"
+                android:title="Semaforo descompuesto" />
+        </menu>
+    </item>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="Import" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_manage"
+            android:title="Tools" />
+    </group>
+
+</menu>

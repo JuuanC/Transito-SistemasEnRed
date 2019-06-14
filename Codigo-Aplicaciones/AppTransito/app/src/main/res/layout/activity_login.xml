@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+    <ImageView
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/login" />
+
+    <EditText
+        android:id="@+id/idCelular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/login_celular"
+        android:inputType="number"
+        android:maxLength="10"/>
+
+    <EditText
+        android:id="@+id/idPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:maxLength="45"/>
+
+    <Button
+        android:id="@+id/idEntrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/login_entrar"
+        android:onClick="intentarEntrar"/>
+
+    <Button
+        android:id="@+id/idRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:text="@string/login_registrarse"
+        android:onClick="desplegarRegistrarse"/>
+
+</LinearLayout>

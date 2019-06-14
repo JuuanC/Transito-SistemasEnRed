@@ -1,0 +1,60 @@
+<resources>
+
+    <string name="app_name">AppTransito</string>
+
+
+    <string name="login_title">Login</string>
+    <string name="login_celular">No. Celular</string>
+    <string name="login_password">Password</string>
+    <string name="login_entrar">Entrar</string>
+    <string name="login_registrarse">Registrarse</string>
+
+
+    <string name="registrar_title1">Registro01</string>
+    <string name="login_password2">Repetir Password</string>
+    <string name="registro_boton_siguiente">Siguiente</string>
+
+    <string name="registrar_title2">Registro02</string>
+    <string name="registro_boton_terminar">Terminar</string>
+    <string name="registro_nombre">Nombre</string>
+    <string name="registro_apellido_pat">Apellido paterno</string>
+    <string name="registro_apellido_mat">Apellido materno</string>
+    <string name="registro_boton_fecha">Fecha</string>
+    <string name="registro_fecha_nacimiento">dd/mm/aaaa</string>
+    <string name="registro_numero_licencia">No. licencia</string>
+
+    <string name="reporte_title1">Reporte</string>
+    <string name="reporte_datos_carro_implicado">Datos del carro implicado</string>
+    <string name="reporte_campos_obligatorios">Los siguientes campos son obligatorios :</string>
+    <string name="reporte_placas">Placas</string>
+    <string name="reporte_marca_carro">Marca del carro</string>
+    <string name="reporte_modelo_carro">Modelo del carro</string>
+    <string name="reporte_color_carro">Color del carro</string>
+    <string name="reporte_boton_siguiente">Siguiente</string>
+    <string name="reporte_boton_limpiar">Limpiar</string>
+
+    <string name="reporte_informacion_conductor_implicado">Información del conductor implicado</string>
+    <string name="reporte_campos_opcionales">Los siguientes campos son opcionales :</string>
+    <string name="reporte_nombre_conductor">Nombre del conductor</string>
+    <string name="reporte_poliza_seguro">Poliza del seguro</string>
+
+    <string name="reporte_informacion_adicional">Información adicional</string>
+    <string name="reporte_llenado_automatico">No te preocupes, nosotros llenaremos esto por ti</string>
+    <string name="reporte_latitud">Latitud</string>
+    <string name="reporte_longitud">Longitud</string>
+    <string name="reporte_fecha">Fecha</string>
+
+    <string name="reporte_fotos_siniestro">Fotos del siniestro</string>
+    <string name="reporte_fotos_minimas">Fotos mínimas: 4</string>
+    <string name="reporte_fotos_maximas">Fotos mínimas: 8</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+</resources>
