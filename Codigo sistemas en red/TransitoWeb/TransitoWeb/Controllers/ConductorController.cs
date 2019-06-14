@@ -9,7 +9,7 @@ namespace TransitoWeb.Controllers
 {
     public class ConductorController : Controller
     {
-        /*
+        
         [HttpPost]
         public IActionResult Validar(String telefono, String password)
         {
@@ -43,7 +43,7 @@ namespace TransitoWeb.Controllers
             }
             else
                 return new RedirectResult("/");
-        }*/
+        }
 
         [HttpPost]
         public String Registro(String nombre, String fechaNacimiento, 

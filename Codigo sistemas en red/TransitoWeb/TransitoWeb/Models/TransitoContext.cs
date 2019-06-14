@@ -49,7 +49,11 @@ namespace TransitoWeb.Models
                     .HasColumnName("fecha")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.IdConductor).HasColumnName("idConductor");
+                entity.Property(e => e.Telefono)
+                    .IsRequired()
+                    .HasColumnName("telefono")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Token)
                     .IsRequired()
@@ -57,11 +61,11 @@ namespace TransitoWeb.Models
                     .HasMaxLength(45)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdConductorNavigation)
+                entity.HasOne(d => d.TelefonoNavigation)
                     .WithMany(p => p.BitacoraConductor)
-                    .HasForeignKey(d => d.IdConductor)
+                    .HasForeignKey(d => d.Telefono)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Bitacora_Conductor2_Conductor");
+                    .HasConstraintName("FK_Bitacora_Conductor_Conductor");
             });
 
             modelBuilder.Entity<BitacoraPerito>(entity =>
@@ -95,9 +99,13 @@ namespace TransitoWeb.Models
 
             modelBuilder.Entity<Conductor>(entity =>
             {
-                entity.HasKey(e => e.IdConductor);
+                entity.HasKey(e => e.Telefono);
 
-                entity.Property(e => e.IdConductor).HasColumnName("idConductor");
+                entity.Property(e => e.Telefono)
+                    .HasColumnName("telefono")
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Contrasenia)
                     .IsRequired()
@@ -121,12 +129,6 @@ namespace TransitoWeb.Models
                     .IsRequired()
                     .HasColumnName("numLicencia")
                     .HasMaxLength(40)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Telefono)
-                    .IsRequired()
-                    .HasColumnName("telefono")
-                    .HasMaxLength(10)
                     .IsUnicode(false);
             });
 
@@ -237,8 +239,6 @@ namespace TransitoWeb.Models
                     .HasColumnName("fechaReporte")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.IdConductor).HasColumnName("idConductor");
-
                 entity.Property(e => e.Latitud)
                     .IsRequired()
                     .HasColumnName("latitud")
@@ -280,15 +280,21 @@ namespace TransitoWeb.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Telefono)
+                    .IsRequired()
+                    .HasColumnName("telefono")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.TipoReporte)
                     .IsRequired()
                     .HasColumnName("tipoReporte")
                     .HasMaxLength(45)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdConductorNavigation)
+                entity.HasOne(d => d.TelefonoNavigation)
                     .WithMany(p => p.Reporte)
-                    .HasForeignKey(d => d.IdConductor)
+                    .HasForeignKey(d => d.Telefono)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reporte_Conductor");
             });
@@ -315,8 +321,6 @@ namespace TransitoWeb.Models
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdConductor).HasColumnName("idConductor");
-
                 entity.Property(e => e.Marca)
                     .IsRequired()
                     .HasColumnName("marca")
@@ -339,9 +343,15 @@ namespace TransitoWeb.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdConductorNavigation)
+                entity.Property(e => e.Telefono)
+                    .IsRequired()
+                    .HasColumnName("telefono")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.TelefonoNavigation)
                     .WithMany(p => p.Vehiculo)
-                    .HasForeignKey(d => d.IdConductor)
+                    .HasForeignKey(d => d.Telefono)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Vehiculo_Conductor");
             });

@@ -9,8 +9,8 @@ namespace TransitoWeb.Models
         public DateTime Fecha { get; set; }
         public string Token { get; set; }
         public bool Activa { get; set; }
-        public int IdConductor { get; set; }
+        public string Telefono { get; set; }
 
-        public Conductor IdConductorNavigation { get; set; }
+        public Conductor TelefonoNavigation { get; set; }
     }
 }

@@ -12,11 +12,10 @@ namespace TransitoWeb.Models
             Vehiculo = new HashSet<Vehiculo>();
         }
 
-        public int IdConductor { get; set; }
+        public string Telefono { get; set; }
         public string Nombre { get; set; }
         public string FechaNacimiento { get; set; }
         public string NumLicencia { get; set; }
-        public string Telefono { get; set; }
         public string Contrasenia { get; set; }
 
         public ICollection<BitacoraConductor> BitacoraConductor { get; set; }

@@ -13,7 +13,7 @@ namespace TransitoWeb.Models
 
         public int IdReporte { get; set; }
         public string Placa { get; set; }
-        public int IdConductor { get; set; }
+        public string Telefono { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public string PlacasImplicado { get; set; }
@@ -26,7 +26,7 @@ namespace TransitoWeb.Models
         public string TipoReporte { get; set; }
         public string Estatus { get; set; }
 
-        public Conductor IdConductorNavigation { get; set; }
+        public Conductor TelefonoNavigation { get; set; }
         public ICollection<Dictamen> Dictamen { get; set; }
         public ICollection<FotoReporte> FotoReporte { get; set; }
     }
