@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Conductor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idConductor;
     private String noCelular;
     private String password;
     private String nombre;
@@ -15,10 +14,6 @@ public class Conductor implements Serializable {
     public Conductor () {
         // Constructor de la clase Conductor.
     }
-
-    public int getIdConductor() { return idConductor; }
-
-    public void setIdConductor(int idConductor) { this.idConductor = idConductor; }
 
     public String getNoCelular() {
         return noCelular;

@@ -4,7 +4,7 @@ public class Reporte {
 
     private int idReporte;
     private String placas;
-    private int idConductor;
+    private String noCelular;
     private double latitud;
     private double longitud;
     private String placasImplicado;
@@ -36,12 +36,12 @@ public class Reporte {
         this.placas = placas;
     }
 
-    public int getIdConductor() {
-        return idConductor;
+    public String getNoCelular() {
+        return noCelular;
     }
 
-    public void setIdConductor(int idConductor) {
-        this.idConductor = idConductor;
+    public void setNoCelular(String noCelular) {
+        this.noCelular = noCelular;
     }
 
     public double getLatitud() {

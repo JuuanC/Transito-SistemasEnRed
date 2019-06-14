@@ -48,6 +48,31 @@
     <string name="reporte_fotos_minimas">Fotos mínimas: 4</string>
     <string name="reporte_fotos_maximas">Fotos mínimas: 8</string>
 
+    <string name="vehiculo_title">Vehiculos</string>
+    <string name="vehiculo_datos_vehiculo">Datos del vehículo</string>
+    <string name="vehiculo_campos_oligatorios">Los siguientes datos son obligatorios</string>
+    <string name="vehiculo_campos_opcionales">Los siguientes datos son opcionales</string>
+    <string name="vehiculo_placas">Placas</string>
+    <string name="vehiculo_marca">Marca</string>
+    <string name="vehiculo_modelo">Modelo</string>
+    <string name="vehiculo_anio">Año</string>
+    <string name="vehiculo_color">Color</string>
+    <string name="vehiculo_aseguradora">Nombre de aseguradora</string>
+    <string name="vehiculo_poliza">No. de poliza</string>
+    <string name="vehiculo_boton_registrar">Registrar</string>
+    <string name="vehiculo_boton_modificar">Modificar</string>
+    <string name="vehiculo_boton_eliminar">Eliminar</string>
+
+    <string name="datos_celular">No. de Celular</string>
+    <string name="datos_password1">Contraseña</string>
+    <string name="datos_password2">Repetir contraseña</string>
+    <string name="datos_nombre">Nombre completo</string>
+    <string name="datos_fecha">dd/mm/aaaa</string>
+    <string name="datos_licencia">No. de licencia</string>
+    <string name="datos_boton_fecha">Fecha</string>
+    <string name="datos_boton_modificar">Modificar</string>
+    <string name="datos_boton_eliminar">Eliminar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>

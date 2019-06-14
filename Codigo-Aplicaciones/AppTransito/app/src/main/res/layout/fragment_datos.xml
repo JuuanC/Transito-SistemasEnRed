@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FragmentDatos">
+
+
+    <EditText
+        android:id="@+id/idCelularDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/datos_celular"
+        android:inputType="number"
+        android:maxLength="10"/>
+
+    <EditText
+        android:id="@+id/idPasswordDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/datos_password1"
+        android:inputType="textPassword"
+        android:maxLength="10"/>
+
+    <EditText
+        android:id="@+id/idPassword2Datos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/datos_password2"
+        android:inputType="textPassword"
+        android:maxLength="10"/>
+
+    <EditText
+        android:id="@+id/idNombreDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/datos_nombre"
+        android:inputType="text"
+        android:maxLength="10"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/idSeleccionarFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="@string/datos_boton_fecha"/>
+
+        <TextView
+            android:id="@+id/idFechaDatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:hint="@string/datos_fecha"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/idNumeroLicenciaDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:hint="@string/datos_licencia"
+        android:inputType="number"
+        android:maxLength="45"/>
+
+    <Button
+        android:id="@+id/idModificarDatos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:text="@string/datos_boton_modificar"/>
+
+</LinearLayout>

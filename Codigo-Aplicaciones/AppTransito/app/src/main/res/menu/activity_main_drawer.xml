@@ -22,17 +22,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/nav_dictamen"
+            android:title="Dictamenes" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_historial"
+            android:title="Historial de Reportes" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_vehiculo"
+            android:title="Vehiculo" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_misDatos"
+            android:title="Mis Datos" />
     </group>
 
 </menu>

@@ -45,7 +45,6 @@ public class Login extends AppCompatActivity {
             // 2. Si existe entra, sino no entra si no se logra una conexión no entra.
 
             conductor = new Conductor();
-            conductor.setIdConductor(1);
             conductor.setNoCelular(noCelular);
             conductor.setPassword(password);
             conductor.setNombre("Luis Gerardo Bonilla Ramírez");

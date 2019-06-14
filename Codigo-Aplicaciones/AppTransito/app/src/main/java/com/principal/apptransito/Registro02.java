@@ -54,8 +54,6 @@ public class Registro02 extends AppCompatActivity {
 
     public void seleccionarFecha(View view) {
 
-        System.out.println("HOLAAAAAAAAAAAA");
-
         Calendar calendario = Calendar.getInstance();
 
         int dia = calendario.get(Calendar.DAY_OF_MONTH);

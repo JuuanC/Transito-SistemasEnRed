@@ -3,8 +3,6 @@ package com.principal.apptransito;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -13,18 +11,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity
-        extends AppCompatActivity
+        extends
+            AppCompatActivity
         implements
             NavigationView.OnNavigationItemSelectedListener,
-            ReporteFragment.OnFragmentInteractionListener,
-            VehiculoFragment.OnFragmentInteractionListener {
+            FragmentReporte.OnFragmentInteractionListener,
+            FragmentVehiculo.OnFragmentInteractionListener,
+            FragmentDatos.OnFragmentInteractionListener {
 
     private Conductor conductor;
     private TextView nombreUsuario;
@@ -46,9 +43,9 @@ public class MainActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        nombreUsuario = (TextView) findViewById(R.id.nombreUsuarioView);
-        celularUsuario = (TextView) findViewById(R.id.celularUsuarioView);
+        View hView = navigationView.getHeaderView(0);
+        nombreUsuario = (TextView) hView.findViewById(R.id.nombreUsuarioView);
+        celularUsuario = (TextView) hView.findViewById(R.id.celularUsuarioView);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -98,20 +95,31 @@ public class MainActivity
         boolean fragmentoSeleccionado = false;
 
         if (id == R.id.nav_accidente) {
-            fragmentoActual = new ReporteFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("conductor", conductor);
+            fragmentoActual = new FragmentReporte();
+            fragmentoActual.setArguments(bundle);
             fragmentoSeleccionado = true;
         } else if (id == R.id.nav_baches) {
 
         } else if (id == R.id.nav_semaforo) {
 
-        } else if (id == R.id.nav_camera) {
+        } else if (id == R.id.nav_dictamen) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_historial) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_vehiculo) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("conductor", conductor);
+            fragmentoActual = new FragmentVehiculo();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
+        } else if (id == R.id.nav_misDatos) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("conductor", conductor);
+            fragmentoActual = new FragmentDatos();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
         }
 
         if (fragmentoSeleccionado) {

@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class ReporteFragment extends Fragment {
+public class FragmentReporte extends Fragment {
 
     private static final String IMAGENES_LLENAS = "Ya tiene el máximo de fotos : 8";
     private static final String TIPO_REPORTE = "Accidente de carro";
@@ -42,7 +42,6 @@ public class ReporteFragment extends Fragment {
     private Validaciones validacion;
 
     private boolean[] menuFotos;
-    private View vista;
     private ImageView imageView1;
     private ImageView imageView2;
     private ImageView imageView3;
@@ -66,26 +65,15 @@ public class ReporteFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReporteFragment() {
+    public FragmentReporte() {
         // Required empty public constructor
-    }
-
-
-    public static ReporteFragment newInstance(String param1, String param2) {
-        ReporteFragment fragment = new ReporteFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            conductor = (Conductor) getArguments().getSerializable("conductor");
         }
     }
 
@@ -93,7 +81,7 @@ public class ReporteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        conductor = ((MainActivity)getActivity()).getConductor();
+        // conductor = ((MainActivity)getActivity()).getConductor();
 
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -105,7 +93,7 @@ public class ReporteFragment extends Fragment {
             }
         }
 
-        vista = inflater.inflate(R.layout.fragment_reporte, container, false);
+        View vista = inflater.inflate(R.layout.fragment_reporte, container, false);
 
         menuFotos = new boolean[]{false, false, false, false, false, false, false, false};
         placasEdit = vista.findViewById(R.id.idPlacas);
@@ -159,7 +147,7 @@ public class ReporteFragment extends Fragment {
                 Reporte reporte = new Reporte();
                 reporte.setIdReporte(1);
                 reporte.setPlacas("0123456789");
-                reporte.setIdConductor(conductor.getIdConductor());
+                reporte.setNoCelular(conductor.getNoCelular());
                 reporte.setLatitud(lat);
                 reporte.setLongitud(lon);
                 reporte.setPlacasImplicado(placasEdit.getText().toString().trim());
@@ -298,29 +286,6 @@ public class ReporteFragment extends Fragment {
                 break;
             }
         }
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     public interface OnFragmentInteractionListener {
