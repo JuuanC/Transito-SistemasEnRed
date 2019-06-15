@@ -8,6 +8,7 @@
     <uses-feature android:name="android.hardware.location.gps" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ListaVehiculos"></activity>
         <activity
             android:name=".activities.ModificarVehiculo"
-            android:label="Edición de Vehículo"/>
+            android:label="Edición de Vehículo" />
         <activity
             android:name=".activities.Login"
             android:label="@string/login_title">

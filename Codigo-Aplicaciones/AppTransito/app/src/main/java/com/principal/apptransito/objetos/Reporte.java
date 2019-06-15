@@ -1,6 +1,8 @@
 package com.principal.apptransito.objetos;
 
-public class Reporte {
+import java.io.Serializable;
+
+public class Reporte implements Serializable {
 
     private int idReporte;
     private String placas;
@@ -15,6 +17,8 @@ public class Reporte {
     private String colorImplicado;
     private String fechaReporte;
     private String tipoReporte;
+    private String status;
+    private Imagen[] imagenes;
 
     public Reporte() {
         // Constructor vacío de Reporte
@@ -122,5 +126,21 @@ public class Reporte {
 
     public void setTipoReporte(String tipoReporte) {
         this.tipoReporte = tipoReporte;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Imagen[] getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(Imagen[] imagenes) {
+        this.imagenes = imagenes;
     }
 }

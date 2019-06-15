@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.principal.apptransito.R;
 import com.principal.apptransito.objetos.Vehiculo;
-import com.principal.apptransito.utilidades.DialogoConfirmacion;
 import com.principal.apptransito.utilidades.DialogoEliminacion;
 import com.principal.apptransito.utilidades.DialogoModificacion;
 import com.principal.apptransito.utilidades.Instancias;
@@ -111,7 +110,7 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
         Validaciones validaciones = new Validaciones();
         Vehiculo nuevoVehiculo =  new Vehiculo();
         nuevoVehiculo.setAnio(anioEdit.getText().toString().trim());
-        nuevoVehiculo.setCelular(misInstancias.getConductor().getNoCelular());
+        nuevoVehiculo.setCelular(misInstancias.getConductor().getTelefono());
         nuevoVehiculo.setColor(colorEdit.getText().toString().trim());
         nuevoVehiculo.setMarca(marcaEdit.getText().toString().trim());
         nuevoVehiculo.setModelo(modeloEdit.getText().toString().trim());

@@ -75,10 +75,10 @@ public class Validaciones {
     }
 
     public String validarActualizarDatos(Conductor conductor, String password2) {
-        if ("".equals(conductor.getNoCelular()) | "".equals(conductor.getPassword()) | "".equals(password2) |
+        if ("".equals(conductor.getTelefono()) | "".equals(conductor.getPassword()) | "".equals(password2) |
                 "".equals(conductor.getNombre()) | "".equals(conductor.getNumeroLicencia())) {
             return DATOS_VACIOS;
-        } else if (conductor.getNoCelular().length() < 10) {
+        } else if (conductor.getTelefono().length() < 10) {
             return CELULAR_INVALIDO;
         } else if (conductor.getPassword().length() < 5) {
             return "La contraseña es muy corta";

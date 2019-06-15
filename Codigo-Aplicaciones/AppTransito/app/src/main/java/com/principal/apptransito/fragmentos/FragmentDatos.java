@@ -106,7 +106,7 @@ public class FragmentDatos
 
                 Conductor conductorValidar = new Conductor();
                 conductorValidar.setNombre(nombre);
-                conductorValidar.setNoCelular(celular);
+                conductorValidar.setTelefono(celular);
                 conductorValidar.setFechaNacimiento(fecha);
                 conductorValidar.setPassword(password1);
                 conductorValidar.setNumeroLicencia(licencia);
@@ -156,7 +156,7 @@ public class FragmentDatos
 
     private void llenarDatos() {
         fechaView.setText(misInstancias.getConductor().getFechaNacimiento());
-        celularEdit.setText(misInstancias.getConductor().getNoCelular());
+        celularEdit.setText(misInstancias.getConductor().getTelefono());
         password1Edit.setText(misInstancias.getConductor().getPassword());
         password2Edit.setText(misInstancias.getConductor().getPassword());
         nombreEdit.setText(misInstancias.getConductor().getNombre());
@@ -176,7 +176,7 @@ public class FragmentDatos
             // Simulación de nuevos datos.
             misInstancias.getConductor().setPassword(password1);
             misInstancias.getConductor().setNumeroLicencia(licencia);
-            misInstancias.getConductor().setNoCelular(celular);
+            misInstancias.getConductor().setTelefono(celular);
             misInstancias.getConductor().setFechaNacimiento(fecha);
             misInstancias.getConductor().setNombre(nombre);
         }

@@ -2,6 +2,7 @@ package com.principal.apptransito.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,19 +52,19 @@ public class Login extends AppCompatActivity {
             if (realizarConexionLogin()) {
 
                 misInstancias = new Instancias();
-                misInstancias.getConductor().setNoCelular(noCelular);
+                misInstancias.getConductor().setTelefono(noCelular);
                 misInstancias.getConductor().setPassword(password);
                 misInstancias.getConductor().setNombre("Luis Gerardo Bonilla Ramírez");
                 misInstancias.getConductor().setFechaNacimiento("26/08/1996");
                 misInstancias.getConductor().setNumeroLicencia("723819293");
 
-                // TODO (1) Si el usuario existe, regresar el usuario de la sesión y asignarla a las instancias.
+                String url = "http://192.168.1.95:80/Conductor/Validar/?telefono=2281721501&password=321";
 
-                Intent intento = new Intent(view.getContext(), MainActivity.class);
+                /*Intent intento = new Intent(view.getContext(), MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("conductor", misInstancias);
                 intento.putExtras(bundle);
-                startActivity(intento);
+                startActivity(intento);*/
             }
 
         } else {

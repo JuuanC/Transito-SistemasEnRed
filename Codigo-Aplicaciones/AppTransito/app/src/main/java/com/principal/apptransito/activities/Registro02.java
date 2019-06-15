@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.principal.apptransito.R;
-import com.principal.apptransito.activities.Login;
 import com.principal.apptransito.objetos.Conductor;
 import com.principal.apptransito.utilidades.Validaciones;
 
@@ -88,7 +87,7 @@ public class Registro02 extends AppCompatActivity {
         if ("".equals(resultado)) {
 
             Conductor conductor = new Conductor();
-            conductor.setNoCelular(noCelular);
+            conductor.setTelefono(noCelular);
             conductor.setPassword(password);
             conductor.setNombre(nombre + " " + apellidoPat + " " + apellidoMat);
             conductor.setFechaNacimiento(fechaNacimiento);

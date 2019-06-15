@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Conductor implements Serializable {
 
-    private String noCelular;
+    private String telefono;
     private String password;
     private String nombre;
     private String fechaNacimiento;
@@ -14,12 +14,12 @@ public class Conductor implements Serializable {
         // Constructor de la clase Conductor.
     }
 
-    public String getNoCelular() {
-        return noCelular;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setNoCelular(String noCelular) {
-        this.noCelular = noCelular;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getPassword() {

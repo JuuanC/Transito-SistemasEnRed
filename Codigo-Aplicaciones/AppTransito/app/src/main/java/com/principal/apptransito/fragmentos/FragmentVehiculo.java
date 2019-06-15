@@ -88,7 +88,7 @@ public class FragmentVehiculo extends Fragment implements View.OnClickListener {
 
         vehiculo =  new Vehiculo();
         vehiculo.setAnio(anioEdit.getText().toString().trim());
-        vehiculo.setCelular(misInstancias.getConductor().getNoCelular());
+        vehiculo.setCelular(misInstancias.getConductor().getTelefono());
         vehiculo.setColor(colorEdit.getText().toString().trim());
         vehiculo.setMarca(marcaEdit.getText().toString().trim());
         vehiculo.setModelo(modeloEdit.getText().toString().trim());

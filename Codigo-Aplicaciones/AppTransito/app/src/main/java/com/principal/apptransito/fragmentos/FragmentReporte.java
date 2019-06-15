@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.principal.apptransito.R;
+import com.principal.apptransito.activities.ListaVehiculos;
+import com.principal.apptransito.objetos.Imagen;
 import com.principal.apptransito.utilidades.Instancias;
 import com.principal.apptransito.utilidades.Validaciones;
 import com.principal.apptransito.objetos.Reporte;
@@ -42,6 +44,8 @@ public class FragmentReporte extends Fragment {
     private Validaciones validacion;
 
     private boolean[] menuFotos;
+    private byte[][] imagenesEnBytes;
+    private int banderaImagenes;
     private ImageView imageView1;
     private ImageView imageView2;
     private ImageView imageView3;
@@ -96,6 +100,8 @@ public class FragmentReporte extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_reporte, container, false);
 
         menuFotos = new boolean[]{false, false, false, false, false, false, false, false};
+        imagenesEnBytes = new byte[8][];
+        banderaImagenes = 0;
         placasEdit = vista.findViewById(R.id.idPlacas);
         marcaEdit = vista.findViewById(R.id.idMarca);
         modeloEdit = vista.findViewById(R.id.idModelo);
@@ -147,7 +153,7 @@ public class FragmentReporte extends Fragment {
                 Reporte reporte = new Reporte();
                 // reporte.setIdReporte(1);
                 // reporte.setPlacas("0123456789");
-                reporte.setNoCelular(misInstancias.getConductor().getNoCelular());
+                reporte.setNoCelular(misInstancias.getConductor().getTelefono());
                 reporte.setLatitud(lat);
                 reporte.setLongitud(lon);
                 reporte.setPlacasImplicado(placasEdit.getText().toString().trim());
@@ -162,14 +168,22 @@ public class FragmentReporte extends Fragment {
                 String resultado = validacion.validarReporte(reporte, menuFotos[3]);
 
                 if ("".equals(resultado)) {
-                    Toast datosInvalidosLogin = Toast.makeText(getActivity(), "Reporte Enviado", Toast.LENGTH_SHORT);
-                    datosInvalidosLogin.show();
+                    Imagen[] imagenes = asignarImagenes();
+                    reporte.setImagenes(imagenes);
+                    misInstancias.setReporte(reporte);
+                    Intent intento = new Intent(v.getContext(), ListaVehiculos.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("conductor", misInstancias);
+                    intento.putExtras(bundle);
+                    startActivity(intento);
+                    // Toast datosInvalidosLogin = Toast.makeText(getActivity(), "Reporte Enviado", Toast.LENGTH_SHORT);
+                    // datosInvalidosLogin.show();
                 } else {
                     Toast datosInvalidosLogin = Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT);
                     datosInvalidosLogin.show();
                 }
 
-                
+
 
             }
 
@@ -191,6 +205,8 @@ public class FragmentReporte extends Fragment {
                 for (int i = 0; i < 8; i++) {
                     menuFotos[i] = false;
                 }
+
+                imagenesEnBytes = new byte[8][];
             }
         });
 
@@ -242,6 +258,7 @@ public class FragmentReporte extends Fragment {
 
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
+                imagenesEnBytes[banderaImagenes] = byteArray;
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
                         byteArray.length);
@@ -292,6 +309,16 @@ public class FragmentReporte extends Fragment {
                 break;
             }
         }
+    }
+
+    private Imagen[] asignarImagenes() {
+        Imagen[] imagenes = new Imagen[8];
+        for (int i = 0; i < 8; i++) {
+            Imagen imagen = new Imagen();
+            imagen.setImagenEnBytes(imagenesEnBytes[i]);
+        }
+
+        return imagenes;
     }
 
     public interface OnFragmentInteractionListener {

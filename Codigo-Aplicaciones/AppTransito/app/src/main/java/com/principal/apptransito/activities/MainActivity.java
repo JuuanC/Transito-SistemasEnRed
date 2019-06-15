@@ -60,7 +60,7 @@ public class MainActivity
         }
 
         nombreUsuario.setText("Hola " + misInstancias.getConductor().getNombre().toString() +"!");
-        celularUsuario.setText("Numero : " + misInstancias.getConductor().getNoCelular().toString());
+        celularUsuario.setText("Numero : " + misInstancias.getConductor().getTelefono().toString());
 
     }
 
