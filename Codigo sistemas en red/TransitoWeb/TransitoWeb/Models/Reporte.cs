@@ -18,7 +18,8 @@ namespace TransitoWeb.Models
         public string Longitud { get; set; }
         public string PlacasImplicado { get; set; }
         public string NombreImplicado { get; set; }
-        public string PolizaImplicado { get; set; }
+        public string NombreAseguradoraImplicado { get; set; }
+        public string NumPolizaImplicado { get; set; }
         public string MarcaImplicado { get; set; }
         public string ModeloImplicado { get; set; }
         public string ColorImplicado { get; set; }

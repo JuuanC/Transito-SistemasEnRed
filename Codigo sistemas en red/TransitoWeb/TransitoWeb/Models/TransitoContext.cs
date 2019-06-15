@@ -259,9 +259,19 @@ namespace TransitoWeb.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NombreAseguradoraImplicado)
+                    .HasColumnName("nombreAseguradoraImplicado")
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NombreImplicado)
                     .HasColumnName("nombreImplicado")
                     .HasMaxLength(60)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NumPolizaImplicado)
+                    .HasColumnName("numPolizaImplicado")
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Placa)
@@ -273,11 +283,6 @@ namespace TransitoWeb.Models
                 entity.Property(e => e.PlacasImplicado)
                     .HasColumnName("placasImplicado")
                     .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PolizaImplicado)
-                    .HasColumnName("polizaImplicado")
-                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Telefono)

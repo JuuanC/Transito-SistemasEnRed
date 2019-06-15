@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TransitoWeb.Models;
@@ -11,10 +12,10 @@ namespace TransitoWeb.Controllers
     {
         
         [HttpPost]
-        public IActionResult Validar(String telefono, String password)
+        public String Validar(String telefono, String password)
         {
-            Perito perito = ValidarUsuario(usuario, password);
-            bool valido = perito != null;
+            Conductor conductor = ValidarUsuario(telefono, password);
+            bool valido = conductor != null;
             if (valido)
             {
                 using (TransitoContext dbSS = new TransitoContext())
@@ -23,26 +24,25 @@ namespace TransitoWeb.Controllers
                     do
                     {
                         token = GenerarToken();
-                    } while (dbSS.BitacoraPerito.Any(a => a.Token.Equals(token)));
+                    } while (dbSS.BitacoraConductor.Any(a => a.Token.Equals(token)));
 
-                    BitacoraPerito registroAcceso = new BitacoraPerito();
+                    BitacoraConductor registroAcceso = new BitacoraConductor();
                     registroAcceso.Fecha = DateTime.Now;
-                    registroAcceso.IdPerito = perito.IdPerito;
+                    registroAcceso.Telefono = conductor.Telefono;
                     registroAcceso.Token = token;
                     registroAcceso.Activa = true;
-                    dbSS.BitacoraPerito.Add(registroAcceso);
+                    dbSS.BitacoraConductor.Add(registroAcceso);
                     dbSS.SaveChanges();
 
-                    byte[] arr = BitConverter.GetBytes(registroAcceso.IdPerito);
-                    HttpContext.Session.Set("SesionPerito", arr);
-                    HttpContext.Session.Set("Perito",
-                     Encoding.ASCII
-                     .GetBytes($"{perito.Nombre}"));
-                    return new RedirectResult("/Perito/Principal");
+                    byte[] arr = Encoding.ASCII.GetBytes(registroAcceso.Telefono);
+                    HttpContext.Session.Set("SesionConductor", arr);
+                    HttpContext.Session.Set("Conductor",Encoding.ASCII
+                     .GetBytes($"{conductor.Nombre}"));
+                    return "{\"correcto\": \"si\"}";
                 }
             }
             else
-                return new RedirectResult("/");
+                return "{\"correcto\": \"no\"}";
         }
 
         [HttpPost]
@@ -70,21 +70,21 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPut]
-        public String Actualizar(int idPerito, String usuario,
-            String nombre, String contrasenia, String cargo)
+        public String Actualizar(String nombre, String fechaNacimiento,
+            String numLicencia, String telefono, String contrasenia)
         {
-            if (ValidarExistencia(usuario) == 1)
+            if (ValidarExistencia(telefono) == 1)
             {
                 using (TransitoContext dbSS =
                     new TransitoContext())
                 {
-                    Perito perito = new Perito();
-                    perito.IdPerito = idPerito;
-                    perito.Usuario = usuario;
-                    perito.Nombre = nombre;
-                    perito.Contrasenia = contrasenia;
-                    perito.Cargo = cargo;
-                    dbSS.Perito.Update(perito);
+                    Conductor conductor = new Conductor();
+                    conductor.Nombre = nombre;
+                    conductor.FechaNacimiento = fechaNacimiento;
+                    conductor.NumLicencia = numLicencia;
+                    conductor.Telefono = telefono;
+                    conductor.Contrasenia = contrasenia;
+                    dbSS.Conductor.Update(conductor);
                     dbSS.SaveChanges();
                     return "{\"correcto\": \"si\"}";
                 }
@@ -93,15 +93,15 @@ namespace TransitoWeb.Controllers
                 return "{\"correcto\": \"no\"}";
         }
 
-        public Perito ValidarUsuario(String usuario, String password)
+        public Conductor ValidarUsuario(String telefono, String password)
         {
             using (TransitoContext dbSS = new TransitoContext())
             {
-                var perito = dbSS.Perito.FirstOrDefault(al =>
-                                al.Usuario.Equals(usuario) &&
+                var conductor = dbSS.Conductor.FirstOrDefault(al =>
+                                al.Telefono.Equals(telefono) &&
                                       al.Contrasenia.Equals(password)
                                  );
-                return perito;
+                return conductor;
             }
 
         }
