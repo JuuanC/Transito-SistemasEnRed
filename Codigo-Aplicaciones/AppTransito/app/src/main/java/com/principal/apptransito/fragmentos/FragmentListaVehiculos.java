@@ -1,6 +1,7 @@
 package com.principal.apptransito.fragmentos;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.principal.apptransito.R;
+import com.principal.apptransito.activities.ModificarVehiculo;
 import com.principal.apptransito.objetos.Vehiculo;
 import com.principal.apptransito.utilidades.Adapter;
 import com.principal.apptransito.utilidades.Instancias;
@@ -51,8 +53,11 @@ public class FragmentListaVehiculos extends Fragment implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Vehiculo vehiculoSeleccionado = (Vehiculo) adapter.getItem(position);
-        System.out.println("Placa : " + vehiculoSeleccionado.getPlacas());
-        System.out.println("Marca : " + vehiculoSeleccionado.getMarca());
-        System.out.println("Modelo : " + vehiculoSeleccionado.getModelo());
+        Intent intento = new Intent(view.getContext(), ModificarVehiculo.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("vehiculo", vehiculoSeleccionado);
+        bundle.putSerializable("instancias", misInstancias);
+        intento.putExtras(bundle);
+        startActivity(intento);
     }
 }

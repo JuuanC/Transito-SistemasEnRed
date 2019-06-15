@@ -1,7 +1,10 @@
 package com.principal.apptransito.objetos;
 
-public class Vehiculo {
+import java.io.Serializable;
 
+public class Vehiculo implements Serializable {
+
+    private static final long serialVersionUID = 2L;
     private String celular;
     private String placas;
     private String marca;

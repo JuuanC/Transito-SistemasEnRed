@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ModificarVehiculo"></activity>
+        <activity
+            android:name=".activities.ModificarVehiculo"
+            android:label="Edición de Vehículo"/>
         <activity
             android:name=".activities.Login"
             android:label="@string/login_title">

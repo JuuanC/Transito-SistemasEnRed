@@ -1,9 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ModificarVehiculo">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/vehiculo_datos_vehiculo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:text="@string/vehiculo_campos_oligatorios" />
+
+            <EditText
+                android:id="@+id/idPlacasModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_placas"
+                android:inputType="text"
+                android:maxLength="10"/>
+
+            <EditText
+                android:id="@+id/idMarcaModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_marca"
+                android:inputType="text"
+                android:maxLength="20"/>
+
+            <EditText
+                android:id="@+id/idModeloModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_modelo"
+                android:inputType="text"
+                android:maxLength="20"/>
+
+            <EditText
+                android:id="@+id/idAnioModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_anio"
+                android:inputType="number"
+                android:maxLength="4"/>
+
+            <EditText
+                android:id="@+id/idColorModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_color"
+                android:inputType="text"
+                android:maxLength="25"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:text="@string/vehiculo_campos_opcionales" />
+
+            <EditText
+                android:id="@+id/idAseguradoraModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:hint="@string/vehiculo_aseguradora"
+                android:inputType="text"
+                android:maxLength="60"/>
+
+            <EditText
+                android:id="@+id/idPolizaModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/vehiculo_poliza"
+                android:inputType="number"
+                android:maxLength="20"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/idEliminarVehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="50dp"
+                    android:textSize="25sp"
+                    android:text="Eliminar"/>
+
+                <Button
+                    android:id="@+id/idModificarVehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="25sp"
+                    android:text="Modificar"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

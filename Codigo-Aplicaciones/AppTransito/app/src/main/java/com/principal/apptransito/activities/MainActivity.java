@@ -85,11 +85,11 @@ public class MainActivity
         Bundle bundle;
 
         if (id == R.id.nav_accidente) {
-            /*Bundle bundle = new Bundle();
-            bundle.putSerializable("conductor", conductor);
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
             fragmentoActual = new FragmentReporte();
             fragmentoActual.setArguments(bundle);
-            fragmentoSeleccionado = true;*/
+            fragmentoSeleccionado = true;
         } else if (id == R.id.nav_baches) {
 
         } else if (id == R.id.nav_semaforo) {

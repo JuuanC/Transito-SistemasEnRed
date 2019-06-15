@@ -26,8 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.principal.apptransito.R;
+import com.principal.apptransito.utilidades.Instancias;
 import com.principal.apptransito.utilidades.Validaciones;
-import com.principal.apptransito.objetos.Conductor;
 import com.principal.apptransito.objetos.Reporte;
 
 import java.io.ByteArrayOutputStream;
@@ -37,13 +37,8 @@ public class FragmentReporte extends Fragment {
     private static final String IMAGENES_LLENAS = "Ya tiene el máximo de fotos : 8";
     private static final String TIPO_REPORTE = "Accidente de carro";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
-
-    private Conductor conductor;
+    private Instancias misInstancias;
     private Validaciones validacion;
 
     private boolean[] menuFotos;
@@ -78,7 +73,7 @@ public class FragmentReporte extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            conductor = (Conductor) getArguments().getSerializable("conductor");
+            misInstancias = (Instancias) getArguments().getSerializable("conductor");
         }
     }
 
@@ -87,7 +82,6 @@ public class FragmentReporte extends Fragment {
                              Bundle savedInstanceState) {
 
         getActivity().setTitle("Accidente vehícular");
-        // conductor = ((MainActivity)getActivity()).getConductor();
 
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -151,9 +145,9 @@ public class FragmentReporte extends Fragment {
                 double lat = Double.parseDouble(latidud);
                 double lon = Double.parseDouble(longitud);
                 Reporte reporte = new Reporte();
-                reporte.setIdReporte(1);
-                reporte.setPlacas("0123456789");
-                reporte.setNoCelular(conductor.getNoCelular());
+                // reporte.setIdReporte(1);
+                // reporte.setPlacas("0123456789");
+                reporte.setNoCelular(misInstancias.getConductor().getNoCelular());
                 reporte.setLatitud(lat);
                 reporte.setLongitud(lon);
                 reporte.setPlacasImplicado(placasEdit.getText().toString().trim());
@@ -174,6 +168,8 @@ public class FragmentReporte extends Fragment {
                     Toast datosInvalidosLogin = Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT);
                     datosInvalidosLogin.show();
                 }
+
+                
 
             }
 
@@ -203,8 +199,10 @@ public class FragmentReporte extends Fragment {
     }
 
     private synchronized void consultarGps() {
+
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
+
             @Override
             public void onLocationChanged(Location location) {
                 latidudView.setText("" + location.getLatitude());
@@ -220,8 +218,10 @@ public class FragmentReporte extends Fragment {
             @Override
             public void onProviderDisabled(String provider) {}
         };
+
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
     }
 
     private boolean hayEspacioFotos() {
