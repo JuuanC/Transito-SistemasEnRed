@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.principal.apptransito.R;
+import com.principal.apptransito.objetos.Conductor;
+import com.principal.apptransito.utilidades.Validaciones;
 
 public class Registro01 extends AppCompatActivity {
 

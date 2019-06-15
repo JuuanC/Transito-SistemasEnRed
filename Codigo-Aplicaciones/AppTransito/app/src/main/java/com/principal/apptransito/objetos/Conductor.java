@@ -1,10 +1,9 @@
-package com.principal.apptransito;
+package com.principal.apptransito.objetos;
 
 import java.io.Serializable;
 
 public class Conductor implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private String noCelular;
     private String password;
     private String nombre;

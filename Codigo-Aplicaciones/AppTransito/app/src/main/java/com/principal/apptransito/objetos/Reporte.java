@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.objetos;
 
 public class Reporte {
 

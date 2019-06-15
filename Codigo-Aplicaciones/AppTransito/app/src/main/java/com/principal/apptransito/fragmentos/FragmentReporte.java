@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.fragmentos;
 
 import android.Manifest;
 import android.app.Activity;
@@ -24,6 +24,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.principal.apptransito.R;
+import com.principal.apptransito.utilidades.Validaciones;
+import com.principal.apptransito.objetos.Conductor;
+import com.principal.apptransito.objetos.Reporte;
 
 import java.io.ByteArrayOutputStream;
 
@@ -81,6 +86,7 @@ public class FragmentReporte extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().setTitle("Accidente vehícular");
         // conductor = ((MainActivity)getActivity()).getConductor();
 
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);

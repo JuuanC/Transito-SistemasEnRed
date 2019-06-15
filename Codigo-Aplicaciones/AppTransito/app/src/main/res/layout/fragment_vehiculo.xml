@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FragmentVehiculo">
+    tools:context=".fragmentos.FragmentVehiculo">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/vehiculo_color"
-                android:inputType="number"
+                android:inputType="text"
                 android:maxLength="25"/>
 
             <TextView
@@ -122,7 +122,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:textAlignment="center"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:hint="@string/vehiculo_aseguradora"
                 android:inputType="text"
                 android:maxLength="60"/>
@@ -139,6 +139,17 @@
                 android:hint="@string/vehiculo_poliza"
                 android:inputType="number"
                 android:maxLength="20"/>
+
+            <Button
+                android:id="@+id/idRegistrarVehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:text="Registrar"/>
 
         </LinearLayout>
 

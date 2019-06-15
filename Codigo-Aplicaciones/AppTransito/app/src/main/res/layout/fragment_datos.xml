@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FragmentDatos">
+    tools:context=".fragmentos.FragmentDatos">
 
 
     <EditText
@@ -57,7 +57,7 @@
         android:textSize="32sp"
         android:hint="@string/datos_nombre"
         android:inputType="text"
-        android:maxLength="10"/>
+        android:maxLength="60"/>
 
     <LinearLayout
         android:layout_width="match_parent"

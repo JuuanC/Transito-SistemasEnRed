@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.principal.apptransito.R;
+import com.principal.apptransito.activities.Login;
+import com.principal.apptransito.objetos.Conductor;
+import com.principal.apptransito.utilidades.Validaciones;
 
-import java.io.Serializable;
 import java.util.Calendar;
 
 public class Registro02 extends AppCompatActivity {
@@ -92,21 +94,26 @@ public class Registro02 extends AppCompatActivity {
             conductor.setFechaNacimiento(fechaNacimiento);
             conductor.setNumeroLicencia(numeroLicencia);
 
-            // 1. Intentar registrarse al servidor.
-            // 2. Si el registro fue exitoso se abre la pantalla reporte.
+            if (realizarConexionRegistro()) {
 
-            Toast registrado = Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG);
-            registrado.show();
+                Toast registrado = Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG);
+                registrado.show();
 
-            Intent intento = new Intent(this, Login.class);
-            intento.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intento);
+                Intent intento = new Intent(this, Login.class);
+                intento.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intento);
+            }
 
         } else {
             Toast datosInvalidosLogin = Toast.makeText(this, resultado, Toast.LENGTH_SHORT);
             datosInvalidosLogin.show();
         }
 
+    }
+
+    private boolean realizarConexionRegistro() {
+        // Logica para conectarse al servidor
+        return true;
     }
 
 }

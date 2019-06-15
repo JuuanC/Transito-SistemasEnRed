@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,9 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.principal.apptransito.R;
+import com.principal.apptransito.objetos.Conductor;
+import com.principal.apptransito.utilidades.Instancias;
+import com.principal.apptransito.utilidades.Validaciones;
+
 public class Login extends AppCompatActivity {
 
     private Conductor conductor;
+    private Instancias misInstancias;
+
     private Validaciones validar;
     private EditText noCelularEdit;
     private EditText passwordEdit;
@@ -37,25 +44,27 @@ public class Login extends AppCompatActivity {
 
         String noCelular = noCelularEdit.getText().toString().trim();
         String password = passwordEdit.getText().toString().trim();
-
         String resultado = validar.validarLogin(noCelular, password);
 
         if ("".equals(resultado)) {
-            // 1. comprobar si el usuario existe.
-            // 2. Si existe entra, sino no entra si no se logra una conexión no entra.
 
-            conductor = new Conductor();
-            conductor.setNoCelular(noCelular);
-            conductor.setPassword(password);
-            conductor.setNombre("Luis Gerardo Bonilla Ramírez");
-            conductor.setFechaNacimiento("26/08/1996");
-            conductor.setNumeroLicencia("723819293");
+            if (realizarConexionLogin()) {
 
-            Intent intento = new Intent(view.getContext(), MainActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("conductor", conductor);
-            intento.putExtras(bundle);
-            startActivity(intento);
+                misInstancias = new Instancias();
+                misInstancias.getConductor().setNoCelular(noCelular);
+                misInstancias.getConductor().setPassword(password);
+                misInstancias.getConductor().setNombre("Luis Gerardo Bonilla Ramírez");
+                misInstancias.getConductor().setFechaNacimiento("26/08/1996");
+                misInstancias.getConductor().setNumeroLicencia("723819293");
+
+                // TODO (1) Si el usuario existe, regresar el usuario de la sesión y asignarla a las instancias.
+
+                Intent intento = new Intent(view.getContext(), MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("conductor", misInstancias);
+                intento.putExtras(bundle);
+                startActivity(intento);
+            }
 
         } else {
            Toast datosInvalidosLogin = Toast.makeText(this, resultado, Toast.LENGTH_SHORT);
@@ -66,6 +75,11 @@ public class Login extends AppCompatActivity {
     public void desplegarRegistrarse(View view) {
         Intent intento = new Intent(view.getContext(), Registro01.class);
         startActivityForResult(intento, 0);
+    }
+
+    private boolean realizarConexionLogin() {
+        // Lodigca para conectarse al servidor
+        return true;
     }
 
 }

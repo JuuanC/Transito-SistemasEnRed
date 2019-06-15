@@ -16,12 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ModificarVehiculo"></activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".Login"
+            android:name=".activities.Login"
             android:label="@string/login_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,11 +27,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Registro01"
+            android:name=".activities.Registro01"
             android:label="@string/registrar_title1" />
         <activity
-            android:name=".Registro02"
+            android:name=".activities.Registro02"
             android:label="@string/registrar_title2" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

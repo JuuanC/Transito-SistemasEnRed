@@ -20,6 +20,17 @@
         </menu>
     </item>
 
+    <item android:title="Vehiculos">
+        <menu>
+            <item
+                android:id="@+id/nav_registrarVehiculo"
+                android:title="Registrar vehículo" />
+            <item
+                android:id="@+id/nav_actualizarVehiculo"
+                android:title="Detalles de vehículos" />
+        </menu>
+    </item>
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dictamen"
@@ -27,9 +38,6 @@
         <item
             android:id="@+id/nav_historial"
             android:title="Historial de Reportes" />
-        <item
-            android:id="@+id/nav_vehiculo"
-            android:title="Vehiculo" />
         <item
             android:id="@+id/nav_misDatos"
             android:title="Mis Datos" />

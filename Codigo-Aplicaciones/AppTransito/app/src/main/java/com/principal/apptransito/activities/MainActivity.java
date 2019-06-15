@@ -1,4 +1,4 @@
-package com.principal.apptransito;
+package com.principal.apptransito.activities;
 
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -14,6 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.principal.apptransito.R;
+import com.principal.apptransito.fragmentos.FragmentDatos;
+import com.principal.apptransito.fragmentos.FragmentListaVehiculos;
+import com.principal.apptransito.fragmentos.FragmentReporte;
+import com.principal.apptransito.fragmentos.FragmentVehiculo;
+import com.principal.apptransito.utilidades.Instancias;
+
 public class MainActivity
         extends
             AppCompatActivity
@@ -23,7 +30,7 @@ public class MainActivity
             FragmentVehiculo.OnFragmentInteractionListener,
             FragmentDatos.OnFragmentInteractionListener {
 
-    private Conductor conductor;
+    private Instancias misInstancias;
     private TextView nombreUsuario;
     private TextView celularUsuario;
 
@@ -49,11 +56,11 @@ public class MainActivity
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            conductor = (Conductor) bundle.getSerializable("conductor");
+            misInstancias = (Instancias) bundle.getSerializable("conductor");
         }
 
-        nombreUsuario.setText("Hola " + conductor.getNombre().toString() +"!");
-        celularUsuario.setText("Numero : " + conductor.getNoCelular().toString());
+        nombreUsuario.setText("Hola " + misInstancias.getConductor().getNombre().toString() +"!");
+        celularUsuario.setText("Numero : " + misInstancias.getConductor().getNoCelular().toString());
 
     }
 
@@ -67,24 +74,6 @@ public class MainActivity
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        return true;
-    }*/
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -93,13 +82,14 @@ public class MainActivity
 
         Fragment fragmentoActual = null;
         boolean fragmentoSeleccionado = false;
+        Bundle bundle;
 
         if (id == R.id.nav_accidente) {
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putSerializable("conductor", conductor);
             fragmentoActual = new FragmentReporte();
             fragmentoActual.setArguments(bundle);
-            fragmentoSeleccionado = true;
+            fragmentoSeleccionado = true;*/
         } else if (id == R.id.nav_baches) {
 
         } else if (id == R.id.nav_semaforo) {
@@ -108,15 +98,22 @@ public class MainActivity
             // Handle the camera action
         } else if (id == R.id.nav_historial) {
 
-        } else if (id == R.id.nav_vehiculo) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("conductor", conductor);
+        } else if (id == R.id.nav_registrarVehiculo) {
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
             fragmentoActual = new FragmentVehiculo();
             fragmentoActual.setArguments(bundle);
             fragmentoSeleccionado = true;
+        } else if (id == R.id.nav_actualizarVehiculo) {
+            // TODO (4) Si no se pueden obtener los vehículos de la BD no se puede abrir este fragmento.
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
+            fragmentoActual = new FragmentListaVehiculos();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
         } else if (id == R.id.nav_misDatos) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("conductor", conductor);
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
             fragmentoActual = new FragmentDatos();
             fragmentoActual.setArguments(bundle);
             fragmentoSeleccionado = true;
@@ -136,6 +133,6 @@ public class MainActivity
 
     }
 
-    public Conductor getConductor() { return conductor; }
+    // public Conductor getConductor() { return conductor; }
 
 }

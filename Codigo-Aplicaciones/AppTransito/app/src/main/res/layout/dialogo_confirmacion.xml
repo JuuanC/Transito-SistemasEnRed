@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.principal.apptransito.activities.MainActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/idDialogoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Información del sistema"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/idDialogoContenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/idDialogoTitulo"
+            android:layout_marginTop="20dp"
+            android:text="Contenido del dialogoConfirmacion"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/idDialogoAceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="30sp"
+            android:textColor="#33bbff"
+            />
+
+        <TextView
+            android:id="@+id/idDialogoCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="20dp"
+            android:textSize="30sp"
+            android:textColor="#33bbff"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
