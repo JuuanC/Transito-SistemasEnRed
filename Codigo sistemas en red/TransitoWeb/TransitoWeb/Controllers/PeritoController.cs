@@ -176,10 +176,9 @@ namespace TransitoWeb.Controllers
                         .FirstOrDefault(b => b.IdBitacora == idSesion);
                     if (registro != null && registro.Activa == true)
                     {
-                        Perito perito = dbSS.Perito
-                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        List<Perito> peritos = dbSS.Perito.ToList();
                         ViewBag.idSesion = idSesion;
-                        ViewBag.Perito = perito;
+                        ViewBag.Peritos = peritos;
                         return View("AdministrarPeritos");
                     }
                     else
@@ -191,15 +190,11 @@ namespace TransitoWeb.Controllers
                 return new RedirectResult("/");
         }
 
-        public IActionResult VisualizarReportes()
+        public IActionResult VisualizarReportes(int idSesion)
         {
             byte[] arr = new byte[100];
             if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
             {
-                int idSesion = BitConverter.ToInt32(arr, 0);
-                HttpContext.Session.TryGetValue("Perito", out arr);
-                String nombre = Encoding.ASCII.GetString(arr);
-
                 using (TransitoContext dbSS = new TransitoContext())
                 {
                     BitacoraPerito registro =
@@ -222,15 +217,11 @@ namespace TransitoWeb.Controllers
                 return new RedirectResult("/");
         }
 
-        public IActionResult VerDetalle()
+        public IActionResult VerDetalle(int idSesion)
         {
             byte[] arr = new byte[100];
             if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
             {
-                int idSesion = BitConverter.ToInt32(arr, 0);
-                HttpContext.Session.TryGetValue("Perito", out arr);
-                String nombre = Encoding.ASCII.GetString(arr);
-
                 using (TransitoContext dbSS = new TransitoContext())
                 {
                     BitacoraPerito registro =

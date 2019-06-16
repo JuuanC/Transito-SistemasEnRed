@@ -11,7 +11,7 @@ namespace TransitoWeb.Controllers
     {
         [HttpPost]
         public String Registro(String placa, String latitud, String longitud, String placasImplicado,
-            String nombreImplicado, String nombreAseguradoraImplicado, String numPoliza, String marcaImplicado,
+            String nombreImplicado, String nombreAseguradoraImplicado, String numPolizaImplicado, String marcaImplicado,
             String modeloImplicado, String colorImplicado, String tipoReporte, String telefono, String estatus,
             String descripcion)
         {
@@ -25,7 +25,7 @@ namespace TransitoWeb.Controllers
                 reporte.PlacasImplicado = placasImplicado;
                 reporte.NombreImplicado = nombreImplicado;
                 reporte.NombreAseguradoraImplicado = nombreAseguradoraImplicado;
-                reporte.NumPolizaImplicado = numPoliza;
+                reporte.NumPolizaImplicado = numPolizaImplicado;
                 reporte.MarcaImplicado = marcaImplicado;
                 reporte.ModeloImplicado = modeloImplicado;
                 reporte.ColorImplicado = colorImplicado;

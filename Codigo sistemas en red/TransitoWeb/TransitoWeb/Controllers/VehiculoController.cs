@@ -37,7 +37,7 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPut]
-        public String Actualizar(String placa,
+        public String Actualizar(String placaVieja, String placa,
             String marca, String modelo, String anio, String color, String nombreAseguradora
             , String numPoliza, String telefono)
         {
@@ -87,14 +87,8 @@ namespace TransitoWeb.Controllers
         public List<Vehiculo> ListaVehiculos(String telefono)
         {
             List<Vehiculo> listaVehiculos = null;
-            /*int idSesion = BitConverter.ToInt32(arr, 0);
-            HttpContext.Session.TryGetValue("Conductor", out arr);
-            String nombre = Encoding.ASCII.GetString(arr);*/
             using (TransitoContext dbSS = new TransitoContext())
             {
-                /*BitacoraConductor registro =
-                    dbSS.BitacoraConductor
-                    .FirstOrDefault(b => b.IdBitacora == idSesion);*/
                 listaVehiculos = dbSS.Vehiculo.Where(a1 => a1.Telefono.Equals(telefono)).ToList();
             }
             return listaVehiculos;
