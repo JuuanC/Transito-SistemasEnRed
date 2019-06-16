@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "VerDetalle";
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento sin título</title>
+    <link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <label center>Conductor</label>
+            </div>
+            <div class="col">
+                Conductor implicado
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Datos Personales
+
+            </div>
+            <div class="col">
+                Datos del Vehiculo
+            </div>
+            <div class="col">
+                Datos Personales
+            </div>
+            <div class="col">
+                Datos del Vehiculo
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm">
+                Dictamen:
+                <div>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary">Dictaminar</button>
+                <a href="/Perito/VisualizarReportes?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Regresar"></a>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap-4.0.0.js"></script>
+</body>
+</html>
+
