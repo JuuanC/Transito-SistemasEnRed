@@ -26,6 +26,7 @@ namespace TransitoWeb.Models
         public DateTime FechaReporte { get; set; }
         public string TipoReporte { get; set; }
         public string Estatus { get; set; }
+        public string Descripcion { get; set; }
 
         public Conductor TelefonoNavigation { get; set; }
         public ICollection<Dictamen> Dictamen { get; set; }

@@ -15,7 +15,7 @@ namespace TransitoWeb.Controllers
             return View();
         }
         
-        [HttpPost]
+        [HttpGet]
         public IActionResult Validar(String usuario, String password)
         {
             Perito perito = ValidarUsuario(usuario, password);
@@ -130,8 +130,50 @@ namespace TransitoWeb.Controllers
         }
         public IActionResult Principal()
         {
+            byte[] arr = new byte[100];
+            if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
+            {
+                int idSesion = BitConverter.ToInt32(arr, 0);
+                HttpContext.Session.TryGetValue("Perito", out arr);
+                String nombre = Encoding.ASCII.GetString(arr);
 
-            return View("Principal");
+                using (TransitoContext dbSS = new TransitoContext())
+                {
+                    BitacoraPerito registro =
+                        dbSS.BitacoraPerito
+                        .FirstOrDefault(b => b.IdBitacora == idSesion);
+                    if (registro != null && registro.Activa == true)
+                    {
+                        Perito perito = dbSS.Perito
+                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        ViewBag.Perito = perito;
+                        return View("Principal");
+                    }
+                    else
+                        return new RedirectResult("/");
+
+                }
+            }
+            else
+                return new RedirectResult("/");
+        }
+
+        public IActionResult AdministrarPeritos()
+        {
+
+            return View("AdministrarPeritos");
+        }
+
+        public IActionResult VisualizarReportes()
+        {
+
+            return View("VisualizarReportes");
+        }
+
+        public IActionResult VerDetalle()
+        {
+
+            return View("VerDetalle");
         }
 
         public int ValidarExistencia(String usuario)

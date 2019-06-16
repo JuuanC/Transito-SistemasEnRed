@@ -84,12 +84,18 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpGet]
-        public List<Vehiculo> ListaVehiculos()
+        public List<Vehiculo> ListaVehiculos(String telefono)
         {
             List<Vehiculo> listaVehiculos = null;
+            /*int idSesion = BitConverter.ToInt32(arr, 0);
+            HttpContext.Session.TryGetValue("Conductor", out arr);
+            String nombre = Encoding.ASCII.GetString(arr);*/
             using (TransitoContext dbSS = new TransitoContext())
             {
-                listaVehiculos = dbSS.Vehiculo.ToList();
+                /*BitacoraConductor registro =
+                    dbSS.BitacoraConductor
+                    .FirstOrDefault(b => b.IdBitacora == idSesion);*/
+                listaVehiculos = dbSS.Vehiculo.Where(a1 => a1.Telefono.Equals(telefono)).ToList();
             }
             return listaVehiculos;
         }

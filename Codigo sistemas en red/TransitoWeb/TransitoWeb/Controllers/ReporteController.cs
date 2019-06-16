@@ -12,7 +12,8 @@ namespace TransitoWeb.Controllers
         [HttpPost]
         public String Registro(String placa, String latitud, String longitud, String placasImplicado,
             String nombreImplicado, String nombreAseguradoraImplicado, String numPoliza, String marcaImplicado,
-            String modeloImplicado, String colorImplicado, String tipoReporte, String telefono, String estatus)
+            String modeloImplicado, String colorImplicado, String tipoReporte, String telefono, String estatus,
+            String descripcion)
         {
             using (TransitoContext dbSS =
                 new TransitoContext())
@@ -24,10 +25,14 @@ namespace TransitoWeb.Controllers
                 reporte.PlacasImplicado = placasImplicado;
                 reporte.NombreImplicado = nombreImplicado;
                 reporte.NombreAseguradoraImplicado = nombreAseguradoraImplicado;
+                reporte.NumPolizaImplicado = numPoliza;
+                reporte.MarcaImplicado = marcaImplicado;
+                reporte.ModeloImplicado = modeloImplicado;
                 reporte.ColorImplicado = colorImplicado;
                 reporte.TipoReporte = tipoReporte;
                 reporte.Telefono = telefono;
                 reporte.Estatus = estatus;
+                reporte.Descripcion = descripcion;
                 reporte.FechaReporte = DateTime.Now;
                 dbSS.Reporte.Add(reporte);
                 if (dbSS.SaveChanges() == 1)
@@ -95,7 +100,18 @@ namespace TransitoWeb.Controllers
             List<Reporte> listaReportes = null;
             using (TransitoContext dbSS = new TransitoContext())
             {
-                listaReportes = dbSS.Reporte.ToList();
+                listaReportes = dbSS.Reporte.OrderBy(a => a.FechaReporte).ToList();
+            }
+            return listaReportes;
+        }
+
+        [HttpGet]
+        public List<Reporte> ListaReportesConductor(int telefono)
+        {
+            List<Reporte> listaReportes = null;
+            using (TransitoContext dbSS = new TransitoContext())
+            {
+                listaReportes = dbSS.Reporte.Where(a1 => a1.Telefono.Equals(telefono)).ToList();
             }
             return listaReportes;
         }

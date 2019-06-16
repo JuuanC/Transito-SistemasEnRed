@@ -229,6 +229,11 @@ namespace TransitoWeb.Models
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("descripcion")
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Estatus)
                     .IsRequired()
                     .HasColumnName("estatus")
@@ -275,7 +280,6 @@ namespace TransitoWeb.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Placa)
-                    .IsRequired()
                     .HasColumnName("placa")
                     .HasMaxLength(10)
                     .IsUnicode(false);

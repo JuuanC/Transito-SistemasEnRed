@@ -11,7 +11,7 @@ namespace TransitoWeb.Controllers
     public class ConductorController : Controller
     {
         
-        [HttpPost]
+        [HttpGet]
         public String Validar(String telefono, String password)
         {
             Conductor conductor = ValidarUsuario(telefono, password);

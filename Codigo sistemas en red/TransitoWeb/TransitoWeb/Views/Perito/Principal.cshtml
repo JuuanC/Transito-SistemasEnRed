@@ -1,7 +1,61 @@
 ﻿
 @{
-    ViewData["Title"] = "Principañ";
+    ViewData["Title"] = "Principal";
 }
 
-<h2>Principal</h2>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento sin título</title>
+    <link href="~/lib/bootstrap/dist/js/bootstrap.min.js" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="/Perito/AdministrarPeritos"><input class="btn btn-primary" type="button" value="Administrar Peritos"></a>
+                    <a href="/Perito/VisualizarReportes"><input class="btn btn-primary" type="button" value="Visualizar Reportes"></a>
+                    <a href="/"><input class="btn btn-primary" type="button" value="Cerrar Sesión"></a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <img src="/images/logo.jpg" width="225" height="255" alt="" class="rounded float-left">
+                    </div>
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                    <div class="col-sm">
+                        <label for="">Usuarios Conectados...</label>
+                        <div>
+                            <textarea cols="40"></textarea>
+                        </div>
+                        <div>
+                            <textarea cols="40" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label>Usuario: @ViewBag.Perito.Usuario</label>
+            </div>
+            <div>
+                <label>Nombre: @ViewBag.Perito.Nombre</label>
+            </div>
+            <div>
+                <label>Cargo: @ViewBag.Perito.Cargo</label>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap-4.0.0.js"></script>
+</body>
+</html>
 
