@@ -16,6 +16,7 @@ public class Instancias implements Serializable {
     private Conductor conductor;
     private List<Vehiculo> vehiculos;
     private Reporte reporte;
+    private List<Reporte> listaReporte;
 
     public Instancias() {
         conductor = new Conductor();
@@ -48,6 +49,14 @@ public class Instancias implements Serializable {
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+
+    public List<Reporte> getListaReporte() {
+        return listaReporte;
+    }
+
+    public void setListaReporte(List<Reporte> listaReporte) {
+        this.listaReporte = listaReporte;
     }
 
     public Reporte getReporte() {

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.InformacionReporte">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idInformacionEstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="Estatus : "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/reporte_datos_carro_implicado" />
+
+            <TextView
+                android:id="@+id/idInformacionPlacas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/reporte_placas"
+                android:maxLength="10"/>
+
+            <TextView
+                android:id="@+id/idInformacionMarca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/reporte_marca_carro"
+                android:maxLength="20"/>
+
+            <TextView
+                android:id="@+id/idInformacionModelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/reporte_modelo_carro"
+                android:maxLength="20"/>
+
+            <TextView
+                android:id="@+id/idInformacionColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:hint="@string/reporte_color_carro"
+                android:maxLength="25"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:text="@string/reporte_informacion_conductor_implicado" />
+
+            <TextView
+                android:id="@+id/idInformacionNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:hint="@string/reporte_nombre_conductor"
+                android:maxLength="50"/>
+
+            <TextView
+                android:id="@+id/idInformacionPoliza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:hint="@string/reporte_poliza_seguro"
+                android:maxLength="50"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/reporte_informacion_adicional" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/idInformacionLatitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="55dp"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:hint="@string/reporte_latitud"
+                    android:maxLength="50"/>
+
+                <TextView
+                    android:id="@+id/idInformacionLongitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="50dp"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:hint="@string/reporte_longitud"
+                    android:maxLength="50"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/idInformacionFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                android:textStyle="normal"
+                android:text="@string/reporte_fecha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="@string/reporte_fotos_siniestro" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:columnCount="4"
+                android:rowCount="2">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:src="@drawable/image_not_fund"
+                    android:layout_height="90dp"
+                    android:layout_width="90dp"/>
+
+            </GridLayout>
+
+            <Button
+                android:id="@+id/idVerDictamen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:textSize="32sp"
+                android:enabled="false"
+                android:text="Ver Dictamen"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

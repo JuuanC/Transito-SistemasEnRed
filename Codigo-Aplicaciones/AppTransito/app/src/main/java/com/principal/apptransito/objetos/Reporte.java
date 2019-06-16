@@ -7,8 +7,8 @@ public class Reporte implements Serializable {
     private int idReporte;
     private String placas;
     private String noCelular;
-    private double latitud;
-    private double longitud;
+    private String latitud;
+    private String longitud;
     private String placasImplicado;
     private String nombreImplicado;
     private String polizaImplicado;
@@ -18,6 +18,8 @@ public class Reporte implements Serializable {
     private String fechaReporte;
     private String tipoReporte;
     private String status;
+    private String descripcion;
+    private String estatus;
     private Imagen[] imagenes;
 
     public Reporte() {
@@ -48,19 +50,19 @@ public class Reporte implements Serializable {
         this.noCelular = noCelular;
     }
 
-    public double getLatitud() {
+    public String getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(double latitud) {
+    public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
 
-    public double getLongitud() {
+    public String getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(double longitud) {
+    public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
 
@@ -143,4 +145,21 @@ public class Reporte implements Serializable {
     public void setImagenes(Imagen[] imagenes) {
         this.imagenes = imagenes;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+
 }

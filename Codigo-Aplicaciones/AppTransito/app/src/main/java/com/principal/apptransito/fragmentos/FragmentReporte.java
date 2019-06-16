@@ -146,16 +146,14 @@ public class FragmentReporte extends Fragment {
             @Override
             public void onClick(View v) {
                 validacion = new Validaciones();
-                String latidud = latidudView.getText().toString().trim();
+                String latitud = latidudView.getText().toString().trim();
                 String longitud = longitudView.getText().toString().trim();
-                double lat = Double.parseDouble(latidud);
-                double lon = Double.parseDouble(longitud);
                 Reporte reporte = new Reporte();
                 // reporte.setIdReporte(1);
                 // reporte.setPlacas("0123456789");
                 reporte.setNoCelular(misInstancias.getConductor().getTelefono());
-                reporte.setLatitud(lat);
-                reporte.setLongitud(lon);
+                reporte.setLatitud(latitud);
+                reporte.setLongitud(longitud);
                 reporte.setPlacasImplicado(placasEdit.getText().toString().trim());
                 reporte.setNombreImplicado(nombreEdit.getText().toString().trim());
                 reporte.setPolizaImplicado(polizaEdit.getText().toString().trim());
@@ -163,6 +161,7 @@ public class FragmentReporte extends Fragment {
                 reporte.setModeloImplicado(modeloEdit.getText().toString().trim());
                 reporte.setColorImplicado(colorEdit.getText().toString().trim());
                 reporte.setFechaReporte(fechaView.getText().toString().trim());
+                reporte.setEstatus("enviado");
                 reporte.setTipoReporte(TIPO_REPORTE);
 
                 String resultado = validacion.validarReporte(reporte, menuFotos[3]);
@@ -176,8 +175,6 @@ public class FragmentReporte extends Fragment {
                     bundle.putSerializable("conductor", misInstancias);
                     intento.putExtras(bundle);
                     startActivity(intento);
-                    // Toast datosInvalidosLogin = Toast.makeText(getActivity(), "Reporte Enviado", Toast.LENGTH_SHORT);
-                    // datosInvalidosLogin.show();
                 } else {
                     Toast datosInvalidosLogin = Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT);
                     datosInvalidosLogin.show();
