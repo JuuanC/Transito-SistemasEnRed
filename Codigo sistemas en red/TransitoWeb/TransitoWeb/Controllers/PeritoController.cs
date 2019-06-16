@@ -119,14 +119,19 @@ namespace TransitoWeb.Controllers
         [HttpGet]
         public List<Perito> ListaPeritos()
         {
-            List<Perito> listaAlumnos = null;
-            using (TransitoContext dbSS = new TransitoContext())
+            byte[] arr = new byte[100];
+            List<Perito> listaPeritos = null;
+            if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
             {
-               listaAlumnos = dbSS.Perito
-                        .OrderBy(a => a.IdPerito)
-                        .ToList();
+                using (TransitoContext dbSS = new TransitoContext())
+                {
+                    listaPeritos = dbSS.Perito
+                             .OrderBy(a => a.IdPerito)
+                             .ToList();
+                }
+                
             }
-            return listaAlumnos;
+            return listaPeritos;
         }
         public IActionResult Principal()
         {
@@ -146,6 +151,7 @@ namespace TransitoWeb.Controllers
                     {
                         Perito perito = dbSS.Perito
                             .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        ViewBag.idSesion = idSesion;
                         ViewBag.Perito = perito;
                         return View("Principal");
                     }
@@ -158,22 +164,93 @@ namespace TransitoWeb.Controllers
                 return new RedirectResult("/");
         }
 
-        public IActionResult AdministrarPeritos()
+        public IActionResult AdministrarPeritos(int idSesion)
         {
+            byte[] arr = new byte[100];
+            if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
+            {
+                using (TransitoContext dbSS = new TransitoContext())
+                {
+                    BitacoraPerito registro =
+                        dbSS.BitacoraPerito
+                        .FirstOrDefault(b => b.IdBitacora == idSesion);
+                    if (registro != null && registro.Activa == true)
+                    {
+                        Perito perito = dbSS.Perito
+                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        ViewBag.idSesion = idSesion;
+                        ViewBag.Perito = perito;
+                        return View("AdministrarPeritos");
+                    }
+                    else
+                        return new RedirectResult("/");
 
-            return View("AdministrarPeritos");
+                }
+            }
+            else
+                return new RedirectResult("/");
         }
 
         public IActionResult VisualizarReportes()
         {
+            byte[] arr = new byte[100];
+            if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
+            {
+                int idSesion = BitConverter.ToInt32(arr, 0);
+                HttpContext.Session.TryGetValue("Perito", out arr);
+                String nombre = Encoding.ASCII.GetString(arr);
 
-            return View("VisualizarReportes");
+                using (TransitoContext dbSS = new TransitoContext())
+                {
+                    BitacoraPerito registro =
+                        dbSS.BitacoraPerito
+                        .FirstOrDefault(b => b.IdBitacora == idSesion);
+                    if (registro != null && registro.Activa == true)
+                    {
+                        Perito perito = dbSS.Perito
+                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        ViewBag.idSesion = idSesion;
+                        ViewBag.Perito = perito;
+                        return View("VisualizarReportes");
+                    }
+                    else
+                        return new RedirectResult("/");
+
+                }
+            }
+            else
+                return new RedirectResult("/");
         }
 
         public IActionResult VerDetalle()
         {
+            byte[] arr = new byte[100];
+            if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
+            {
+                int idSesion = BitConverter.ToInt32(arr, 0);
+                HttpContext.Session.TryGetValue("Perito", out arr);
+                String nombre = Encoding.ASCII.GetString(arr);
 
-            return View("VerDetalle");
+                using (TransitoContext dbSS = new TransitoContext())
+                {
+                    BitacoraPerito registro =
+                        dbSS.BitacoraPerito
+                        .FirstOrDefault(b => b.IdBitacora == idSesion);
+                    if (registro != null && registro.Activa == true)
+                    {
+                        Perito perito = dbSS.Perito
+                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        ViewBag.idSesion = idSesion;
+                        ViewBag.Perito = perito;
+                        return View("VerDetalle");
+                    }
+                    else
+                        return new RedirectResult("/");
+
+                }
+            }
+            else
+                return new RedirectResult("/");
         }
 
         public int ValidarExistencia(String usuario)
