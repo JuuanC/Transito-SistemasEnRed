@@ -18,35 +18,39 @@
             <a href="/Perito/VerDetalle?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Ver detalle"></a>
             <a href="/Perito/Principal?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Regresar"></a>
     </div>
-    <table class="table">
+    <table class="table table-hover">
         <thead class="bg-primary">
             <tr>
                 <th scope="col">Num. Reporte</th>
-                <th scope="col">Nombre del conductor</th>
+                <th scope="col">Telefono del conductor</th>
                 <th scope="col">Fecha</th>
+                <th scope="col">Estatus</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td></td>
-            </tr>
-        </tbody>
+            @{
+                var contador = 1;
+                foreach (var reporte in ViewBag.Reportes)
+                {
+                    <form name="forma" id="forma" action="/Perito/VerDetalle?idSesion=@ViewBag.idSesion">
+                        <tr onclick="mostrarDetalles();">
+                            <td>@(contador++)</td>
+                            <td>@reporte.Telefono</td>
+                            <td>@reporte.FechaReporte</td>
+                            <td>@reporte.Estatus</td>
+                        </tr>
+                    </form>
+                }
+            }
+
+</tbody>
     </table>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap-4.0.0.js"></script>
+    <script>
+        function mostrarDetalles() {
+            var resultado = $("#forma").submit();
+        }
+    </script>
 </body>
 </html>
 

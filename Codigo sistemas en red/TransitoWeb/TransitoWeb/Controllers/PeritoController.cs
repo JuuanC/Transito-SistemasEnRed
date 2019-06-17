@@ -51,8 +51,8 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPost]
-        public String Registro(String usuario,
-            String nombre, String contrasenia, String cargo)
+        public String Registro(String nombre, String cargo, String usuario
+            , String contrasenia)
         {
             if (ValidarExistencia(usuario) == 0)
             {
@@ -66,11 +66,11 @@ namespace TransitoWeb.Controllers
                     perito.Cargo = cargo;
                     dbSS.Perito.Add(perito);
                     dbSS.SaveChanges();
-                    return "{\"correcto\": \"si\"}";
+                    return "{\"si\"}";
                 }
             }
             else
-                return "{\"correcto\": \"no\"}";
+                return "{\"no\"}";
         }
 
         [HttpPut]
@@ -90,11 +90,11 @@ namespace TransitoWeb.Controllers
                     perito.Cargo = cargo;
                     dbSS.Perito.Update(perito);
                     dbSS.SaveChanges();
-                    return "{\"correcto\": \"si\"}";
+                    return "{\"si\"}";
                 }
             }
             else
-                return "{\"correcto\": \"no\"}";
+                return "{\"no\"}";
         }
 
         [HttpDelete]
@@ -108,10 +108,10 @@ namespace TransitoWeb.Controllers
                 dbSS.Perito.Remove(perito);
                 if(dbSS.SaveChanges() == 1)
                 {
-                    return "{\"correcto\": \"si\"}";
+                    return "{\"si\"}";
                 }
                 else
-                    return "{\"correcto\": \"no\"}";
+                    return "{\"no\"}";
 
             }
         }
@@ -176,9 +176,8 @@ namespace TransitoWeb.Controllers
                         .FirstOrDefault(b => b.IdBitacora == idSesion);
                     if (registro != null && registro.Activa == true)
                     {
-                        List<Perito> peritos = dbSS.Perito.ToList();
                         ViewBag.idSesion = idSesion;
-                        ViewBag.Peritos = peritos;
+                        ViewBag.Peritos = ListaPeritos();
                         return View("AdministrarPeritos");
                     }
                     else
@@ -200,16 +199,12 @@ namespace TransitoWeb.Controllers
                     BitacoraPerito registro =
                         dbSS.BitacoraPerito
                         .FirstOrDefault(b => b.IdBitacora == idSesion);
-                    if (registro != null && registro.Activa == true)
-                    {
-                        Perito perito = dbSS.Perito
-                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+
+                        List<Reporte> reportes = dbSS.Reporte.OrderByDescending(a => a.FechaReporte).ToList();
                         ViewBag.idSesion = idSesion;
-                        ViewBag.Perito = perito;
+                        ViewBag.Reportes = reportes;
                         return View("VisualizarReportes");
-                    }
-                    else
-                        return new RedirectResult("/");
+
 
                 }
             }
@@ -217,7 +212,7 @@ namespace TransitoWeb.Controllers
                 return new RedirectResult("/");
         }
 
-        public IActionResult VerDetalle(int idSesion)
+        public IActionResult VerDetalle(int idSesion, int idReporte)
         {
             byte[] arr = new byte[100];
             if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
@@ -236,7 +231,7 @@ namespace TransitoWeb.Controllers
                         return View("VerDetalle");
                     }
                     else
-                        return new RedirectResult("/");
+                        return View("VerDetalle");
 
                 }
             }
