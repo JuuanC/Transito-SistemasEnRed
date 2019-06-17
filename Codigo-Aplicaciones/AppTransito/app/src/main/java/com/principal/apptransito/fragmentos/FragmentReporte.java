@@ -33,6 +33,8 @@ import com.principal.apptransito.utilidades.Validaciones;
 import com.principal.apptransito.objetos.Reporte;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentReporte extends Fragment {
 
@@ -42,6 +44,8 @@ public class FragmentReporte extends Fragment {
 
     private Instancias misInstancias;
     private Validaciones validacion;
+    private Imagen imagen;
+    private List<Imagen> listaImagenes;
 
     private boolean[] menuFotos;
     private byte[][] imagenesEnBytes;
@@ -86,6 +90,8 @@ public class FragmentReporte extends Fragment {
                              Bundle savedInstanceState) {
 
         getActivity().setTitle("Accidente vehícular");
+
+        listaImagenes = new ArrayList<>();
 
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -165,8 +171,7 @@ public class FragmentReporte extends Fragment {
                 String resultado = validacion.validarReporte(reporte, menuFotos[3]);
 
                 if ("".equals(resultado)) {
-                    Imagen[] imagenes = asignarImagenes();
-                    reporte.setImagenes(imagenes);
+                    reporte.setImagenes(listaImagenes);
                     misInstancias.setReporte(reporte);
                     Intent intento = new Intent(v.getContext(), ListaVehiculos.class);
                     Bundle bundle = new Bundle();
@@ -202,6 +207,7 @@ public class FragmentReporte extends Fragment {
                 }
 
                 imagenesEnBytes = new byte[8][];
+                listaImagenes.clear();
             }
         });
 
@@ -253,7 +259,10 @@ public class FragmentReporte extends Fragment {
 
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
-                imagenesEnBytes[banderaImagenes] = byteArray;
+                imagen = new Imagen();
+                //imagenesEnBytes[banderaImagenes] = byteArray;
+                imagen.setImagenEnBytes(byteArray);
+                listaImagenes.add(imagen);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
                         byteArray.length);
@@ -306,15 +315,16 @@ public class FragmentReporte extends Fragment {
         }
     }
 
-    private Imagen[] asignarImagenes() {
-        Imagen[] imagenes = new Imagen[8];
+    /*private Imagen[] asignarImagenes() {
+        listaImagenes = new ArrayList<>();
+        Imagen imagen;
         for (int i = 0; i < 8; i++) {
-            Imagen imagen = new Imagen();
-            imagen.setImagenEnBytes(imagenesEnBytes[i]);
+            imagen = new Imagen();
+            imagen.setImagenEnBytes(imagenesEnBytes[i][]);
         }
 
         return imagenes;
-    }
+    }*/
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

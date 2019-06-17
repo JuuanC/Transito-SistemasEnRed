@@ -135,7 +135,7 @@ public class FragmentSemaforo extends Fragment implements View.OnClickListener {
     }
 
     private void enviarSemaforo() {
-        String url = "http://192.168.1.95:80/Reporte/Registro/";
+        String url = "http://192.168.43.238:80/Reporte/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -154,19 +154,19 @@ public class FragmentSemaforo extends Fragment implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("placasImplicado", "");
-                params.put("nombreAseguradoraImplicado", "");
-                params.put("marcaImplicado", "");
-                params.put("modeloImplicado", "");
-                params.put("colorImplicado", "");
-                params.put("nombreImplicado", "");
-                params.put("polizaSeguro", "");
+                params.put("placasImplicado", "Semáforo");
+                params.put("nombreAseguradoraImplicado", "Semáforo");
+                params.put("marcaImplicado", "Semáforo");
+                params.put("modeloImplicado", "Semáforo");
+                params.put("colorImplicado", "Semáforo");
+                params.put("nombreImplicado", "Semáforo");
+                params.put("polizaSeguro", "Semáforo");
                 params.put("latitud", reporte.getLatitud());
                 params.put("longitud", reporte.getLongitud());
-                params.put("telefono", "");
-                params.put("placa", "");
+                params.put("telefono", misInstancias.getConductor().getTelefono());
+                params.put("placa", "Semáforo");
                 params.put("tipoReporte", reporte.getTipoReporte());
-                params.put("estatus", "");
+                params.put("estatus", "Semáforo");
                 params.put("descripcion", reporte.getDescripcion());
 
                 return params;

@@ -176,9 +176,9 @@ public class FragmentDatos
 
     @Override
     public void confirmarMensaje() {
-        String url = "https://192.164.1.95:80/Conductor/Actualizar/";
+        String url = "http://192.168.43.238:80/Conductor/Actualizar/";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 misInstancias.getConductor().setPassword(password1);
@@ -201,7 +201,7 @@ public class FragmentDatos
             }
         }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nombre", nombreEdit.getText().toString().trim());
                 params.put("fechaNacimiento", fechaView.getText().toString().trim());

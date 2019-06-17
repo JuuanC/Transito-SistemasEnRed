@@ -76,9 +76,9 @@ public class InformacionReporte extends AppCompatActivity implements View.OnClic
         polizaView.setText(reporte.getPolizaImplicado());
         latitudView.setText(reporte.getLatitud());
         longitudView.setText(reporte.getLongitud());
-        fechaView.setText(reporte.getFechaReporte());
+        fechaView.setText(reporte.getFechaReporte().substring(0,9));
 
-        if (reporte.getEstatus().equals("dictaminado")) {
+        if (reporte.getEstatus().equals("Dictaminado")) {
             dictamen.setEnabled(true);
         }
 
@@ -94,7 +94,7 @@ public class InformacionReporte extends AppCompatActivity implements View.OnClic
     }
 
     private void conexionObtenerDictamen() {
-        String url = "https://api.myjson.com/bins/muotx";
+        String url = "http://192.168.43.238:80/Dictamen/ObtenerDictamen/?idReporte=" + reporte.getIdReporte();
 
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

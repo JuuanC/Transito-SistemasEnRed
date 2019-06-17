@@ -24,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
+import com.principal.apptransito.fragmentos.FragmentBache;
 import com.principal.apptransito.fragmentos.FragmentDatos;
 import com.principal.apptransito.fragmentos.FragmentHistorial;
 import com.principal.apptransito.fragmentos.FragmentListaVehiculos;
@@ -120,7 +121,11 @@ public class MainActivity
             fragmentoActual.setArguments(bundle);
             fragmentoSeleccionado = true;
         } else if (id == R.id.nav_baches) {
-
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
+            fragmentoActual = new FragmentBache();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
         } else if (id == R.id.nav_semaforo) {
             bundle = new Bundle();
             bundle.putSerializable("conductor", misInstancias);
@@ -175,7 +180,7 @@ public class MainActivity
 
     private void conexionConsultarVehiculos(String telefono) {
         bandera = false;
-        String url = "http://192.168.1.95:80/Vehiculo/ListaVehiculos/?telefono=" + telefono;
+        String url = "http://192.168.43.238:80/Vehiculo/ListaVehiculos/?telefono=" + telefono;
         vehiculos = new ArrayList<>();
 
         JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -225,7 +230,7 @@ public class MainActivity
     private void conexionConsultarReportes(String telefono) {
         bandera = false;
 
-        String url = "http://192.168.1.95:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
+        String url = "http://192.168.43.238:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
         reportes = new ArrayList<>();
 
         JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -242,7 +247,7 @@ public class MainActivity
 
                         nuevoReporte.setIdReporte(obj.getInt("idReporte"));
                         nuevoReporte.setPlacas(obj.getString("placa"));
-                        nuevoReporte.setLatitud(obj.getString("latidud"));
+                        nuevoReporte.setLatitud(obj.getString("latitud"));
                         nuevoReporte.setLongitud(obj.getString("longitud"));
                         nuevoReporte.setNoCelular(obj.getString("telefono"));
                         nuevoReporte.setPlacasImplicado(obj.getString("placasImplicado"));
@@ -262,6 +267,7 @@ public class MainActivity
                     }
 
                     misInstancias.setListaReporte(reportes);
+                    System.out.println("Tamaño de la lista : " + misInstancias.getListaReporte().size());
 
                     bandera = true;
                 } catch (JSONException e) {

@@ -115,7 +115,7 @@ public class FragmentBache extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.idRegistrarSemaforo) {
+        if (v.getId() == R.id.idRegistrarBache) {
             reporte = new Reporte();
             reporte.setDescripcion(descripcionEdit.getText().toString().trim());
             reporte.setLongitud(longitudView.getText().toString().trim());
@@ -124,7 +124,7 @@ public class FragmentBache extends Fragment implements View.OnClickListener {
             Validaciones validaciones = new Validaciones();
             String resultado = validaciones.validarSemaforo(reporte);
             if ("".equals(resultado)) {
-                enviarSemaforo();
+                enviarBache();
             } else {
                 Toast datosInvalidosLogin = Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT);
                 datosInvalidosLogin.show();
@@ -132,8 +132,8 @@ public class FragmentBache extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void enviarSemaforo() {
-        String url = "http://192.168.1.95:80/Reporte/Registro/";
+    private void enviarBache() {
+        String url = "http://192.168.43.238:80/Reporte/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -152,19 +152,19 @@ public class FragmentBache extends Fragment implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("placasImplicado", "");
-                params.put("nombreAseguradoraImplicado", "");
-                params.put("marcaImplicado", "");
-                params.put("modeloImplicado", "");
-                params.put("colorImplicado", "");
-                params.put("nombreImplicado", "");
-                params.put("polizaSeguro", "");
+                params.put("placasImplicado", "Bache");
+                params.put("nombreAseguradoraImplicado", "Bache");
+                params.put("marcaImplicado", "Bache");
+                params.put("modeloImplicado", "Bache");
+                params.put("colorImplicado", "Bache");
+                params.put("nombreImplicado", "Bache");
+                params.put("polizaSeguro", "Bache");
                 params.put("latitud", reporte.getLatitud());
                 params.put("longitud", reporte.getLongitud());
-                params.put("telefono", "");
-                params.put("placa", "");
+                params.put("telefono", misInstancias.getConductor().getTelefono());
+                params.put("placa", "Bache");
                 params.put("tipoReporte", reporte.getTipoReporte());
-                params.put("estatus", "");
+                params.put("estatus", "Bache");
                 params.put("descripcion", reporte.getDescripcion());
 
                 return params;

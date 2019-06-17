@@ -16,9 +16,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
+import com.principal.apptransito.objetos.Imagen;
 import com.principal.apptransito.objetos.Vehiculo;
 import com.principal.apptransito.utilidades.Adapter;
 import com.principal.apptransito.utilidades.Instancias;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +65,7 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
 
     private void realizarConexionRegistro() {
 
-        String url = "http://192.168.1.95:80/Reporte/Registro/";
+        String url = "http://192.168.43.238:80/Reporte/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -78,6 +83,7 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+
                 params.put("placasImplicado", misInstancias.getReporte().getPlacasImplicado());
                 params.put("nombreAseguradoraImplicado", "BANCOMER");
                 params.put("marcaImplicado", misInstancias.getReporte().getMarcaImplicado());
@@ -92,6 +98,7 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
                 params.put("tipoReporte", misInstancias.getReporte().getTipoReporte());
                 params.put("estatus", misInstancias.getReporte().getEstatus());
                 params.put("descripcion", "accidente");
+                System.out.println("PASOOO3");
 
                 return params;
             }

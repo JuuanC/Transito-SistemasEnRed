@@ -13,6 +13,7 @@ import com.principal.apptransito.objetos.Reporte;
 import java.util.List;
 
 public class AdapterHistorial extends BaseAdapter {
+
     private Context contexto;
     private List<Reporte> listaReportes;
 

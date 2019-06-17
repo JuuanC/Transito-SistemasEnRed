@@ -74,8 +74,8 @@ public class Login extends AppCompatActivity {
 
     private void cargarWebService(String celular, String password) {
         final Conductor conductor = new Conductor();
-        //String url = "http://192.168.1.95:80/Conductor/ValidarUsuario/?telefono=2281721501&password=321";
-        String url = "https://api.myjson.com/bins/muotx";
+        String url = "http://192.168.43.238:80/Conductor/ValidarUsuario/?telefono="+celular+"&password="+password;
+        //String url = "https://api.myjson.com/bins/muotx";
 
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

@@ -1,6 +1,7 @@
 package com.principal.apptransito.objetos;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Reporte implements Serializable {
 
@@ -21,7 +22,7 @@ public class Reporte implements Serializable {
     private String status;
     private String descripcion;
     private String estatus;
-    private Imagen[] imagenes;
+    private List<Imagen> imagenes;
 
     public Reporte() {
         // Constructor vacío de Reporte
@@ -139,14 +140,6 @@ public class Reporte implements Serializable {
         this.status = status;
     }
 
-    public Imagen[] getImagenes() {
-        return imagenes;
-    }
-
-    public void setImagenes(Imagen[] imagenes) {
-        this.imagenes = imagenes;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -169,5 +162,13 @@ public class Reporte implements Serializable {
 
     public void setAseguradoraImplicado(String aseguradoraImplicado) {
         this.aseguradoraImplicado = aseguradoraImplicado;
+    }
+
+    public List<Imagen> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<Imagen> imagenes) {
+        this.imagenes = imagenes;
     }
 }

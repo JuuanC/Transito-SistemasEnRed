@@ -122,11 +122,13 @@ public class FragmentVehiculo extends Fragment implements View.OnClickListener {
     }
 
     private void registrarVehiculos() {
-        String url = "https://192.164.1.95:80/Vehiculo/Registro/";
+        String url = "http://192.168.43.238:80/Vehiculo/Registro/";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast datosInvalidosLogin = Toast.makeText(getContext(), "Vehículo registrado con éxito", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
                 cargarMainActivity();
             }
         }, new Response.ErrorListener() {

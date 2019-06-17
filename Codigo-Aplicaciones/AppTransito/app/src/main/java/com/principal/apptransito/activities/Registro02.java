@@ -117,7 +117,7 @@ public class Registro02 extends AppCompatActivity {
 
     private void realizarConexionRegistro() {
 
-        String url = "https://192.164.1.95:80/Conductor/RegistrarConductor/";
+        String url = "http://192.168.43.238:80/Conductor/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -138,10 +138,10 @@ public class Registro02 extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("telefono", conductor.getTelefono());
-                params.put("password", conductor.getPassword());
+                params.put("contrasenia", conductor.getPassword());
                 params.put("nombre", conductor.getNombre());
-                params.put("fecha", conductor.getFechaNacimiento());
-                params.put("licencia", conductor.getNumeroLicencia());
+                params.put("fechaNacimiento", conductor.getFechaNacimiento());
+                params.put("numLicencia", conductor.getNumeroLicencia());
                 return params;
             }
         };

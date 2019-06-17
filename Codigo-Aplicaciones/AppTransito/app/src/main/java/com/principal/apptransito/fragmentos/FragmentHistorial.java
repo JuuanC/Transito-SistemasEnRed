@@ -33,17 +33,18 @@ public class FragmentHistorial extends Fragment implements AdapterView.OnItemCli
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             misInstancias = (Instancias) getArguments().getSerializable("conductor");
+            System.out.println("Tamaño de la lista : " + misInstancias.getListaReporte().size());
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_lista_vehiculos, container, false);
+        View view = inflater.inflate(R.layout.lista_reportes, container, false);
         getActivity().setTitle("Historial de reportes");
 
         adapter = new AdapterHistorial(getContext(), misInstancias.getListaReporte());
-        lista = view.findViewById(R.id.idListaVehiculos);
+        lista = view.findViewById(R.id.idListaHistorial);
         lista.setAdapter(adapter);
         lista.setOnItemClickListener(this);
 
