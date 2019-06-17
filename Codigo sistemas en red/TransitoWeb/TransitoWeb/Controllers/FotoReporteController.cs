@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace TransitoWeb.Controllers
     public class FotoReporteController : Controller
     {
         [HttpGet]
-        public String Registro(String imagen, int idReporte)
+        public async Task<String>Registro(String imagen, int idReporte)
         {
             using (TransitoContext dbSS = new TransitoContext())
             {
@@ -21,6 +22,13 @@ namespace TransitoWeb.Controllers
                 dbSS.FotoReporte.Add(foto);
                 if (dbSS.SaveChanges() == 1)
                 {
+                    String rutaApp = Directory.GetCurrentDirectory();
+                    String ruta = Path.Combine(rutaApp,
+                        "wwwroot\\archivos", $"Prueba-2.pdf");
+                    using (var stream = new FileStream(ruta, FileMode.Create))
+                    {
+                        //await imagen.CopyToAsync(stream);
+                    }
                     return "{\"si\"}";
                 }
                 else

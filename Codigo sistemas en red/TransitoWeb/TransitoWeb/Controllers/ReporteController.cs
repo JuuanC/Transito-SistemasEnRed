@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace TransitoWeb.Controllers
         public String Registro(String placa, String latitud, String longitud, String placasImplicado,
             String nombreImplicado, String nombreAseguradoraImplicado, String numPolizaImplicado, String marcaImplicado,
             String modeloImplicado, String colorImplicado, String tipoReporte, String telefono, String estatus,
-            String descripcion, List<String> fotos)
+            String descripcion)
         {
             using (TransitoContext dbSS =
                 new TransitoContext())
@@ -37,13 +38,14 @@ namespace TransitoWeb.Controllers
                 dbSS.Reporte.Add(reporte);
                 if (dbSS.SaveChanges() == 1)
                 {
-                    Reporte reporteAux = new Reporte();
+                    /*Reporte reporteAux = new Reporte();
                     reporteAux = dbSS.Reporte.Last();
                     for(int i = 0; i < fotos.Count; i++)
                     {
                         FotoReporteController frc = new FotoReporteController();
+                        Console.WriteLine(fotos.ElementAt(i));
                         frc.Registro(fotos.ElementAt(i), reporteAux.IdReporte);
-                    }
+                    }*/
                     return "{\"correcto\": \"si\"}";
                 }
                 else
@@ -113,7 +115,7 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpGet]
-        public List<Reporte> ListaReportesConductor(int telefono)
+        public List<Reporte> ListaReportesConductor(String telefono)
         {
             List<Reporte> listaReportes = null;
             using (TransitoContext dbSS = new TransitoContext())
