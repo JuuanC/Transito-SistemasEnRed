@@ -29,7 +29,7 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPost]
-        public List<FotoReporte> listaFotos(int idReporte)
+        public List<FotoReporte> ListaFotos(int idReporte)
         {
             List<FotoReporte> fotos = null;
             using (TransitoContext dbSS = new TransitoContext())
