@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.principal.apptransito.R;
+import com.principal.apptransito.activities.ListaVehiculos;
+import com.principal.apptransito.objetos.Imagen;
 import com.principal.apptransito.utilidades.Instancias;
 import com.principal.apptransito.utilidades.Validaciones;
 import com.principal.apptransito.objetos.Reporte;
@@ -35,13 +37,15 @@ import java.io.ByteArrayOutputStream;
 public class FragmentReporte extends Fragment {
 
     private static final String IMAGENES_LLENAS = "Ya tiene el máximo de fotos : 8";
-    private static final String TIPO_REPORTE = "Accidente de carro";
+    private static final String TIPO_REPORTE = "Accidente vehicular";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
 
     private Instancias misInstancias;
     private Validaciones validacion;
 
     private boolean[] menuFotos;
+    private byte[][] imagenesEnBytes;
+    private int banderaImagenes;
     private ImageView imageView1;
     private ImageView imageView2;
     private ImageView imageView3;
@@ -96,6 +100,8 @@ public class FragmentReporte extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_reporte, container, false);
 
         menuFotos = new boolean[]{false, false, false, false, false, false, false, false};
+        imagenesEnBytes = new byte[8][];
+        banderaImagenes = 0;
         placasEdit = vista.findViewById(R.id.idPlacas);
         marcaEdit = vista.findViewById(R.id.idMarca);
         modeloEdit = vista.findViewById(R.id.idModelo);
@@ -140,16 +146,12 @@ public class FragmentReporte extends Fragment {
             @Override
             public void onClick(View v) {
                 validacion = new Validaciones();
-                String latidud = latidudView.getText().toString().trim();
+                String latitud = latidudView.getText().toString().trim();
                 String longitud = longitudView.getText().toString().trim();
-                double lat = Double.parseDouble(latidud);
-                double lon = Double.parseDouble(longitud);
                 Reporte reporte = new Reporte();
-                // reporte.setIdReporte(1);
-                // reporte.setPlacas("0123456789");
-                reporte.setNoCelular(misInstancias.getConductor().getNoCelular());
-                reporte.setLatitud(lat);
-                reporte.setLongitud(lon);
+                reporte.setNoCelular(misInstancias.getConductor().getTelefono());
+                reporte.setLatitud(latitud);
+                reporte.setLongitud(longitud);
                 reporte.setPlacasImplicado(placasEdit.getText().toString().trim());
                 reporte.setNombreImplicado(nombreEdit.getText().toString().trim());
                 reporte.setPolizaImplicado(polizaEdit.getText().toString().trim());
@@ -157,19 +159,26 @@ public class FragmentReporte extends Fragment {
                 reporte.setModeloImplicado(modeloEdit.getText().toString().trim());
                 reporte.setColorImplicado(colorEdit.getText().toString().trim());
                 reporte.setFechaReporte(fechaView.getText().toString().trim());
+                reporte.setEstatus("enviado");
                 reporte.setTipoReporte(TIPO_REPORTE);
 
                 String resultado = validacion.validarReporte(reporte, menuFotos[3]);
 
                 if ("".equals(resultado)) {
-                    Toast datosInvalidosLogin = Toast.makeText(getActivity(), "Reporte Enviado", Toast.LENGTH_SHORT);
-                    datosInvalidosLogin.show();
+                    Imagen[] imagenes = asignarImagenes();
+                    reporte.setImagenes(imagenes);
+                    misInstancias.setReporte(reporte);
+                    Intent intento = new Intent(v.getContext(), ListaVehiculos.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("conductor", misInstancias);
+                    intento.putExtras(bundle);
+                    startActivity(intento);
                 } else {
                     Toast datosInvalidosLogin = Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT);
                     datosInvalidosLogin.show();
                 }
 
-                
+
 
             }
 
@@ -191,6 +200,8 @@ public class FragmentReporte extends Fragment {
                 for (int i = 0; i < 8; i++) {
                     menuFotos[i] = false;
                 }
+
+                imagenesEnBytes = new byte[8][];
             }
         });
 
@@ -242,6 +253,7 @@ public class FragmentReporte extends Fragment {
 
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
+                imagenesEnBytes[banderaImagenes] = byteArray;
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
                         byteArray.length);
@@ -292,6 +304,16 @@ public class FragmentReporte extends Fragment {
                 break;
             }
         }
+    }
+
+    private Imagen[] asignarImagenes() {
+        Imagen[] imagenes = new Imagen[8];
+        for (int i = 0; i < 8; i++) {
+            Imagen imagen = new Imagen();
+            imagen.setImagenEnBytes(imagenesEnBytes[i]);
+        }
+
+        return imagenes;
     }
 
     public interface OnFragmentInteractionListener {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragmentos.FragmentReporte">
+    tools:context=".activities.InformacionReporte">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,6 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idInformacionEstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="Estatus : "/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -28,18 +40,7 @@
                 android:text="@string/reporte_datos_carro_implicado" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:textAlignment="textStart"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:text="@string/reporte_campos_opcionales" />
-
-            <EditText
-                android:id="@+id/idPlacas"
+                android:id="@+id/idInformacionPlacas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -48,11 +49,10 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/reporte_placas"
-                android:inputType="text"
                 android:maxLength="10"/>
 
-            <EditText
-                android:id="@+id/idMarca"
+            <TextView
+                android:id="@+id/idInformacionMarca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -61,11 +61,10 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/reporte_marca_carro"
-                android:inputType="text"
                 android:maxLength="20"/>
 
-            <EditText
-                android:id="@+id/idModelo"
+            <TextView
+                android:id="@+id/idInformacionModelo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -74,11 +73,10 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/reporte_modelo_carro"
-                android:inputType="text"
                 android:maxLength="20"/>
 
-            <EditText
-                android:id="@+id/idColor"
+            <TextView
+                android:id="@+id/idInformacionColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -87,7 +85,6 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/reporte_color_carro"
-                android:inputType="text"
                 android:maxLength="25"/>
 
             <TextView
@@ -101,8 +98,8 @@
                 android:textStyle="bold"
                 android:text="@string/reporte_informacion_conductor_implicado" />
 
-            <EditText
-                android:id="@+id/idNombreConductor"
+            <TextView
+                android:id="@+id/idInformacionNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -111,11 +108,10 @@
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:hint="@string/reporte_nombre_conductor"
-                android:inputType="text"
                 android:maxLength="50"/>
 
-            <EditText
-                android:id="@+id/idPolizaSeguro"
+            <TextView
+                android:id="@+id/idInformacionPoliza"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -124,7 +120,6 @@
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:hint="@string/reporte_poliza_seguro"
-                android:inputType="text"
                 android:maxLength="50"/>
 
             <TextView
@@ -138,24 +133,13 @@
                 android:textStyle="bold"
                 android:text="@string/reporte_informacion_adicional" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:textAlignment="textStart"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:text="@string/reporte_llenado_automatico" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/idLatitud"
+                    android:id="@+id/idInformacionLatitud"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
@@ -166,7 +150,7 @@
                     android:maxLength="50"/>
 
                 <TextView
-                    android:id="@+id/idLongitud"
+                    android:id="@+id/idInformacionLongitud"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="25dp"
@@ -179,7 +163,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/idFechaReporte"
+                android:id="@+id/idInformacionFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -200,28 +184,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:text="@string/reporte_fotos_siniestro" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:textAlignment="textStart"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:text="@string/reporte_fotos_minimas" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:textAlignment="textStart"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:text="@string/reporte_fotos_maximas" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -282,38 +244,15 @@
 
             </GridLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/idLimpiarFotos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="40dp"
-                    android:text="Borrar Fotos"/>
-
-                <Button
-                    android:id="@+id/idTomarFoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="50dp"
-                    android:textSize="20sp"
-                    android:text="Tomar Foto"/>
-
-            </LinearLayout>
-
             <Button
-                android:id="@+id/idSiguienteReporte"
+                android:id="@+id/idVerDictamen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:textSize="32sp"
-                android:text="@string/reporte_boton_siguiente"/>
+                android:enabled="false"
+                android:text="Ver Dictamen"/>
 
         </LinearLayout>
 

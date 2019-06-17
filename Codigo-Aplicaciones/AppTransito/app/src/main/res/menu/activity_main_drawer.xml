@@ -20,27 +20,29 @@
         </menu>
     </item>
 
-    <item android:title="Vehiculos">
+    <item android:title="Otros">
+
         <menu>
+
             <item
                 android:id="@+id/nav_registrarVehiculo"
+                android:icon="@drawable/transportes"
                 android:title="Registrar vehículo" />
             <item
                 android:id="@+id/nav_actualizarVehiculo"
+                android:icon="@drawable/nuevo_carro"
                 android:title="Detalles de vehículos" />
-        </menu>
-    </item>
+            <item
+                android:id="@+id/nav_historial"
+                android:icon="@drawable/periodico"
+                android:title="Historial de Reportes" />
+            <item
+                android:id="@+id/nav_misDatos"
+                android:icon="@drawable/usuario_icono"
+                android:title="Mis Datos" />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_dictamen"
-            android:title="Dictamenes" />
-        <item
-            android:id="@+id/nav_historial"
-            android:title="Historial de Reportes" />
-        <item
-            android:id="@+id/nav_misDatos"
-            android:title="Mis Datos" />
-    </group>
+        </menu>
+
+    </item>
 
 </menu>

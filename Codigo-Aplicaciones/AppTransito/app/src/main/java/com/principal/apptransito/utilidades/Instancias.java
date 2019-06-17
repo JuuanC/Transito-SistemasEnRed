@@ -1,6 +1,7 @@
 package com.principal.apptransito.utilidades;
 
 import com.principal.apptransito.objetos.Conductor;
+import com.principal.apptransito.objetos.Reporte;
 import com.principal.apptransito.objetos.Vehiculo;
 
 import java.io.Serializable;
@@ -14,6 +15,8 @@ public class Instancias implements Serializable {
 
     private Conductor conductor;
     private List<Vehiculo> vehiculos;
+    private Reporte reporte;
+    private List<Reporte> listaReporte;
 
     public Instancias() {
         conductor = new Conductor();
@@ -48,4 +51,19 @@ public class Instancias implements Serializable {
         this.vehiculos = vehiculos;
     }
 
+    public List<Reporte> getListaReporte() {
+        return listaReporte;
+    }
+
+    public void setListaReporte(List<Reporte> listaReporte) {
+        this.listaReporte = listaReporte;
+    }
+
+    public Reporte getReporte() {
+        return reporte;
+    }
+
+    public void setReporte(Reporte reporte) {
+        this.reporte = reporte;
+    }
 }

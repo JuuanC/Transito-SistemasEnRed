@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragmentos.FragmentSemaforo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:text="Descripción :" />
+
+            <EditText
+                android:id="@+id/idSemaforoDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="373dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:hint="Ingrese una descripción breve del reporte."
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/idSemaforoLatitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="55dp"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:hint="@string/reporte_latitud"
+                    android:maxLength="50"/>
+
+                <TextView
+                    android:id="@+id/idSemaforoLongitud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="50dp"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:hint="@string/reporte_longitud"
+                    android:maxLength="50"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/idRegistrarSemaforo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:textSize="32sp"
+                android:text="Registrar"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -10,13 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
 import com.principal.apptransito.objetos.Vehiculo;
-import com.principal.apptransito.utilidades.DialogoConfirmacion;
 import com.principal.apptransito.utilidades.DialogoEliminacion;
 import com.principal.apptransito.utilidades.DialogoModificacion;
 import com.principal.apptransito.utilidades.Instancias;
 import com.principal.apptransito.utilidades.Validaciones;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModificarVehiculo extends AppCompatActivity implements View.OnClickListener, DialogoModificacion.OnDialogListener, DialogoEliminacion.OnDialogListener{
 
@@ -25,6 +33,8 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
 
     private Instancias misInstancias;
     private Vehiculo vehiculo;
+
+    private RequestQueue queue;
 
     private Button modificar;
     private Button eliminar;
@@ -41,6 +51,8 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_vehiculo);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        queue = Volley.newRequestQueue(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -89,6 +101,9 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
                 }
 
                 fragment.show(getSupportFragmentManager(), TAG);
+            } else {
+                Toast datosInvalidos = Toast.makeText(getApplicationContext(), resultadoValidaciones, Toast.LENGTH_SHORT);
+                datosInvalidos.show();
             }
         } else if (v.getId() == R.id.idEliminarVehiculo) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -111,7 +126,7 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
         Validaciones validaciones = new Validaciones();
         Vehiculo nuevoVehiculo =  new Vehiculo();
         nuevoVehiculo.setAnio(anioEdit.getText().toString().trim());
-        nuevoVehiculo.setCelular(misInstancias.getConductor().getNoCelular());
+        nuevoVehiculo.setCelular(misInstancias.getConductor().getTelefono());
         nuevoVehiculo.setColor(colorEdit.getText().toString().trim());
         nuevoVehiculo.setMarca(marcaEdit.getText().toString().trim());
         nuevoVehiculo.setModelo(modeloEdit.getText().toString().trim());
@@ -123,23 +138,79 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
 
     @Override
     public void confirmacionModificar() {
-        // TODO mandar al servidor el carro modificado y después meterlo a la lista de carros actuales.
-        Toast datosInvalidos = Toast.makeText(this, "modificacion confirmada", Toast.LENGTH_SHORT);
-        datosInvalidos.show();
+        String url = "http://192.168.1.95:80/Vehiculo/Actualizar/";
+        StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast datosInvalidos = Toast.makeText(getApplicationContext(), "modificacion confirmada", Toast.LENGTH_SHORT);
+                        datosInvalidos.show();
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast datosInvalidos = Toast.makeText(getApplicationContext(), "Error al modificar", Toast.LENGTH_SHORT);
+                        datosInvalidos.show();
+                    }
+                }
+        ) {
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("placaVieja", vehiculo.getPlacas());
+                params.put("placa", placasEdit.getText().toString().trim());
+                params.put("marca", marcaEdit.getText().toString().trim());
+                params.put("modelo", modeloEdit.getText().toString().trim());
+                params.put("anio", anioEdit.getText().toString().trim());
+                params.put("color", colorEdit.getText().toString().trim());
+                params.put("nombreAseguradora", aseguradoraEdit.getText().toString().trim());
+                params.put("numPoliza", polizaEdit.getText().toString().trim());
+                params.put("telefono" , misInstancias.getConductor().getTelefono());
+
+                return params;
+            }
+
+        };
+
+        queue.add(putRequest);
     }
 
     @Override
     public void cancelarModificacion() {
-        // No hacer nada.
         Toast datosInvalidos = Toast.makeText(this, "modificacion cancelada", Toast.LENGTH_SHORT);
         datosInvalidos.show();
     }
 
     @Override
     public void confirmacionEliminacion() {
-        // TODO mandar al servidor una peticion con las placas del carro.
-        Toast datosInvalidos = Toast.makeText(this, "eliminacion confirmada", Toast.LENGTH_SHORT);
-        datosInvalidos.show();
+        String url = "http://192.168.1.95:80/Vehiculo/Eliminar/?placa="+placasEdit.getText().toString().trim();
+        StringRequest dr = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Toast datosInvalidos = Toast.makeText(getApplicationContext(), "eliminacion confirmada", Toast.LENGTH_SHORT);
+                        datosInvalidos.show();
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast datosInvalidos = Toast.makeText(getApplicationContext(), "Error en eliminación", Toast.LENGTH_SHORT);
+                        datosInvalidos.show();
+
+                    }
+                }
+        );
+
+        queue.add(dr);
     }
 
     @Override

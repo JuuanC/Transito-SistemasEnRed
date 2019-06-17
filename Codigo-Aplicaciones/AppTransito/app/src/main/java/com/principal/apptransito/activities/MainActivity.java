@@ -1,5 +1,6 @@
 package com.principal.apptransito.activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,13 +14,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
 import com.principal.apptransito.fragmentos.FragmentDatos;
+import com.principal.apptransito.fragmentos.FragmentHistorial;
 import com.principal.apptransito.fragmentos.FragmentListaVehiculos;
 import com.principal.apptransito.fragmentos.FragmentReporte;
+import com.principal.apptransito.fragmentos.FragmentSemaforo;
 import com.principal.apptransito.fragmentos.FragmentVehiculo;
+import com.principal.apptransito.objetos.Reporte;
+import com.principal.apptransito.objetos.Vehiculo;
 import com.principal.apptransito.utilidades.Instancias;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity
         extends
@@ -30,7 +50,12 @@ public class MainActivity
             FragmentVehiculo.OnFragmentInteractionListener,
             FragmentDatos.OnFragmentInteractionListener {
 
+    private boolean bandera;
     private Instancias misInstancias;
+    private RequestQueue queue;
+    private List<Reporte> reportes;
+    private List<Vehiculo> vehiculos;
+
     private TextView nombreUsuario;
     private TextView celularUsuario;
 
@@ -41,6 +66,8 @@ public class MainActivity
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        queue = Volley.newRequestQueue(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,8 +86,10 @@ public class MainActivity
             misInstancias = (Instancias) bundle.getSerializable("conductor");
         }
 
+        conexionConsultarVehiculos(misInstancias.getConductor().getTelefono());
+        conexionConsultarReportes(misInstancias.getConductor().getTelefono());
         nombreUsuario.setText("Hola " + misInstancias.getConductor().getNombre().toString() +"!");
-        celularUsuario.setText("Numero : " + misInstancias.getConductor().getNoCelular().toString());
+        celularUsuario.setText("Numero : " + misInstancias.getConductor().getTelefono().toString());
 
     }
 
@@ -93,11 +122,23 @@ public class MainActivity
         } else if (id == R.id.nav_baches) {
 
         } else if (id == R.id.nav_semaforo) {
-
-        } else if (id == R.id.nav_dictamen) {
-            // Handle the camera action
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
+            fragmentoActual = new FragmentSemaforo();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
         } else if (id == R.id.nav_historial) {
-
+            if (bandera) {
+                bundle = new Bundle();
+                bundle.putSerializable("conductor", misInstancias);
+                fragmentoActual = new FragmentHistorial();
+                fragmentoActual.setArguments(bundle);
+                fragmentoSeleccionado = true;
+            } else {
+                Toast datosInvalidosLogin = Toast.makeText(getApplicationContext(), "Hubo un error en la conexión, inténtelo más tarde.", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
+            }
+            System.out.println("BANDERA : " + bandera);
         } else if (id == R.id.nav_registrarVehiculo) {
             bundle = new Bundle();
             bundle.putSerializable("conductor", misInstancias);
@@ -105,7 +146,6 @@ public class MainActivity
             fragmentoActual.setArguments(bundle);
             fragmentoSeleccionado = true;
         } else if (id == R.id.nav_actualizarVehiculo) {
-            // TODO (4) Si no se pueden obtener los vehículos de la BD no se puede abrir este fragmento.
             bundle = new Bundle();
             bundle.putSerializable("conductor", misInstancias);
             fragmentoActual = new FragmentListaVehiculos();
@@ -133,6 +173,108 @@ public class MainActivity
 
     }
 
-    // public Conductor getConductor() { return conductor; }
+    private void conexionConsultarVehiculos(String telefono) {
+        bandera = false;
+        String url = "http://192.168.1.95:80/Vehiculo/ListaVehiculos/?telefono=" + telefono;
+        vehiculos = new ArrayList<>();
+
+        JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONArray jsonArray = response;
+                    for (int a = 0; a < jsonArray.length(); a++) {
+
+                        JSONObject obj = jsonArray.getJSONObject(a);
+
+                        Vehiculo vehiculo = new Vehiculo();
+
+                        vehiculo.setCelular(obj.getString("telefono"));
+                        vehiculo.setPlacas(obj.getString("placa"));
+                        vehiculo.setMarca(obj.getString("marca"));
+                        vehiculo.setModelo(obj.getString("modelo"));
+                        vehiculo.setAnio(obj.getString("anio"));
+                        vehiculo.setColor(obj.getString("color"));
+                        vehiculo.setNumeroAseguradora(obj.getString("nombreAseguradora"));
+                        vehiculo.setNumeroPoliza(obj.getString("numPoliza"));
+
+                        vehiculos.add(vehiculo);
+
+                    }
+
+                    misInstancias.setVehiculos(vehiculos);
+
+                    bandera = true;
+                } catch (JSONException e) {
+                        e.printStackTrace();
+                        bandera = false;
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(getArray);
+
+    }
+
+    private void conexionConsultarReportes(String telefono) {
+        bandera = false;
+
+        String url = "http://192.168.1.95:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
+        reportes = new ArrayList<>();
+
+        JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONArray jsonArray = response;
+
+                    for (int a = 0; a < jsonArray.length(); a++) {
+
+                        JSONObject obj = jsonArray.getJSONObject(a);
+
+                        Reporte nuevoReporte = new Reporte();
+
+                        nuevoReporte.setIdReporte(obj.getInt("idReporte"));
+                        nuevoReporte.setPlacas(obj.getString("placa"));
+                        nuevoReporte.setLatitud(obj.getString("latidud"));
+                        nuevoReporte.setLongitud(obj.getString("longitud"));
+                        nuevoReporte.setNoCelular(obj.getString("telefono"));
+                        nuevoReporte.setPlacasImplicado(obj.getString("placasImplicado"));
+                        nuevoReporte.setMarcaImplicado(obj.getString("marcaImplicado"));
+                        nuevoReporte.setModeloImplicado(obj.getString("modeloImplicado"));
+                        nuevoReporte.setColorImplicado(obj.getString("colorImplicado"));
+                        nuevoReporte.setNombreImplicado(obj.getString("nombreImplicado"));
+                        nuevoReporte.setAseguradoraImplicado(obj.getString("nombreAseguradoraImplicado"));
+                        nuevoReporte.setPolizaImplicado(obj.getString("numPolizaImplicado"));
+                        nuevoReporte.setTipoReporte(obj.getString("tipoReporte"));
+                        nuevoReporte.setDescripcion(obj.getString("descripcion"));
+                        nuevoReporte.setFechaReporte(obj.getString("fechaReporte"));
+                        nuevoReporte.setEstatus(obj.getString("estatus"));
+
+                        reportes.add(nuevoReporte);
+
+                    }
+
+                    misInstancias.setListaReporte(reportes);
+
+                    bandera = true;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                bandera = false;
+            }
+        });
+        queue.add(getArray);
+    }
 
 }

@@ -48,6 +48,7 @@
                 android:textAlignment="center"
                 android:textSize="32sp"
                 android:hint="@string/vehiculo_placas"
+                android:enabled="false"
                 android:inputType="text"
                 android:maxLength="10"/>
 

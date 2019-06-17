@@ -16,9 +16,6 @@ import com.principal.apptransito.objetos.Vehiculo;
 import com.principal.apptransito.utilidades.Adapter;
 import com.principal.apptransito.utilidades.Instancias;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentListaVehiculos extends Fragment implements AdapterView.OnItemClickListener {
 
     private Adapter adapter;

@@ -11,16 +11,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
-import com.principal.apptransito.activities.Login;
 import com.principal.apptransito.objetos.Conductor;
 import com.principal.apptransito.utilidades.Validaciones;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registro02 extends AppCompatActivity {
 
+    private Conductor conductor;
     private Validaciones validar;
+    private RequestQueue queue;
 
     private String noCelular;
     private String password;
@@ -38,6 +48,7 @@ public class Registro02 extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         recibirDatos();
+        queue = Volley.newRequestQueue(this);
 
 
         nombreEdit = findViewById(R.id.idRegistroNombre);
@@ -87,22 +98,15 @@ public class Registro02 extends AppCompatActivity {
 
         if ("".equals(resultado)) {
 
-            Conductor conductor = new Conductor();
-            conductor.setNoCelular(noCelular);
+            conductor = new Conductor();
+            conductor.setTelefono(noCelular);
             conductor.setPassword(password);
             conductor.setNombre(nombre + " " + apellidoPat + " " + apellidoMat);
             conductor.setFechaNacimiento(fechaNacimiento);
             conductor.setNumeroLicencia(numeroLicencia);
 
-            if (realizarConexionRegistro()) {
+            realizarConexionRegistro();
 
-                Toast registrado = Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG);
-                registrado.show();
-
-                Intent intento = new Intent(this, Login.class);
-                intento.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intento);
-            }
 
         } else {
             Toast datosInvalidosLogin = Toast.makeText(this, resultado, Toast.LENGTH_SHORT);
@@ -111,9 +115,48 @@ public class Registro02 extends AppCompatActivity {
 
     }
 
-    private boolean realizarConexionRegistro() {
-        // Logica para conectarse al servidor
-        return true;
+    private void realizarConexionRegistro() {
+
+        String url = "https://192.164.1.95:80/Conductor/RegistrarConductor/";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                volverLogin();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast datosInvalidosLogin = Toast.makeText(getApplicationContext(), "Hubo un error en la conexión, inténtelo más tarde", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
+                Intent intento = new Intent(getApplicationContext(), Login.class);
+                intento.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intento);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("telefono", conductor.getTelefono());
+                params.put("password", conductor.getPassword());
+                params.put("nombre", conductor.getNombre());
+                params.put("fecha", conductor.getFechaNacimiento());
+                params.put("licencia", conductor.getNumeroLicencia());
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
+
+    }
+
+    void volverLogin() {
+        Toast registrado = Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG);
+        registrado.show();
+
+        Intent intento = new Intent(this, Login.class);
+        intento.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intento);
     }
 
 }

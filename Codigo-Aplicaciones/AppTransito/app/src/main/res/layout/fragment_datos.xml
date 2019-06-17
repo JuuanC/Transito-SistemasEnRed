@@ -17,6 +17,7 @@
         android:textAlignment="center"
         android:textSize="32sp"
         android:hint="@string/datos_celular"
+        android:enabled="false"
         android:inputType="number"
         android:maxLength="10"/>
 

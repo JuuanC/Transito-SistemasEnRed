@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.VistaDictamen">
+
+    <TextView
+        android:id="@+id/idDictamenFolio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="viewStart"
+        android:textSize="32sp"
+        android:hint="Folio"
+        android:maxLength="10"/>
+
+    <TextView
+        android:id="@+id/idDictamenFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="viewStart"
+        android:textSize="32sp"
+        android:hint="Fecha"
+        android:maxLength="45"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="viewStart"
+        android:textSize="32sp"
+        android:hint="Descripción : "
+        android:maxLength="45"/>
+
+    <TextView
+        android:id="@+id/idDictamenDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        android:hint="descripcion"
+        android:maxLength="45"/>
+
+</LinearLayout>
