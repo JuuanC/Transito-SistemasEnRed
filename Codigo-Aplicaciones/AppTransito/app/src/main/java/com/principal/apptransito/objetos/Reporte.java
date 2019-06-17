@@ -12,6 +12,7 @@ public class Reporte implements Serializable {
     private String placasImplicado;
     private String nombreImplicado;
     private String polizaImplicado;
+    private String aseguradoraImplicado;
     private String marcaImplicado;
     private String modeloImplicado;
     private String colorImplicado;
@@ -162,4 +163,11 @@ public class Reporte implements Serializable {
         this.estatus = estatus;
     }
 
+    public String getAseguradoraImplicado() {
+        return aseguradoraImplicado;
+    }
+
+    public void setAseguradoraImplicado(String aseguradoraImplicado) {
+        this.aseguradoraImplicado = aseguradoraImplicado;
+    }
 }

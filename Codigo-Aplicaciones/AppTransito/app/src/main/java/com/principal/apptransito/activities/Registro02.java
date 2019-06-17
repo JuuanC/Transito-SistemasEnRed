@@ -117,7 +117,6 @@ public class Registro02 extends AppCompatActivity {
 
     private void realizarConexionRegistro() {
 
-        // TODO (2) Poner la URL para realizar la petición POST.
         String url = "https://192.164.1.95:80/Conductor/RegistrarConductor/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

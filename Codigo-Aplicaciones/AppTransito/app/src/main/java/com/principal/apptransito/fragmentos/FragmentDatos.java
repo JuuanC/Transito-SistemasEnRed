@@ -14,6 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.utilidades.Instancias;
 import com.principal.apptransito.R;
 import com.principal.apptransito.objetos.Conductor;
@@ -21,21 +28,19 @@ import com.principal.apptransito.utilidades.DialogoConfirmacion;
 import com.principal.apptransito.utilidades.Validaciones;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentDatos
         extends Fragment
         implements
             View.OnClickListener,
             DialogoConfirmacion.OnInputSelected {
 
-    private static final String TAG = "MainFragment";
     private static final String MESSAGE = "MensajeDelDialogo";
 
     private Instancias misInstancias;
+    private RequestQueue queue;
 
     private Button fechaBoton;
     private Button modificarBoton;
@@ -62,6 +67,8 @@ public class FragmentDatos
         if (getArguments() != null) {
             misInstancias = (Instancias) getArguments().getSerializable("conductor");
         }
+
+        queue = Volley.newRequestQueue(getContext());
     }
 
     @Override
@@ -169,22 +176,48 @@ public class FragmentDatos
 
     @Override
     public void confirmarMensaje() {
-        if (realizarConexionActualizarDatos()) {
+        String url = "https://192.164.1.95:80/Conductor/Actualizar/";
 
-            // TODO (2) Realizar actualización de datos, y obtener el conductor actualizado del servidor y almacenarlo en mis instancias
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                misInstancias.getConductor().setPassword(password1);
+                misInstancias.getConductor().setNumeroLicencia(licencia);
+                misInstancias.getConductor().setTelefono(celular);
+                misInstancias.getConductor().setFechaNacimiento(fecha);
+                misInstancias.getConductor().setNombre(nombre);
 
-            // Simulación de nuevos datos.
-            misInstancias.getConductor().setPassword(password1);
-            misInstancias.getConductor().setNumeroLicencia(licencia);
-            misInstancias.getConductor().setTelefono(celular);
-            misInstancias.getConductor().setFechaNacimiento(fecha);
-            misInstancias.getConductor().setNombre(nombre);
-        }
+                Toast datosInvalidosLogin = Toast.makeText(getContext(), "Actualización con éxito.", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
+
+                cargarMainActivity();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast datosInvalidosLogin = Toast.makeText(getContext(), "Hubo un error en la conexión, inténtelo más tarde.", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nombre", nombreEdit.getText().toString().trim());
+                params.put("fechaNacimiento", fechaView.getText().toString().trim());
+                params.put("numLicencia", noLicenciaEdit.getText().toString().trim());
+                params.put("telefono", celularEdit.getText().toString().trim());
+                params.put("contrasenia", password1Edit.getText().toString().trim());
+
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
-    private boolean realizarConexionActualizarDatos() {
-        // Lodigca para conectarse al servidor
-        return true;
+    private void cargarMainActivity() {
+        getActivity().finish();
+        startActivity(getActivity().getIntent());
     }
 
 }

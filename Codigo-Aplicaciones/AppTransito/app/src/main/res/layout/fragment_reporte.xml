@@ -36,7 +36,7 @@
                 android:textAlignment="textStart"
                 android:textSize="15sp"
                 android:textStyle="normal"
-                android:text="@string/reporte_campos_obligatorios" />
+                android:text="@string/reporte_campos_opcionales" />
 
             <EditText
                 android:id="@+id/idPlacas"
@@ -100,17 +100,6 @@
                 android:textSize="23sp"
                 android:textStyle="bold"
                 android:text="@string/reporte_informacion_conductor_implicado" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:textAlignment="textStart"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:text="@string/reporte_campos_opcionales" />
 
             <EditText
                 android:id="@+id/idNombreConductor"

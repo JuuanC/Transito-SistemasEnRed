@@ -37,7 +37,7 @@ import java.io.ByteArrayOutputStream;
 public class FragmentReporte extends Fragment {
 
     private static final String IMAGENES_LLENAS = "Ya tiene el máximo de fotos : 8";
-    private static final String TIPO_REPORTE = "Accidente de carro";
+    private static final String TIPO_REPORTE = "Accidente vehicular";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
 
     private Instancias misInstancias;
@@ -149,8 +149,6 @@ public class FragmentReporte extends Fragment {
                 String latitud = latidudView.getText().toString().trim();
                 String longitud = longitudView.getText().toString().trim();
                 Reporte reporte = new Reporte();
-                // reporte.setIdReporte(1);
-                // reporte.setPlacas("0123456789");
                 reporte.setNoCelular(misInstancias.getConductor().getTelefono());
                 reporte.setLatitud(latitud);
                 reporte.setLongitud(longitud);

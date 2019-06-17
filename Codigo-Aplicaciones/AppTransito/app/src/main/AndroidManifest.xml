@@ -17,8 +17,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.InformacionReporte"></activity>
-        <activity android:name=".activities.ListaVehiculos" />
+        <activity android:name=".activities.InformacionOtroReporte"></activity>
+        <activity
+            android:name=".activities.VistaDictamen"
+            android:label="Dictamen" />
+        <activity
+            android:name=".activities.InformacionReporte"
+            android:label="Informacion del reporte" />
+        <activity
+            android:name=".activities.ListaVehiculos"
+            android:label="Escoja un vehículo" />
         <activity
             android:name=".activities.ModificarVehiculo"
             android:label="Edición de Vehículo" />

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.principal.apptransito.R;
+import com.principal.apptransito.activities.InformacionOtroReporte;
 import com.principal.apptransito.activities.InformacionReporte;
 import com.principal.apptransito.objetos.Reporte;
 import com.principal.apptransito.utilidades.AdapterHistorial;
@@ -51,13 +52,19 @@ public class FragmentHistorial extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Reporte vehiculoSeleccionado = (Reporte) adapter.getItem(position);
-        Intent intento = new Intent(view.getContext(), InformacionReporte.class);
+        Reporte reporteSeleccionado = (Reporte) adapter.getItem(position);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("reporte", vehiculoSeleccionado);
+        bundle.putSerializable("reporte", reporteSeleccionado);
         bundle.putSerializable("instancias", misInstancias);
-        intento.putExtras(bundle);
-        startActivity(intento);
+        if ("Accidente vehicular".equals(reporteSeleccionado.getTipoReporte())) {
+            Intent intento = new Intent(view.getContext(), InformacionReporte.class);
+            intento.putExtras(bundle);
+            startActivity(intento);
+        } else {
+            Intent intento = new Intent(view.getContext(), InformacionOtroReporte.class);
+            intento.putExtras(bundle);
+            startActivity(intento);
+        }
     }
 
 }

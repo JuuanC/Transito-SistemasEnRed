@@ -28,6 +28,7 @@ import com.principal.apptransito.fragmentos.FragmentDatos;
 import com.principal.apptransito.fragmentos.FragmentHistorial;
 import com.principal.apptransito.fragmentos.FragmentListaVehiculos;
 import com.principal.apptransito.fragmentos.FragmentReporte;
+import com.principal.apptransito.fragmentos.FragmentSemaforo;
 import com.principal.apptransito.fragmentos.FragmentVehiculo;
 import com.principal.apptransito.objetos.Reporte;
 import com.principal.apptransito.objetos.Vehiculo;
@@ -67,8 +68,6 @@ public class MainActivity
         setSupportActionBar(toolbar);
 
         queue = Volley.newRequestQueue(this);
-        //conexionConsultarReportes(misInstancias.getConductor().getTelefono());
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -88,6 +87,7 @@ public class MainActivity
         }
 
         conexionConsultarVehiculos(misInstancias.getConductor().getTelefono());
+        conexionConsultarReportes(misInstancias.getConductor().getTelefono());
         nombreUsuario.setText("Hola " + misInstancias.getConductor().getNombre().toString() +"!");
         celularUsuario.setText("Numero : " + misInstancias.getConductor().getTelefono().toString());
 
@@ -122,7 +122,11 @@ public class MainActivity
         } else if (id == R.id.nav_baches) {
 
         } else if (id == R.id.nav_semaforo) {
-
+            bundle = new Bundle();
+            bundle.putSerializable("conductor", misInstancias);
+            fragmentoActual = new FragmentSemaforo();
+            fragmentoActual.setArguments(bundle);
+            fragmentoSeleccionado = true;
         } else if (id == R.id.nav_historial) {
             if (bandera) {
                 bundle = new Bundle();
@@ -220,8 +224,8 @@ public class MainActivity
 
     private void conexionConsultarReportes(String telefono) {
         bandera = false;
-        // TODO Poner la URL para obtener la listas de reportes
-        String url = "https://api.myjson.com/bins/14shad";
+
+        String url = "http://192.168.1.95:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
         reportes = new ArrayList<>();
 
         JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -236,20 +240,21 @@ public class MainActivity
 
                         Reporte nuevoReporte = new Reporte();
 
-                        nuevoReporte.setIdReporte(obj.getInt("id"));
-                        nuevoReporte.setPlacas(obj.getString("placas"));
+                        nuevoReporte.setIdReporte(obj.getInt("idReporte"));
+                        nuevoReporte.setPlacas(obj.getString("placa"));
                         nuevoReporte.setLatitud(obj.getString("latidud"));
                         nuevoReporte.setLongitud(obj.getString("longitud"));
-                        nuevoReporte.setNoCelular(obj.getString("celular"));
-                        nuevoReporte.setPlacasImplicado(obj.getString("placasimplicado"));
-                        nuevoReporte.setMarcaImplicado(obj.getString("marca"));
-                        nuevoReporte.setModeloImplicado(obj.getString("modelo"));
-                        nuevoReporte.setColorImplicado(obj.getString("color"));
-                        nuevoReporte.setNombreImplicado(obj.getString("nombre"));
-                        nuevoReporte.setPolizaImplicado(obj.getString("poliza"));
-                        nuevoReporte.setTipoReporte(obj.getString("accidente"));
+                        nuevoReporte.setNoCelular(obj.getString("telefono"));
+                        nuevoReporte.setPlacasImplicado(obj.getString("placasImplicado"));
+                        nuevoReporte.setMarcaImplicado(obj.getString("marcaImplicado"));
+                        nuevoReporte.setModeloImplicado(obj.getString("modeloImplicado"));
+                        nuevoReporte.setColorImplicado(obj.getString("colorImplicado"));
+                        nuevoReporte.setNombreImplicado(obj.getString("nombreImplicado"));
+                        nuevoReporte.setAseguradoraImplicado(obj.getString("nombreAseguradoraImplicado"));
+                        nuevoReporte.setPolizaImplicado(obj.getString("numPolizaImplicado"));
+                        nuevoReporte.setTipoReporte(obj.getString("tipoReporte"));
                         nuevoReporte.setDescripcion(obj.getString("descripcion"));
-                        nuevoReporte.setFechaReporte(obj.getString("fecha"));
+                        nuevoReporte.setFechaReporte(obj.getString("fechaReporte"));
                         nuevoReporte.setEstatus(obj.getString("estatus"));
 
                         reportes.add(nuevoReporte);

@@ -1,19 +1,33 @@
 package com.principal.apptransito.activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.principal.apptransito.R;
+import com.principal.apptransito.objetos.Dictamen;
 import com.principal.apptransito.objetos.Reporte;
 import com.principal.apptransito.utilidades.Instancias;
 
-public class InformacionReporte extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class InformacionReporte extends AppCompatActivity implements View.OnClickListener {
 
     private Reporte reporte;
     private Instancias misInstancias;
+    private RequestQueue queue;
 
     private Button dictamen;
     private TextView estatusView;
@@ -32,6 +46,8 @@ public class InformacionReporte extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_reporte);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        queue = Volley.newRequestQueue(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -66,5 +82,52 @@ public class InformacionReporte extends AppCompatActivity {
             dictamen.setEnabled(true);
         }
 
+        dictamen.setOnClickListener(this);
+
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.idVerDictamen) {
+            conexionObtenerDictamen();
+        }
+    }
+
+    private void conexionObtenerDictamen() {
+        String url = "https://api.myjson.com/bins/muotx";
+
+        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    Dictamen dictamen = new Dictamen();
+
+                    dictamen.setIdFolio(response.getInt("idFolio"));
+                    dictamen.setDescripcion(response.getString("descripcion"));
+                    dictamen.setFecha(response.getString("fecha"));
+                    dictamen.setIdPerito(response.getInt("idPerito"));
+                    dictamen.setIdReporte(response.getInt("idReporte"));
+
+                    Intent intento = new Intent(getApplicationContext(), VistaDictamen.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("dictamen", dictamen);
+                    intento.putExtras(bundle);
+                    startActivity(intento);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast datosInvalidosLogin = Toast.makeText(getApplicationContext(), "Hubo un error en la conexión, inténtelo más tarde", Toast.LENGTH_SHORT);
+                datosInvalidosLogin.show();
+            }
+        });
+
+        queue.add(getRequest);
+    }
+
 }

@@ -60,7 +60,6 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
 
     private void realizarConexionRegistro() {
 
-        // TODO (3) Poner la URL para realizar la petición POST.
         String url = "http://192.168.1.95:80/Reporte/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -90,8 +89,8 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
                 params.put("longitud", misInstancias.getReporte().getLongitud());
                 params.put("telefono", misInstancias.getConductor().getTelefono());
                 params.put("placa", misInstancias.getReporte().getPlacas());
-                params.put("tipoReporte", "accidente");
-                params.put("estatus", "enviado");
+                params.put("tipoReporte", misInstancias.getReporte().getTipoReporte());
+                params.put("estatus", misInstancias.getReporte().getEstatus());
                 params.put("descripcion", "accidente");
 
                 return params;

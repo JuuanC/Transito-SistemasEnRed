@@ -8,15 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -65,8 +59,7 @@ public class Login extends AppCompatActivity {
 
         if ("".equals(resultado)) {
 
-                cargarWebService(noCelular, password);
-                //String url = "http://192.168.1.95:80/Conductor/ValidarUsuario/?telefono=2281721501&password=321";
+            cargarWebService(noCelular, password);
 
         } else {
            Toast datosInvalidosLogin = Toast.makeText(this, resultado, Toast.LENGTH_SHORT);
@@ -81,10 +74,8 @@ public class Login extends AppCompatActivity {
 
     private void cargarWebService(String celular, String password) {
         final Conductor conductor = new Conductor();
-        // TODO (1) Poner la URL para obtener el usuario
-        //String url = "https://192.168.1.95:80/Conductor/Validar/?telefono="+celular+"&password="+password;
-        String url = "http://192.168.1.95:80/Conductor/ValidarUsuario/?telefono=2281721501&password=321";
-        //String url = "https://api.myjson.com/bins/sg4dh";
+        //String url = "http://192.168.1.95:80/Conductor/ValidarUsuario/?telefono=2281721501&password=321";
+        String url = "https://api.myjson.com/bins/muotx";
 
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

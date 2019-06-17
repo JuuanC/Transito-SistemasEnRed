@@ -109,4 +109,13 @@ public class Validaciones {
             return "";
         }
     }
+
+    public String validarSemaforo(Reporte reporte) {
+        if ("".equals(reporte.getDescripcion()) | "".equals(reporte.getLatitud()) | "".equals(reporte.getLongitud())) {
+            return DATOS_VACIOS;
+        } else {
+            return "";
+        }
+    }
+
 }
