@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "VerDetalle";
+    Layout = null;
 }
 
 <!doctype html>
@@ -10,52 +11,153 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento sin título</title>
-    <link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col">
-                <label center>Conductor</label>
+                Conductor
             </div>
             <div class="col">
                 Conductor implicado
             </div>
         </div>
+        <br />
         <div class="row">
             <div class="col">
                 Datos Personales
-
+                <div>
+                    <label for="">Nombre:</label><label>@ViewBag.Conductor.Nombre </label>
+                </div>
+                <div>
+                    <label for="">Num. Licencia:</label><label>@ViewBag.Conductor.NumLicencia</label>
+                </div>
+                <div>
+                    <label for="">Teléfono:</label><label>@ViewBag.Conductor.Telefono</label>
+                </div>
             </div>
             <div class="col">
                 Datos del Vehiculo
+                <div>
+                    <label for="">Placa:</label><label>@ViewBag.Reporte.Placa</label>
+                </div>
+                <div>
+                    <label for="">Marca:</label><label>@ViewBag.Vehiculo.Marca</label>
+                </div>
+                <div>
+                    <label for="">Modelo:</label><label>@ViewBag.Vehiculo.Modelo</label>
+                </div>
+                <div>
+                    <label for="">Color:</label><label>@ViewBag.Vehiculo.Color</label>
+                </div>
+                <div>
+                    <label for="">Año:</label><label>@ViewBag.Vehiculo.Anio</label>
+                </div>
+                <div>
+                    <label for="">Nombre de Aseguradora:</label><label>@ViewBag.Vehiculo.NombreAseguradora</label>
+                </div>
+                <div>
+                    <label for="">Número de poliza:</label><label>@ViewBag.Vehiculo.NumPoliza</label>
+                </div>
             </div>
             <div class="col">
                 Datos Personales
+                <div>
+                    <label for="">Nombre:</label><label>@ViewBag.Reporte.NombreImplicado</label>
+                </div>
             </div>
             <div class="col">
                 Datos del Vehiculo
+                <div>
+                    <label for="">Placa:</label><label>@ViewBag.Reporte.PlacasImplicado</label>
+                </div>
+                <div>
+                    <label for="">Marca:</label><label>@ViewBag.Reporte.MarcaImplicado</label>
+                </div>
+                <div>
+                    <label for="">Modelo:</label><label>@ViewBag.Reporte.ModeloImplicado</label>
+                </div>
+                <div>
+                    <label for="">Color:</label><label>@ViewBag.Reporte.ColorImplicado</label>
+                </div>
+                <div>
+                    <label for="">Nombre de Aseguradora:</label><label>@ViewBag.Reporte.NombreAseguradoraImplicado</label>
+                </div>
+                <div>
+                    <label for="">Número de poliza:</label><label>@ViewBag.Reporte.NumPolizaImplicado</label>
+                </div>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                One of three columns
+                <input type="image">
             </div>
             <div class="col-sm">
-                Dictamen:
+                <label>Dictamen:</label>
                 <div>
-                    <textarea></textarea>
+                    <textarea cols="40" rows="5" disabled></textarea>
                 </div>
             </div>
             <div class="col-sm">
-                <button type="button" class="btn btn-primary">Dictaminar</button>
-                <a href="/Perito/VisualizarReportes?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Regresar"></a>
+                <a onclick="mostrarCuadroDictamen();"><input class="btn btn-primary" type="button" value="Dictaminar"></a>
+                <button type="button" class="btn btn-primary">Regresar</button>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="dialogoDictaminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar perito</h5>
+                </div>
+                <div class="modal-body">
+                    <form name="formaRegistro" id="formaRegistro" action="/Perito/Registro" method="post">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Cargo:</label>
+                            <select id="cargo" name="cargo">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Perito">Perito</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Usuario:</label>
+                            <input type="text" class="form-control" name="usuario" id="usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Contraseña:</label>
+                            <input type="password" class="form-control" name="contrasenia" id="contrasenia">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Confirmar contraseña:</label>
+                            <input type="password" class="form-control" id="contrasenia2">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <input type="button" class="btn btn-primary" onclick="guardarPerito(); return false;" value="Guardar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarCuadroDictamen() {
+            $("#dialogoDictaminar").modal("show");
+        }
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap-4.0.0.js"></script>
 </body>
 </html>
 

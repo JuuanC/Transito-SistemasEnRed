@@ -199,13 +199,15 @@ namespace TransitoWeb.Controllers
                     BitacoraPerito registro =
                         dbSS.BitacoraPerito
                         .FirstOrDefault(b => b.IdBitacora == idSesion);
-
+                    if (registro != null && registro.Activa == true)
+                    {
                         List<Reporte> reportes = dbSS.Reporte.OrderByDescending(a => a.FechaReporte).ToList();
                         ViewBag.idSesion = idSesion;
                         ViewBag.Reportes = reportes;
                         return View("VisualizarReportes");
-
-
+                    }
+                    else
+                        return new RedirectResult("/");
                 }
             }
             else
@@ -214,6 +216,7 @@ namespace TransitoWeb.Controllers
 
         public IActionResult VerDetalle(int idSesion, int idReporte)
         {
+            Console.WriteLine("idreporte = " + idReporte);
             byte[] arr = new byte[100];
             if (HttpContext.Session.TryGetValue("SesionPerito", out arr))
             {
@@ -224,14 +227,20 @@ namespace TransitoWeb.Controllers
                         .FirstOrDefault(b => b.IdBitacora == idSesion);
                     if (registro != null && registro.Activa == true)
                     {
-                        Perito perito = dbSS.Perito
-                            .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
+                        Reporte reporte = dbSS.Reporte.FirstOrDefault(a => a.IdReporte == idReporte);
+                        Conductor conductor = dbSS.Conductor.FirstOrDefault(a => a.Telefono == reporte.Telefono);
+                        Vehiculo vehiculo = dbSS.Vehiculo.FirstOrDefault(a => a.Placa.Equals(reporte.Placa));
+                        Dictamen dictamen = dbSS.Dictamen.FirstOrDefault(a => a.IdReporte == idReporte);
                         ViewBag.idSesion = idSesion;
-                        ViewBag.Perito = perito;
+                        ViewBag.Conductor = conductor;
+                        ViewBag.Reporte = reporte;
+                        ViewBag.Vehiculo = vehiculo;
+                        
+                        ViewBag.Dictamen = dictamen;
                         return View("VerDetalle");
                     }
                     else
-                        return View("VerDetalle");
+                        return new RedirectResult("/");
 
                 }
             }

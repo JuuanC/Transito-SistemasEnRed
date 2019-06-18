@@ -23,7 +23,18 @@ namespace TransitoWeb.Controllers
                 dbSS.Dictamen.Add(dictamen);
                 if (dbSS.SaveChanges() == 1)
                 {
-                    return "{\"correcto\": \"si\"}";
+                    Reporte reporte = new Reporte();
+                    reporte = dbSS.Reporte.Find(idReporte);
+                    reporte.Estatus = "Dictaminado";
+                    dbSS.Reporte.Update(reporte);
+                    if(dbSS.SaveChanges() == 1)
+                    {
+                        return "{\"correcto\": \"si\"}";
+                    }
+                    else
+                    {
+                        return "{\"correcto\": \"no\"}";
+                    }
                 }
                 else
                     return "{\"correcto\": \"no\"}";

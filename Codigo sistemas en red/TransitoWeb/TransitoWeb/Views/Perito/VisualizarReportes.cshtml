@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "VisualizarReportes";
+    Layout = null;
 }
 
 <!doctype html>
@@ -10,12 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento sin título</title>
-    <link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="row">
-            <a href="/Perito/VerDetalle?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Ver detalle"></a>
+            <a href="/Perito/VerDetalle?idSesion=@ViewBag.idSesion&idReporte=19"><input class="btn btn-primary" type="button" value="Ver detalle"></a>
             <a href="/Perito/Principal?idSesion=@ViewBag.idSesion"><input class="btn btn-primary" type="button" value="Regresar"></a>
     </div>
     <table class="table table-hover">
@@ -25,6 +27,7 @@
                 <th scope="col">Telefono del conductor</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Estatus</th>
+                <th scope="col">Detalle</th>
             </tr>
         </thead>
         <tbody>
@@ -33,11 +36,12 @@
                 foreach (var reporte in ViewBag.Reportes)
                 {
                     <form name="forma" id="forma" action="/Perito/VerDetalle?idSesion=@ViewBag.idSesion">
-                        <tr onclick="mostrarDetalles();">
-                            <td>@(contador++)</td>
+                        <tr>
+                            <td name="idReporte">@reporte.IdReporte</td>
                             <td>@reporte.Telefono</td>
                             <td>@reporte.FechaReporte</td>
                             <td>@reporte.Estatus</td>
+                            <td><a href="/Perito/VerDetalle?idSesion=@ViewBag.idSesion&idReporte=@reporte.IdReporte"><input class="btn btn-primary" type="button" value="Ver detalle"></a></td>
                         </tr>
                     </form>
                 }
@@ -47,7 +51,7 @@
     </table>
 
     <script>
-        function mostrarDetalles() {
+        function mostrarDetalles(idReporte) {
             var resultado = $("#forma").submit();
         }
     </script>

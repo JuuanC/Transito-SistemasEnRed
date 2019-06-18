@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "AdministrarPeritos";
+    Layout = null;
 }
 
 <!doctype html>
@@ -10,7 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento sin título</title>
-    <link href="css/bootstrap-4.0.0.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,28 +34,28 @@
             </thead>
             <tbody>
                 @{
-                        var contador = 1;
-                        foreach (var perito in ViewBag.Peritos)
-                        {
+                    var contador = 1;
+                    foreach (var perito in ViewBag.Peritos)
+                    {
                         <tr>
                             <td>@(contador++)</td>
                             <td>@perito.Nombre</td>
                             <td>@perito.Usuario</td>
                             <td>@perito.Cargo</td>
-                            <form name="formaEliminar" id="formaEliminar" action="/Perito/Eliminar?idPerito=@perito.IdPerito" method="delete">
+                            <form name="formaEliminar" id="formaEliminar" action="/Perito/Eliminar/?idPerito=@perito.IdPerito" method="delete">
                                 <td onclick="eliminarPerito();"><a><input class="btn btn-danger" type="button" value="Eliminar"></a></td>
-                                
+
                             </form>
                             <form name="formaActualizar" id="formaActualizar" action="/Perito/Actualizar" method="delete">
                                 <td onclick="mostrarCuadroActualizar(@perito.Nombre, @perito.Usuario, @perito.Cargo, @perito.Contrasenia);">
-                                <a><input class="btn btn-primary" type="button" value="Modificar"></a></td>
-                            </form>                            
+                                    <a><input class="btn btn-primary" type="button" value="Modificar"></a>
+                                </td>
+                            </form>
                         </tr>
                     }
                 }
             </tbody>
         </table>
-        <label for="recipient-name" class="col-form-label" id="txtNombre">Nombre:</label>
     </div>
 
     <div class="modal fade" id="dialogoAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,7 +139,8 @@
         </div>
     </div>
 </body>
-
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap-4.0.0.js"></script>
 <script>
     function eliminarPerito() {
         var resultado = $("#formaEliminar").submit();
