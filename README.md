@@ -19,43 +19,42 @@ La aplicación móvil cumple con la meta establecida en el planteamiento del pro
 
 Metas principales conseguidas:
 
-    01. Registro de conductores desde la aplicación móvil mediante petición POST.
-    02. Inicio de sesión exitosa si el usuario está registrado en el sistema introduciendo teléfono y contraseña mediante petición GET.
-    03. Registro nuevos vehículos con placas por cada conductor, introduciendo placas, marca, modelo, año, color mediante petición POST.
-    04. Actualización de vehículos mediante petición PUT.
-    05. Eliminación de vehículos mediante petición DELETE.
-    06. Modificación de datos del conductor mediante petición PUT.
-    07. Consulta de todos los vehículos por conductor mediante petición GET.
-    08. Registro de reportes introduciendo placas, marca, modelo, color, nombre del conductor implicado mediante petición POST.
-    09. Consulta de reportes generados por el conductor mediante petición GET.
-    10. Consulta de dictamenes realzadas por un perito mediante petición GET.
-    11. Obtención de latitud y longitud en tiempo real mediante el GPS del dispositivo móvil.
-    12. Uso de la cámara del dispositivo para tomar fotos del accidente 4 fotos mínimo 8 máximos. (Validado)
+  01. Registro de conductores desde la aplicación móvil mediante petición POST.
+  02. Inicio de sesión exitosa si el usuario está registrado en el sistema introduciendo teléfono y contraseña mediante petición GET.
+  03. Registro nuevos vehículos con placas por cada conductor, introduciendo placas, marca, modelo, año, color mediante petición POST.
+  04. Actualización de vehículos mediante petición PUT.
+  05. Eliminación de vehículos mediante petición DELETE.
+  06. Modificación de datos del conductor mediante petición PUT.
+  07. Consulta de todos los vehículos por conductor mediante petición GET.
+  08. Registro de reportes introduciendo placas, marca, modelo, color, nombre del conductor implicado mediante petición POST.
+  09. Consulta de reportes generados por el conductor mediante petición GET.
+  10. Consulta de dictamenes realzadas por un perito mediante petición GET.
+  11. Obtención de latitud y longitud en tiempo real mediante el GPS del dispositivo móvil.
+  12. Uso de la cámara del dispositivo para tomar fotos del accidente 4 fotos mínimo 8 máximos. (Validado)
 
 Metas segundarias conseguidas :
 
-    1. Reporte diferente para registrar algún error en la vía pública como baches que afecten el curso de los vehículos.
-    2. Levantar reporte a causa de semáforos descompuestos que presenten un peligro o atraso a los vehículos o peatones.
-    3. Validaciones de entrada para campos nulos, máximo de caracteres en los campos.
+  1. Reporte diferente para registrar algún error en la vía pública como baches que afecten el curso de los vehículos.
+  2. Levantar reporte a causa de semáforos descompuestos que presenten un peligro o atraso a los vehículos o peatones.
+  3. Validaciones de entrada para campos nulos, máximo de caracteres en los campos.
     
 Metas no conseguidas :
-
-    1. Envío de fotos al servidor. Se trató de enviar las fotos como cadena de código en base 64, sin embargo nunca se pudo realizar.
-    2. Bugs de recargas en interfaz gráfica. Si el conductor realiza un registro, en varias partes no se actualiza la información, tendrá que salir y entrar nuevamente a la app para que haga una consulta al servidor y vea todos sus registros correctamente.
-    3. Excepciones generales en conexión al servidor. Sea cual sea el tipo de error cuando se realiza la petición, ya sea por parte del cliente, por tiempo de respuesta, error en bd, error en el servidor, se manejan como un tipo de error general y solo se despliega el mensaje "Hubo un error de conexión".
+  1. Envío de fotos al servidor. Se trató de enviar las fotos como cadena de código en base 64, sin embargo nunca se pudo realizar.
+  2. Bugs de recargas en interfaz gráfica. Si el conductor realiza un registro, en varias partes no se actualiza la información, tendrá que salir y entrar nuevamente a la app para que haga una consulta al servidor y vea todos sus registros correctamente.
+  3. Excepciones generales en conexión al servidor. Sea cual sea el tipo de error cuando se realiza la petición, ya sea por parte del cliente, por tiempo de respuesta, error en bd, error en el servidor, se manejan como un tipo de error general y solo se despliega el mensaje "Hubo un error de conexión".
     
 # Alcance del sistema web
 
-    El sistema web, contiene todo los servicios web suficientes para que la aplicacion móvil y el sistema web pueden operar de manera eficiente. Sin embargo la aplicacion web no se pudieron implementar todos los servicios que este ofrece, hizo falta poder actualizar y eliminar un perito, y también hizo falta el poder dictaminar desde el sistema web, auqnue lo servicios fueron probados mediante la herramienta de Postman y funcionan correctamente, no se alconzo a consumir ese servicio desde el sistema web, esto principalmente no se logro por falta de conocimientos sobre el manejo de ventanas modales en HTML y como sincronizarla con los servicios web.
+El sistema web, contiene todo los servicios web suficientes para que la aplicacion móvil y el sistema web pueden operar de manera eficiente. Sin embargo la aplicacion web no se pudieron implementar todos los servicios que este ofrece, hizo falta poder actualizar y eliminar un perito, y también hizo falta el poder dictaminar desde el sistema web, auqnue lo servicios fueron probados mediante la herramienta de Postman y funcionan correctamente, no se alconzo a consumir ese servicio desde el sistema web, esto principalmente no se logro por falta de conocimientos sobre el manejo de ventanas modales en HTML y como sincronizarla con los servicios web.
 
 # Alcance de la base de dats
 
-    Se implemento la base de datos de manera correcta y completa, no hizo falta ninguna tabla o algun atributo a alguna tabla, fue implementada en SQL Server y se pudo hacer el mapeo desde Visual Studio 2017 de manera exitosa.
+Se implemento la base de datos de manera correcta y completa, no hizo falta ninguna tabla o algun atributo a alguna tabla, fue implementada en SQL Server y se pudo hacer el mapeo desde Visual Studio 2017 de manera exitosa.
 
 # Servicios web
 
-    Todo los servicios web realizados son los suficientes para que el sistema web como el móvil funcionen correctamente, estos servicios fueron probados de manera local y remota con la herramienta Postman y posteriormente fueron utilizados por el sistema móvil de manera remota.
-    Se utilizaron de manera remota ya que el sistema web con sus servicios fueron publicados en el IIS de la maniquina servidor y todo funciono con exito.
+Todo los servicios web realizados son los suficientes para que el sistema web como el móvil funcionen correctamente, estos servicios fueron probados de manera local y remota con la herramienta Postman y posteriormente fueron utilizados por el sistema móvil de manera remota.
+Se utilizaron de manera remota ya que el sistema web con sus servicios fueron publicados en el IIS de la maniquina servidor y todo funciono con exito.
     
 
     
