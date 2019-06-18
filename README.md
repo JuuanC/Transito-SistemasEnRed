@@ -9,7 +9,8 @@ Dentro de este repositorio se encontrarán 3 carpetas generales del proyecto.
 2. Código de aplicación.
       Contiene todo el proyecto de la parte móvil creado en el IDE AndroidStudio.
 3. Documentación.
-       Contiene todo el diseño del proyecto, prototipos, casos de uso, descripciones de casos de uso, diagramas de robustez, diagramas de secuencia, diagrama de clases, modelo de datos, diagrama de despliegue, arquitectura del sistema y un documento "PROPUESTA DOCUMENTO.dox" en el cual se detallen todos los diagramasm, plan de pruebas, justificación de frameworks, tecnologías, estándares de codificación y aseguramiento de la calidad.
+       Contiene todo el diseño del proyecto, prototipos, casos de uso, descripciones de casos de uso, diagramas de robustez, diagramas de secuencia, diagrama de clases, modelo de datos, diagrama de despliegue, arquitectura del sistema y un documento "DOCUMENTO.dox" en el cual se detallen todos los diagramasm, plan de pruebas, justificación de frameworks, tecnologías, estándares de codificación y aseguramiento de la calidad, también puede ser visualizado en el documento con formato pdf.
+       En la carpeta de Modelo relacional tambien se cuentran los script para la base de datos, con todos los elementos de prueba que se utilizaron, para probar los servicios web.
        
 
 # Alcance de la aplicación móvil
@@ -45,15 +46,16 @@ Metas no conseguidas :
     
 # Alcance del sistema web
 
-....
+    El sistema web, contiene todo los servicios web suficientes para que la aplicacion móvil y el sistema web pueden operar de manera eficiente. Sin embargo la aplicacion web no se pudieron implementar todos los servicios que este ofrece, hizo falta poder actualizar y eliminar un perito, y también hizo falta el poder dictaminar desde el sistema web, auqnue lo servicios fueron probados mediante la herramienta de Postman y funcionan correctamente, no se alconzo a consumir ese servicio desde el sistema web, esto principalmente no se logro por falta de conocimientos sobre el manejo de ventanas modales en HTML y como sincronizarla con los servicios web.
 
 # Alcance de la base de dats
 
-....
+    Se implemento la base de datos de manera correcta y completa, no hizo falta ninguna tabla o algun atributo a alguna tabla, fue implementada en SQL Server y se pudo hacer el mapeo desde Visual Studio 2017 de manera exitosa.
 
 # Servicios web
 
-....
+    Todo los servicios web realizados son los suficientes para que el sistema web como el móvil funcionen correctamente, estos servicios fueron probados de manera local y remota con la herramienta Postman y posteriormente fueron utilizados por el sistema móvil de manera remota.
+    Se utilizaron de manera remota ya que el sistema web con sus servicios fueron publicados en el IIS de la maniquina servidor y todo funciono con exito.
     
 
     
