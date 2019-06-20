@@ -90,11 +90,11 @@ namespace TransitoWeb.Controllers
                     perito.Cargo = cargo;
                     dbSS.Perito.Update(perito);
                     dbSS.SaveChanges();
-                    return "{\"si\"}";
+                    return "{\"correcto\": \"si\"}";
                 }
             }
             else
-                return "{\"no\"}";
+                return "{\"correcto\": \"no\"}";
         }
 
         [HttpDelete]
@@ -108,10 +108,10 @@ namespace TransitoWeb.Controllers
                 dbSS.Perito.Remove(perito);
                 if(dbSS.SaveChanges() == 1)
                 {
-                    return "{\"si\"}";
+                    return "{\"correcto\": \"si\"}";
                 }
                 else
-                    return "{\"no\"}";
+                    return "{\"correcto\": \"no\"}";
 
             }
         }
