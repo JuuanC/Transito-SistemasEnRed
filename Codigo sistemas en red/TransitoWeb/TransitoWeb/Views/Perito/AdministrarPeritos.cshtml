@@ -12,7 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento sin título</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -72,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Cargo:</label>
-                            <select id="cargo" name="cargo">
+                            <select id="cargo" name="cargo" class="btn btn-primary">
                                 <option value="Administrador">Administrador</option>
                                 <option value="Perito">Perito</option>
                             </select>
@@ -89,11 +91,80 @@
                             <label for="recipient-name" class="col-form-label">Confirmar contraseña:</label>
                             <input type="password" class="form-control" id="contrasenia2">
                         </div>
+                        <div id="panelErrores" class="text-danger hide col-md-offset-4" style="margin-bottom:10px;">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <input type="button" class="btn btn-primary" onclick="validar_enviar(); return false;" value="Guardar">
+                        </div>
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="dialogoRegistroCorrecto">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Registro de Usuario</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>El usuario fue agregado de manera correcta. A continuación podrá continuar con el proceso...</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <script>
+                            function validar_enviar() {
+
+                                var nombre = $("#nombre").val();
+                                var cargo = $("#cargo").val();
+                                var usuario = $("#usuario").val();
+                                var contrasenia = $("#contrasenia").val();
+                                var contrasenia2 = $("#contrasenia2").val();
+                                var hayErrores = false;
+                                var errores = "";
+                                $("#panelErrores").addClass("hide");
+
+                                if (contrasenia != contrasenia2) {
+                                    hayErrores = true;
+                                    errores = "<li>No coincide el password y su comprobación. Favor de verificar"
+                                }
+
+                                if (hayErrores) {
+                                    $("#panelErrores").html(errores);
+                                    $("#panelErrores").removeClass("hide");
+                                } else {
+                                    $.ajax({
+                                        url: "/Perito/Registro",
+                                        data: {
+                                            "nombre": nombre,
+                                            "cargo": cargo,
+                                            "usuario": usuario,
+                                            "contrasenia": contrasenia,
+                                        },
+                                        type: 'POST',
+                                        success: function (datos) {
+                                            var resp = jQuery.parseJSON(datos);
+                                            if (resp.correcto === "si") {
+                                                $("#dialogoRegistroCorrecto").modal("show");
+                                                location.reload();
+                                                $("#dialogoAgregar").modal("hide");
+                                            } else {
+                                                errores = "<li>No se pudo registrar el perito."
+                                                $("#panelErrores").html(errores);
+                                                $("#panelErrores").removeClass("hide");
+                                            }
+                                        }
+                                    });
+                                    //$("#forma").submit();
+                                }
+                            }
+                        </script>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <input type="button" class="btn btn-primary" onclick="guardarPerito(); return false;" value="Guardar">
                 </div>
             </div>
         </div>
@@ -133,56 +204,18 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <input type="button" class="btn btn-primary" onclick="guardarPerito(); return false;" value="Guardar">
+                    <input type="button" id="boton" class="btn btn-primary" onclick="guardarPerito(); return false;" value="Guardar">
                 </div>
             </div>
         </div>
     </div>
-</body>
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap-4.0.0.js"></script>
-<script>
-    function eliminarPerito() {
-        var resultado = $("#formaEliminar").submit();
-        if (resultado == "si") {
-            alert("Eliminacion Exitosa");
-        } else {
-            alert("No se pudo eliminar");
+
+    <script>
+        function mostrarCuadroAgregar() {
+            $("#dialogoAgregar").modal("show");
         }
-    }
-
-    function guardarPerito() {
-        if (forma_valida()) {
-            var resultado = $("#formaRegistro").submit();
-            if (resultado == "si") {
-                alert("Registro exitoso");
-            } else {
-                alert("El usuario ya existe");
-            }
-        } else
-            alert("Debe llenar los datos de inicio de sesión");
-    }
-
-    function forma_valida() {
-        var txt_login = $("#txtContrasenia").val();
-        var txt_password = $("#txtContrasenia2").val();
-        if (txt_login == txt_password)
-            return true;
-        else
-            return false;
-    }
-    function mostrarCuadroAgregar() {
-        $("#dialogoAgregar").modal("show");
-    }
-
-    function mostrarCuadroActualizar(nombre, usuario, cargo, contrasenia) {
-        $("#dialogoActualizar").modal("show");
-        /*$("#nombre").html(nombre);
-        $("#cargo").html(cargo)
-        $("#usuario").html(usuario);
-        $("#contrasenia").html(contrasenia);*/
-    }
-</script>
+    </script>
+</body>
 </html>
 
 

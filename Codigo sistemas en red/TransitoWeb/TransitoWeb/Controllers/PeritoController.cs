@@ -66,11 +66,11 @@ namespace TransitoWeb.Controllers
                     perito.Cargo = cargo;
                     dbSS.Perito.Add(perito);
                     dbSS.SaveChanges();
-                    return "{\"si\"}";
+                    return "{\"correcto\": \"si\"}";
                 }
             }
             else
-                return "{\"no\"}";
+                return "{\"correcto\": \"no\"}";
         }
 
         [HttpPut]
