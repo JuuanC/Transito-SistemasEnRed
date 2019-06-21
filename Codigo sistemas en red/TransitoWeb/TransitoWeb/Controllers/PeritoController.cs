@@ -235,6 +235,7 @@ namespace TransitoWeb.Controllers
                         ViewBag.Conductor = conductor;
                         ViewBag.Reporte = reporte;
                         ViewBag.Vehiculo = vehiculo;
+                        ViewBag.Dictamen = dictamen;
                         
                         ViewBag.Dictamen = dictamen;
                         return View("VerDetalle");

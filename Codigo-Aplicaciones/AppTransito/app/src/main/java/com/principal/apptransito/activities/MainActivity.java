@@ -180,7 +180,7 @@ public class MainActivity
 
     private void conexionConsultarVehiculos(String telefono) {
         bandera = false;
-        String url = "http://192.168.43.238:80/Vehiculo/ListaVehiculos/?telefono=" + telefono;
+        String url = "http://192.168.100.4:80/Vehiculo/ListaVehiculos/?telefono=" + telefono;
         vehiculos = new ArrayList<>();
 
         JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -230,7 +230,7 @@ public class MainActivity
     private void conexionConsultarReportes(String telefono) {
         bandera = false;
 
-        String url = "http://192.168.43.238:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
+        String url = "http://192.168.100.4:80/Reporte/ListaReportesConductor/?telefono=" + telefono;
         reportes = new ArrayList<>();
 
         JsonArrayRequest getArray = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

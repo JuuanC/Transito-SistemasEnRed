@@ -133,7 +133,7 @@ public class FragmentBache extends Fragment implements View.OnClickListener {
     }
 
     private void enviarBache() {
-        String url = "http://192.168.43.238:80/Reporte/Registro/";
+        String url = "http://192.168.100.4:80/Reporte/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

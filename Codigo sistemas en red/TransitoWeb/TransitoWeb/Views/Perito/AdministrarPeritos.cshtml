@@ -45,7 +45,7 @@
                             <td>@perito.Usuario</td>
                             <td>@perito.Cargo</td>
                                 <td onclick="eliminarPerito(@perito.IdPerito);"><a><input class="btn btn-danger" type="button" value="Eliminar"></a></td>
-                                <td onclick="mostrarCuadroActualizar(); return false;">
+                                <td onclick="mostrarCuadroActualizar(@perito.Nombre, @perito.Cargo, @perito.Usuario, @perito.Contrasenia);">
                                     <a><input class="btn btn-primary" type="button" value="Modificar"></a>
                                 </td>
                         </tr>
@@ -282,12 +282,12 @@
     </script>
 
     <script>
-        function mostrarCuadroActualizar() {
+        function mostrarCuadroActualizar(nombre, cargo, usuario, contrasenia) {
             $("#dialogoActualizar").modal("show");
-            $("#nombreActualizar").html("Prueba");
-            $("#cargoActualizar").html("prueba");
-            $("#usuarioActualizar").html("Prueba");
-            $("#contraseniaActualizar").html("Prueba");
+            $("#nombreActualizar").val(nombre);
+            $("#cargoActualizar").val(cargo);
+            $("#usuarioActualizar").val(usuario);
+            $("#contraseniaActualizar").val(contrasenia);
         }
     </script>
 </body>

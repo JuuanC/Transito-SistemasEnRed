@@ -94,7 +94,7 @@ public class InformacionReporte extends AppCompatActivity implements View.OnClic
     }
 
     private void conexionObtenerDictamen() {
-        String url = "http://192.168.43.238:80/Dictamen/ObtenerDictamen/?idReporte=" + reporte.getIdReporte();
+        String url = "http://192.168.100.4:80/Dictamen/ObtenerDictamen/?idReporte=" + reporte.getIdReporte();
 
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
