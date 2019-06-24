@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Imagen implements Serializable {
 
-
     private int idImagen;
     private byte[] imagenEnBytes;
     private int idReporte;
