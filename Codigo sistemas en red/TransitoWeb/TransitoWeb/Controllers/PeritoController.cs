@@ -74,8 +74,8 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPut]
-        public String Actualizar(int idPerito, String usuario,
-            String nombre, String contrasenia, String cargo)
+        public String Actualizar(int idPerito, String nombre, String cargo, String usuario
+            , String contrasenia)
         {
             if (ValidarExistencia(usuario) == 1)
             {
