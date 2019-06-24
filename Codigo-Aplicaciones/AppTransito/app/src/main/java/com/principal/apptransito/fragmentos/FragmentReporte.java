@@ -105,6 +105,8 @@ public class FragmentReporte extends Fragment {
 
         View vista = inflater.inflate(R.layout.fragment_reporte, container, false);
 
+        consultarGps();
+
         menuFotos = new boolean[]{false, false, false, false, false, false, false, false};
         imagenesEnBytes = new byte[8][];
         banderaImagenes = 0;
@@ -128,8 +130,6 @@ public class FragmentReporte extends Fragment {
         tomarFoto = vista.findViewById(R.id.idTomarFoto);
         limpiarFotos = vista.findViewById(R.id.idLimpiarFotos);
         registrarReporte = vista.findViewById(R.id.idSiguienteReporte);
-
-        consultarGps();
 
         tomarFoto.setOnClickListener(new View.OnClickListener() {
 
@@ -260,7 +260,6 @@ public class FragmentReporte extends Fragment {
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 imagen = new Imagen();
-                //imagenesEnBytes[banderaImagenes] = byteArray;
                 imagen.setImagenEnBytes(byteArray);
                 listaImagenes.add(imagen);
 
@@ -314,17 +313,6 @@ public class FragmentReporte extends Fragment {
             }
         }
     }
-
-    /*private Imagen[] asignarImagenes() {
-        listaImagenes = new ArrayList<>();
-        Imagen imagen;
-        for (int i = 0; i < 8; i++) {
-            imagen = new Imagen();
-            imagen.setImagenEnBytes(imagenesEnBytes[i][]);
-        }
-
-        return imagenes;
-    }*/
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
