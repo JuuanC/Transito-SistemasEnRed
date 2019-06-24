@@ -8,6 +8,9 @@
 @{ 
     @Model Reporte reporte = new Reporte();
     @Model Dictamen dictamen = new Dictamen();
+    @Model List<FotoReporte> fotos = new List<FotoReporte>();
+
+    fotos = ViewBag.Fotos;
 
     var nombreImplicado = "";
     var placa = "";
@@ -169,6 +172,9 @@
             </div>
         </div>
     </div>
+    <label>@fotos.ElementAt(1).Imagen</label>
+    <label>@fotos.ElementAt(1).IdReporte</label>
+    <label>@fotos.ElementAt(1).Idfoto</label>
     <div class="modal fade" id="dialogoDictaminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

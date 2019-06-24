@@ -29,7 +29,7 @@ namespace TransitoWeb.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public List<FotoReporte> ListaFotos(int idReporte)
         {
             List<FotoReporte> fotos = null;

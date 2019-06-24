@@ -14,7 +14,7 @@ namespace TransitoWeb.Controllers
         public String Registro(String placa, String latitud, String longitud, String placasImplicado,
             String nombreImplicado, String nombreAseguradoraImplicado, String numPolizaImplicado, String marcaImplicado,
             String modeloImplicado, String colorImplicado, String tipoReporte, String telefono, String estatus,
-            String descripcion, String imagen1, String imagen2, String imagen3 , String imagen4 , String imagen5, String imagen6,
+            String descripcion, String imagen1, String imagen2, String imagen3, String imagen4, String imagen5, String imagen6,
             String imagen7, String imagen8)
         {
             using (TransitoContext dbSS =
@@ -41,7 +41,42 @@ namespace TransitoWeb.Controllers
                 {
                     Reporte reporteAux = new Reporte();
                     reporteAux = dbSS.Reporte.Last();
-                    for(int i = 0; i < 8; i++)
+                    if (imagen1 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen2 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen3 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen4 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen5 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen6 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen7 != "")
+                    {
+                        FotoReporteController frc = new FotoReporteController();
+                        frc.Registro(imagen1, reporteAux.IdReporte);
+                    }
+                    if (imagen8 != "")
                     {
                         FotoReporteController frc = new FotoReporteController();
                         frc.Registro(imagen1, reporteAux.IdReporte);
