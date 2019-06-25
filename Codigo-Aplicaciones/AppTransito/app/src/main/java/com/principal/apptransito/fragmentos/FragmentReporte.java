@@ -165,7 +165,7 @@ public class FragmentReporte extends Fragment {
                 reporte.setModeloImplicado(modeloEdit.getText().toString().trim());
                 reporte.setColorImplicado(colorEdit.getText().toString().trim());
                 reporte.setFechaReporte(fechaView.getText().toString().trim());
-                reporte.setEstatus("enviado");
+                reporte.setEstatus("Por dictaminar");
                 reporte.setTipoReporte(TIPO_REPORTE);
 
                 String resultado = validacion.validarReporte(reporte, menuFotos[3]);

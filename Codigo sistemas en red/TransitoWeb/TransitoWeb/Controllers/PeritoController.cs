@@ -74,8 +74,8 @@ namespace TransitoWeb.Controllers
         }
 
         [HttpPut]
-        public String Actualizar(int idPerito, String usuario,
-            String nombre, String contrasenia, String cargo)
+        public String Actualizar(int idPerito, String nombre, String cargo, String usuario
+            , String contrasenia)
         {
             if (ValidarExistencia(usuario) == 1)
             {
@@ -231,12 +231,14 @@ namespace TransitoWeb.Controllers
                         Conductor conductor = dbSS.Conductor.FirstOrDefault(a => a.Telefono == reporte.Telefono);
                         Vehiculo vehiculo = dbSS.Vehiculo.FirstOrDefault(a => a.Placa.Equals(reporte.Placa));
                         Dictamen dictamen = dbSS.Dictamen.FirstOrDefault(a => a.IdReporte == idReporte);
+                        List<FotoReporte> fotos = dbSS.FotoReporte.ToList();
                         ViewBag.idSesion = idSesion;
                         ViewBag.Conductor = conductor;
                         ViewBag.Reporte = reporte;
                         ViewBag.Vehiculo = vehiculo;
                         ViewBag.Dictamen = dictamen;
-                        
+                        ViewBag.Fotos = fotos;
+                        ViewBag.IdPerito = registro.IdPerito;
                         ViewBag.Dictamen = dictamen;
                         return View("VerDetalle");
                     }

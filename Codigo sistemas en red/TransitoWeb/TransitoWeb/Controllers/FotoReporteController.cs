@@ -22,13 +22,6 @@ namespace TransitoWeb.Controllers
                 dbSS.FotoReporte.Add(foto);
                 if (dbSS.SaveChanges() == 1)
                 {
-                    String rutaApp = Directory.GetCurrentDirectory();
-                    String ruta = Path.Combine(rutaApp,
-                        "wwwroot\\archivos", $"Prueba-2.pdf");
-                    using (var stream = new FileStream(ruta, FileMode.Create))
-                    {
-                        //await imagen.CopyToAsync(stream);
-                    }
                     return "{\"si\"}";
                 }
                 else
@@ -36,7 +29,7 @@ namespace TransitoWeb.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public List<FotoReporte> ListaFotos(int idReporte)
         {
             List<FotoReporte> fotos = null;
