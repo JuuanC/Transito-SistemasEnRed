@@ -154,19 +154,19 @@ public class FragmentSemaforo extends Fragment implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("placasImplicado", "Semáforo");
-                params.put("nombreAseguradoraImplicado", "Semáforo");
-                params.put("marcaImplicado", "Semáforo");
-                params.put("modeloImplicado", "Semáforo");
-                params.put("colorImplicado", "Semáforo");
-                params.put("nombreImplicado", "Semáforo");
-                params.put("polizaSeguro", "Semáforo");
+                params.put("placasImplicado", "");
+                params.put("nombreAseguradoraImplicado", "");
+                params.put("marcaImplicado", "");
+                params.put("modeloImplicado", "");
+                params.put("colorImplicado", "");
+                params.put("nombreImplicado", "");
+                params.put("polizaSeguro", "");
                 params.put("latitud", reporte.getLatitud());
                 params.put("longitud", reporte.getLongitud());
                 params.put("telefono", misInstancias.getConductor().getTelefono());
-                params.put("placa", "Semáforo");
+                params.put("placa", "");
                 params.put("tipoReporte", reporte.getTipoReporte());
-                params.put("estatus", "Semáforo");
+                params.put("estatus", "Por dictaminar");
                 params.put("descripcion", reporte.getDescripcion());
 
                 return params;

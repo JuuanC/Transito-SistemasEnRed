@@ -98,12 +98,12 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
                 }
 
                 params.put("placasImplicado", misInstancias.getReporte().getPlacasImplicado());
-                params.put("nombreAseguradoraImplicado", "BANCOMER");
+                params.put("nombreAseguradoraImplicado", misInstancias.getReporte().getAseguradoraImplicado());
                 params.put("marcaImplicado", misInstancias.getReporte().getMarcaImplicado());
                 params.put("modeloImplicado", misInstancias.getReporte().getModeloImplicado());
                 params.put("colorImplicado", misInstancias.getReporte().getColorImplicado());
                 params.put("nombreImplicado", misInstancias.getReporte().getNombreImplicado());
-                params.put("polizaSeguro", misInstancias.getReporte().getPolizaImplicado());
+                params.put("numPolizaImplicado", misInstancias.getReporte().getPolizaImplicado());
                 params.put("latitud", misInstancias.getReporte().getLatitud());
                 params.put("longitud", misInstancias.getReporte().getLongitud());
                 params.put("telefono", misInstancias.getConductor().getTelefono());
