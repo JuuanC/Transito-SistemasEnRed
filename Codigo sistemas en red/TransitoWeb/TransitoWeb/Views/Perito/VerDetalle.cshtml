@@ -202,6 +202,28 @@
     <script>
         function mostrarCuadroDictamen() {
             $("#dialogoDictaminar").modal("show");
+            $.ajax({
+                url: "/Dictamen/Registro",
+                data: {
+                    "nombre": nombre,
+                    "cargo": cargo,
+                    "usuario": usuario,
+                    "contrasenia": contrasenia,
+                },
+                type: 'POST',
+                success: function (datos) {
+                    var resp = jQuery.parseJSON(datos);
+                    if (resp.correcto === "si") {
+                        $("#dialogoRegistroCorrecto").modal("show");
+                        location.reload();
+                        $("#dialogoAgregar").modal("hide");
+                    } else {
+                        errores = "<li>No se pudo registrar el perito.";
+                        $("#panelErrores").html(errores);
+                        $("#panelErrores").removeClass("hide");
+                    }
+                }
+            });
         }
     </script>
 </body>
