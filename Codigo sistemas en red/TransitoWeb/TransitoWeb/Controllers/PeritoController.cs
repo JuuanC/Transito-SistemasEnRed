@@ -238,6 +238,7 @@ namespace TransitoWeb.Controllers
                         ViewBag.Vehiculo = vehiculo;
                         ViewBag.Dictamen = dictamen;
                         ViewBag.Fotos = fotos;
+                        ViewBag.IdPerito = registro.IdPerito;
                         ViewBag.Dictamen = dictamen;
                         return View("VerDetalle");
                     }
