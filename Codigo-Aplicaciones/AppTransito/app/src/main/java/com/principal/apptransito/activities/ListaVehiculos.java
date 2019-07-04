@@ -98,7 +98,7 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
                 }
 
                 params.put("placasImplicado", misInstancias.getReporte().getPlacasImplicado());
-                params.put("nombreAseguradoraImplicado", misInstancias.getReporte().getAseguradoraImplicado());
+                params.put("nombreAseguradoraImplicado", "");
                 params.put("marcaImplicado", misInstancias.getReporte().getMarcaImplicado());
                 params.put("modeloImplicado", misInstancias.getReporte().getModeloImplicado());
                 params.put("colorImplicado", misInstancias.getReporte().getColorImplicado());
