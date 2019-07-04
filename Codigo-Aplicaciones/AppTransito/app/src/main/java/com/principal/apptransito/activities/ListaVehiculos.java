@@ -124,7 +124,6 @@ public class ListaVehiculos extends AppCompatActivity implements AdapterView.OnI
 
             }
         };
-
         queue.add(stringRequest);
 
     }

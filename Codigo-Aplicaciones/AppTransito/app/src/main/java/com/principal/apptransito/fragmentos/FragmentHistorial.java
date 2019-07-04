@@ -96,7 +96,7 @@ public class FragmentHistorial extends Fragment implements AdapterView.OnItemCli
 
     private void conexionConsultarImagenes() {
 
-        String url = "http://192.168.43.238:80/FotoReporte/ListaFotos/?idReporte=29";
+        String url = "http://192.168.100.4:80/FotoReporte/ListaFotos/?idReporte=29";
 
         imagenes = new ArrayList<>();
 

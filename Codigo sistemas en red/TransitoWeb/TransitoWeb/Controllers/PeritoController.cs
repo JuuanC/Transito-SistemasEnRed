@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TransitoWeb.Models;
+using System.Threading;
+using System.Net.Sockets;
+using System.IO;
 
 namespace TransitoWeb.Controllers
 {
@@ -153,6 +156,10 @@ namespace TransitoWeb.Controllers
                             .FirstOrDefault(a => a.IdPerito == registro.IdPerito);
                         ViewBag.idSesion = idSesion;
                         ViewBag.Perito = perito;
+
+                        TcpClient cliente = usuarioChat(perito.Usuario);
+                        ViewBag.mensajes = mensajes;
+                        ViewBag.Cliente = cliente;
                         return View("Principal");
                     }
                     else
@@ -273,6 +280,63 @@ namespace TransitoWeb.Controllers
                 return perito;
             }
 
+        }
+
+        static private NetworkStream stream;
+        static private StreamWriter streamw;
+        static private StreamReader streamr;
+        static private TcpClient cliente = new TcpClient();
+        static private string nick = "";
+        static private List<string> mensajes = new List<string>();
+
+        void Listen()
+        {
+            while (cliente.Connected)
+            {
+                string mensaje = streamr.ReadLine();
+                if (mensaje != nick)
+                {
+                    mensajes.Add(mensaje);
+                    ViewBag.mensajes = mensajes;
+                }
+            }
+        }
+
+        public TcpClient usuarioChat(String usuario)
+        {
+            nick = usuario;
+            if (!cliente.Connected)
+            {
+                cliente.Connect("127.0.0.1", 8000);
+            }
+            if (cliente.Connected)
+            {
+                Thread t = new Thread(Listen);
+
+                stream = cliente.GetStream();
+                streamw = new StreamWriter(stream);
+                streamr = new StreamReader(stream);
+
+                streamw.WriteLine(nick);
+                streamw.Flush();
+
+                t.Start();
+            }
+            return cliente;
+        }
+
+        [HttpPost]
+        private void Enviar(string mensaje, TcpClient socket, string nombreUsuario)
+        {
+            var stream = socket.GetStream();
+            var streamr = new StreamReader(stream);
+            var streamw = new StreamWriter(stream);
+            if (mensaje == "" || mensaje == null)
+            {
+                streamw.WriteLine(mensaje);
+                streamw.Flush();
+                mensajes.Add(streamr.ReadLine());
+            }
         }
 
         private String GenerarToken()

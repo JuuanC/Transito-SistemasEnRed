@@ -1,5 +1,6 @@
 ﻿
 @using TransitoWeb.Models;
+@using System.IO;
 @{
     ViewData["Title"] = "VerDetalle";
     Layout = null;
@@ -10,6 +11,7 @@
     @Model Dictamen dictamen = new Dictamen();
     @Model List<FotoReporte> fotos = new List<FotoReporte>();
     @Model Vehiculo vehiculo = new Vehiculo();
+
 
     fotos = ViewBag.Fotos;
 
@@ -67,6 +69,8 @@
     {
         numPolizaImplicado = reporte.NumPolizaImplicado;
     }
+
+    MemoryStream ms = new MemoryStream(fotos.ElementAt(1).Imagen);
 
 }
 
@@ -185,6 +189,7 @@
     <label>@fotos.ElementAt(1).Imagen</label>
     <label>@fotos.ElementAt(1).IdReporte</label>
     <label>@fotos.ElementAt(1).Idfoto</label>
+    <label>@ms</label>
 
 
     <div class="modal fade" id="dialogoDictaminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

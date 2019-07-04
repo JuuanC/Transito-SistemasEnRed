@@ -5,60 +5,60 @@
         android:orientation="vertical" >
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
         android:src="@drawable/login" />
 
     <EditText
         android:id="@+id/idCelular"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_height="54dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="50dp"
-        android:textAlignment="center"
-        android:textSize="32sp"
         android:hint="@string/login_celular"
         android:inputType="number"
-        android:maxLength="10"/>
+        android:maxLength="10"
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <EditText
         android:id="@+id/idPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="50dp"
-        android:textAlignment="center"
-        android:textSize="32sp"
         android:hint="@string/login_password"
         android:inputType="textPassword"
-        android:maxLength="45"/>
+        android:maxLength="45"
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <Button
         android:id="@+id/idEntrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
-        android:textAlignment="center"
-        android:textSize="32sp"
+        android:onClick="intentarEntrar"
         android:text="@string/login_entrar"
-        android:onClick="intentarEntrar"/>
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <Button
         android:id="@+id/idRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="50dp"
-        android:textAlignment="center"
-        android:textSize="32sp"
+        android:onClick="desplegarRegistrarse"
         android:text="@string/login_registrarse"
-        android:onClick="desplegarRegistrarse"/>
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
 </LinearLayout>

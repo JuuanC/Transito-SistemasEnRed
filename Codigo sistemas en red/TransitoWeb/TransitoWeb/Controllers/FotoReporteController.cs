@@ -5,13 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TransitoWeb.Models;
+using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
 
 namespace TransitoWeb.Controllers
 {
     public class FotoReporteController : Controller
     {
         [HttpGet]
-        public async Task<String>Registro(String imagen, int idReporte)
+        public String Registro(String imagen, int idReporte)
         {
             using (TransitoContext dbSS = new TransitoContext())
             {
@@ -39,6 +41,8 @@ namespace TransitoWeb.Controllers
                          .Where(a => a.IdReporte == idReporte)
                          .ToList();
             }
+            MemoryStream ms = new MemoryStream(fotos.ElementAt(1).Imagen);
+            //Bitmap bm = new Bitmap(ms);
             return fotos;
         }
 
