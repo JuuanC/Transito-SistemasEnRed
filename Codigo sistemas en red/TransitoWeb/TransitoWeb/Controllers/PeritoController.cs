@@ -157,9 +157,9 @@ namespace TransitoWeb.Controllers
                         ViewBag.idSesion = idSesion;
                         ViewBag.Perito = perito;
 
-                        TcpClient cliente = usuarioChat(perito.Usuario);
+                        //TcpClient cliente = usuarioChat(perito.Usuario);
                         ViewBag.mensajes = mensajes;
-                        ViewBag.Cliente = cliente;
+                        //ViewBag.Cliente = cliente;
                         return View("Principal");
                     }
                     else

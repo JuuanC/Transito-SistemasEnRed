@@ -117,7 +117,7 @@ public class Registro02 extends AppCompatActivity {
 
     private void realizarConexionRegistro() {
 
-        String url = "http://192.168.100.4:80/Conductor/Registro/";
+        String url = "http://192.168.43.238:80/Conductor/Registro/";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

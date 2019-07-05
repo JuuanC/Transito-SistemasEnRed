@@ -188,7 +188,7 @@ public class ModificarVehiculo extends AppCompatActivity implements View.OnClick
 
     @Override
     public void confirmacionEliminacion() {
-        String url = "http://192.168.100.4:80/Vehiculo/Eliminar/?placa="+placasEdit.getText().toString().trim();
+        String url = "http://192.168.43.238:80/Vehiculo/Eliminar/?placa="+placasEdit.getText().toString().trim();
         StringRequest dr = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>()
                 {
